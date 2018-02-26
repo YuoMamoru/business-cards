@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Companies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Short name</th>
+      <th>Kana name</th>
+      <th>En name</th>
+      <th>Category</th>
+      <th>Category position</th>
+      <th>Logo image</th>
+      <th>Note</th>
+      <th>Web site</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td><%= company.short_name %></td>
+        <td><%= company.kana_name %></td>
+        <td><%= company.en_name %></td>
+        <td><%= company.category %></td>
+        <td><%= company.category_position %></td>
+        <td><%= base64_image_tag company.logo_image %></td>
+        <td><%= company.note %></td>
+        <td><%= company.web_site %></td>
+        <td><%= link_to 'Show', company %></td>
+        <td><%= link_to 'Edit', edit_company_path(company) %></td>
+        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Company', new_company_path %>
