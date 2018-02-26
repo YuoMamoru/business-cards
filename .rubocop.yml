@@ -4,7 +4,14 @@ AllCops:
   # to ignore them, so only the ones explicitly set in this file are enabled.
   DisabledByDefault: true
   Exclude:
-    - 'db/schema.rb'
+    - config.ru
+    - Gemfile
+    - Rakefile
+    - 'bin/**/*'
+    - 'config/**/*'
+    - db/schema.rb
+    - spec/rails_helper.rb
+    - test/test_helper.rb
     - 'vendor/**/*'
 
 # Prefer &&/|| over and/or.
@@ -54,7 +61,7 @@ Style/HashSyntax:
 # extra level of indentation.
 Layout/IndentationConsistency:
   Enabled: true
-  EnforcedStyle: rails
+  EnforcedStyle: normal
 
 # Two spaces, no tabs (for indentation).
 Layout/IndentationWidth:
