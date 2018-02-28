@@ -52,12 +52,12 @@
 
 <p>
   <strong>Front image:</strong>
-  <%= base64_image_tag @card.front_image %>
+  <%= base64_image_tag @card.front_image, height: 128 %>
 </p>
 
 <p>
   <strong>Back image:</strong>
-  <%= base64_image_tag @card.back_image %>
+  <%= base64_image_tag @card.back_image, height: 128 %>
 </p>
 
 <p>

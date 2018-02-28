@@ -36,8 +36,8 @@
         <td><%= card.tel %></td>
         <td><%= card.fax %></td>
         <td><%= card.mail %></td>
-        <td><%= base64_image_tag card.front_image %></td>
-        <td><%= base64_image_tag card.back_image %></td>
+        <td><%= base64_image_tag card.front_image, height: 48 %></td>
+        <td><%= base64_image_tag card.back_image, height: 48 %></td>
         <td><%= card.qualification %></td>
         <td><%= card.note %></td>
         <td><%= link_to 'Show', card %></td>

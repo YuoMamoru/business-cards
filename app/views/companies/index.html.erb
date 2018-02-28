@@ -27,7 +27,7 @@
         <td><%= company.en_name %></td>
         <td><%= company.category %></td>
         <td><%= company.category_position %></td>
-        <td><%= base64_image_tag company.logo_image %></td>
+        <td><%= base64_image_tag company.logo_image, height: 48 %></td>
         <td><%= company.note %></td>
         <td><%= company.web_site %></td>
         <td><%= link_to 'Show', company %></td>
