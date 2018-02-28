@@ -13,72 +13,73 @@
 
   <div class="field">
     <%= form.label :company %>
-    <%= form.text_field :company, id: :card_company %>
+    <%= @card.company.name %>
+    <%= form.hidden_field :company_id %>
   </div>
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :card_name %>
+    <%= form.text_field :name %>
   </div>
 
   <div class="field">
     <%= form.label :kana_name %>
-    <%= form.text_field :kana_name, id: :card_kana_name %>
+    <%= form.text_field :kana_name %>
   </div>
 
   <div class="field">
     <%= form.label :department %>
-    <%= form.text_field :department, id: :card_department %>
+    <%= form.text_field :department %>
   </div>
 
   <div class="field">
     <%= form.label :position %>
-    <%= form.text_field :position, id: :card_position %>
+    <%= form.text_field :position %>
   </div>
 
   <div class="field">
     <%= form.label :postcode %>
-    <%= form.text_field :postcode, id: :card_postcode %>
+    <%= form.text_field :postcode %>
   </div>
 
   <div class="field">
     <%= form.label :address %>
-    <%= form.text_field :address, id: :card_address %>
+    <%= form.text_field :address %>
   </div>
 
   <div class="field">
     <%= form.label :tel %>
-    <%= form.text_field :tel, id: :card_tel %>
+    <%= form.text_field :tel %>
   </div>
 
   <div class="field">
     <%= form.label :fax %>
-    <%= form.text_field :fax, id: :card_fax %>
+    <%= form.text_field :fax %>
   </div>
 
   <div class="field">
     <%= form.label :mail %>
-    <%= form.text_field :mail, id: :card_mail %>
+    <%= form.text_field :mail %>
   </div>
 
   <div class="field">
     <%= form.label :front_image %>
-    <%= form.text_field :front_image, id: :card_front_image %>
+    <%= form.file_field :front_image, accept: "image/png, image/jpeg, image/gif" %>
   </div>
 
   <div class="field">
     <%= form.label :back_image %>
-    <%= form.text_field :back_image, id: :card_back_image %>
+    <%= form.file_field :back_image, accept: "image/png, image/jpeg, image/gif" %>
   </div>
 
   <div class="field">
     <%= form.label :qualification %>
-    <%= form.text_field :qualification, id: :card_qualification %>
+    <%= form.text_field :qualification %>
   </div>
 
   <div class="field">
     <%= form.label :note %>
-    <%= form.text_field :note, id: :card_note %>
+    <%= form.text_field :note %>
   </div>
 
   <div class="actions">

@@ -26,16 +26,6 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    upload_file = company_params[:logo_image_data]
-    company_params.delete(:logo_image_data)
-    if upload_file
-      begin
-        upload_file.open
-        company_params[:logo_image_data] = upload_file.read
-      ensure
-        upload_file.close
-      end
-    end
     @company = Company.new(company_params)
 
     respond_to do |format|
@@ -82,6 +72,6 @@ class CompaniesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def company_params
-    params.require(:company).permit(:name, :short_name, :kana_name, :en_name, :category, :category_position, :logo_image_data, :note, :web_site)
+    params.require(:company).permit(:name, :short_name, :kana_name, :en_name, :category, :category_position, :logo_image, :note, :web_site)
   end
 end

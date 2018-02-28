@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228054839) do
+ActiveRecord::Schema.define(version: 20180228101559) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "company_id", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180228054839) do
     t.string "en_name", limit: 255
     t.integer "category", limit: 2, null: false
     t.integer "category_position", limit: 1, null: false
-    t.binary "logo_image_data"
+    t.binary "logo_image"
     t.string "note", limit: 255
     t.string "web_site", limit: 255
     t.datetime "created_at", null: false

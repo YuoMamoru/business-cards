@@ -2,6 +2,7 @@
 
 class Card < ApplicationRecord
   belongs_to :company
+  image_field :front_image, :back_image
 
   validates :name, length: { maximum: 31 }, presence: true
   validates :kana_name, length: { maximum: 63 }, presence: true

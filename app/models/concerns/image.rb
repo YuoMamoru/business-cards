@@ -6,7 +6,19 @@ class Image
   attr_reader :data, :content_type, :width, :height
 
   def initialize(data)
-    @data = data
+    case data
+    when ActionDispatch::Http::UploadedFile
+      data.open
+      begin
+        @data = data.read
+      ensure
+        data.close
+      end
+    when IO
+      @data = data.read
+    else
+      @data = data
+    end
     set_matadata
   end
 

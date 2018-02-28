@@ -14,9 +14,9 @@ class CardsController < ApplicationController
   def show
   end
 
-  # GET /cards/new
+  # GET /companies/:company_id/cards/new
   def new
-    @card = Card.new
+    @card = Card.new(company_id: params[:company_id])
   end
 
   # GET /cards/1/edit
@@ -72,6 +72,6 @@ class CardsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def card_params
-    params.require(:card).permit(:company, :name, :kana_name, :department, :position, :postcode, :address, :tel, :fax, :mail, :front_image, :back_image, :qualification, :note)
+    params.require(:card).permit(:company_id, :name, :kana_name, :department, :position, :postcode, :address, :tel, :fax, :mail, :front_image, :back_image, :qualification, :note)
   end
 end
