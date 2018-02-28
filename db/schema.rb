@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224123724) do
+ActiveRecord::Schema.define(version: 20180228054839) do
+
+  create_table "cards", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.string "name", limit: 31, null: false
+    t.string "kana_name", limit: 63, null: false
+    t.string "department"
+    t.string "position"
+    t.string "postcode", limit: 8
+    t.string "address", limit: 255
+    t.string "tel", limit: 15
+    t.string "fax", limit: 15
+    t.string "mail", limit: 255
+    t.binary "front_image"
+    t.binary "back_image"
+    t.string "qualification", limit: 255
+    t.string "note", limit: 255
+    t.boolean "deleted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_cards_on_company_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name", limit: 255, null: false
