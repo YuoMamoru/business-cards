@@ -51,8 +51,8 @@ class Image
           raise RuntimeError.new("Wrong JPEG format.")
         end
         if marker.getbyte(1) == 0xC0
-          @width = (@data.getbyte(pos + 5) << 8) + @data.getbyte(pos + 6)
-          @height = (@data.getbyte(pos + 7) << 8) + @data.getbyte(pos + 8)
+          @height = (@data.getbyte(pos + 5) << 8) + @data.getbyte(pos + 6)
+          @width = (@data.getbyte(pos + 7) << 8) + @data.getbyte(pos + 8)
           break
         end
         pos += (@data.getbyte(pos + 2) << 8) + @data.getbyte(pos + 3) + 2
