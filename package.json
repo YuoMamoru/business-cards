@@ -1,5 +1,7 @@
 {
   "name": "businesscards",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "material-components-web": "0.32.0"
+  }
 }
