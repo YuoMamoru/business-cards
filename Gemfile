@@ -57,6 +57,8 @@ group :development do
   gem 'rubocop'
   # For spring
   gem 'spring-commands-rspec'
+  # Code completion
+  gem 'solargraph'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
