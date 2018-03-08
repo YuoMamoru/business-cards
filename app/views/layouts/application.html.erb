@@ -28,10 +28,14 @@
             <nav class="mdc-list">
               <%= mdc_list_item_link_to "Mail", "https://mail.google.com/mail/", icon: "email" %>
               <%= mdc_list_item_link_to "Calendar", "https://calendar.google.com/calendar/", icon: "event" %>
-              <%= mdc_list_item_link_to "Business Cards",
+              <%= mdc_list_item_link_to "Company Settings",
                                         { controller: "companies", action: "index" },
+                                        icon: "business",
+                                        selected: controller.controller_name == "companies" %>
+              <%= mdc_list_item_link_to "Business Cards",
+                                        { controller: "cards", action: "index" },
                                         icon: "contact_mail",
-                                        selected: [ "companies", "cards" ].include?(controller.controller_name) %>
+                                        selected: controller.controller_name == "cards" %>
             </nav>
 
             <hr class="mdc-list-divider">
