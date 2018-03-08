@@ -98,7 +98,7 @@ module MdcHelper
       options[:class] = "mdc-text-field__input"
       @template.content_tag(:div, container_options) {
         label_options = { class: "mdc-floating-label", for: options[:id] }
-        merge_class_name(label_options, "mdc-floating-label--float-above") if @object.send(method).present?
+        @template.merge_class_name(label_options, "mdc-floating-label--float-above") if @object.send(method).present?
         [
           super(method, options),
           label(method, label_options),
