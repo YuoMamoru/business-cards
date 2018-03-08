@@ -15,17 +15,14 @@
 //
 
 // Theme colors
-@import "@material/theme/color-palette";
-$mdc-theme-primary: $material-color-orange-900;
-$mdc-theme-secondary: $material-color-blue-800;
-$mdc-theme-background: white;
+@import "theme-colors";
 
 @import "@material/button/mdc-button";
 @import "@material/card/mdc-card";
 @import "@material/checkbox/mdc-checkbox";
 // @import "@material/chips/mdc-chips";
 // @import "@material/dialog/mdc-dialog";
-// @import "@material/drawer/mdc-drawer";
+@import "@material/drawer/mdc-drawer";
 // @import "@material/elevation/mdc-elevation";
 @import "@material/fab/mdc-fab";
 @import "@material/floating-label/mdc-floating-label";
@@ -36,7 +33,7 @@ $mdc-theme-background: white;
 @import "@material/line-ripple/mdc-line-ripple";
 // @import "@material/linear-progress/mdc-linear-progress";
 @import "@material/list/mdc-list";
-// @import "@material/menu/mdc-menu";
+@import "@material/menu/mdc-menu";
 @import "@material/radio/mdc-radio";
 @import "@material/ripple/mdc-ripple";
 @import "@material/select/mdc-select";
@@ -46,6 +43,8 @@ $mdc-theme-background: white;
 // @import "@material/tabs/mdc-tabs";
 @import "@material/textfield/mdc-text-field";
 @import "@material/theme/mdc-theme";
-// @import "@material/toolbar/mdc-toolbar";
+@import "@material/toolbar/mdc-toolbar";
 // @import "@material/top-app-bar/mdc-top-app-bar";
 @import "@material/typography/mdc-typography";
+
+@import "mdce-image-field"
