@@ -12,5 +12,6 @@
  *
  *= require normalize
  *= require material-components-web
+ *= require restus
  *= require_self
  */
