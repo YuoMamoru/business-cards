@@ -10,14 +10,49 @@ module MdcHelper
   def mdc_link_to(name = nil, options = nil, html_options = nil, &block)
     active_options = block_given? ? options : html_options
     active_options ||= {}
-    active_options[:class] = active_options[:class].blank? ? "mdc-button" : "#{active_options[:class]} mdc-button"
-    active_options[:"data-mdc-auto-init"] = "MDCRipple"
+    merge_class_name(active_options, "mdc-button")
+    active_options[:"data-mdc-auto-init"] = "MDCRipple" if active_options.delete(:auto_init)
     if block_given?
       options = active_options
     else
       html_options = active_options
     end
     link_to(name, options, html_options, &block)
+  end
+
+  def mdc_list_item_link_to(name, options = nil, html_options = nil)
+    icon = html_options.delete(:icon)
+    item_classes = [ "mdc-list-item" ]
+    item_classes << "mdc-list-item--selected" if html_options.delete(:selected)
+    merge_class_name(html_options, *item_classes)
+    if icon.blank?
+      link_to(name, options, html_options)
+    else
+      link_to(options, html_options) do
+        [
+          content_tag(:i, icon, class: "material-icons mdc-list-item__graphic", "aria-hidden": "true"),
+          name,
+        ].join(" ").html_safe
+      end
+    end
+  end
+
+  def merge_class_name(options, *class_name)
+    class_names =
+      class_name.inject([]) do |classes, cn|
+        classes.concat(cn.strip.split(/ +/)) if cn.present?
+        classes
+      end
+    if options[:class].blank?
+      options[:class] = class_names.join(" ")
+    else
+      current_classes = options[:class].strip.split(/ +/)
+      options[:class] =
+        class_names.inject(current_classes) { |classes, cn|
+          classes << cn unless current_classes.include?(cn)
+          classes
+        }.join(" ")
+    end
   end
 
   # An +MdcFormBuilder+ object is associated with a particular model object and
@@ -56,18 +91,17 @@ module MdcHelper
       container_classes = [ "mdc-text-field" ]
       container_classes << "mdc-text-field--dense" if options.delete(:dense)
       container_classes << "mdc-text-field--disabled" if options[:disabled]
-      container_classes << options.delete(:class)
-      container_classes.reject! { |cls| cls.blank? }
-      container_attrs = { class: container_classes.join(" ") }
-      container_attrs[:"data-mdc-auto-init"] = "MDCTextField" if options.delete(:auto_init) || @options[:auto_init]
-      element_id(method, options)
+      @template.merge_class_name(options, *container_classes)
+      container_options = { class: options.delete(:class) }
+      container_options[:"data-mdc-auto-init"] = "MDCTextField" if options.delete(:auto_init) || @options[:auto_init]
+      create_id(method, options)
       options[:class] = "mdc-text-field__input"
-      @template.content_tag(:div, container_attrs) {
-        label_classes = [ "mdc-floating-label" ]
-        label_classes << "mdc-floating-label--float-above" if @object.send(method).present?
+      @template.content_tag(:div, container_options) {
+        label_options = { class: "mdc-floating-label", for: options[:id] }
+        merge_class_name(label_options, "mdc-floating-label--float-above") if @object.send(method).present?
         [
           super(method, options),
-          label(method, class: label_classes, for: options[:id]),
+          label(method, label_options),
           @template.content_tag(:div, nil, class: "mdc-line-ripple"),
         ].join.html_safe
       }
@@ -105,7 +139,7 @@ module MdcHelper
               }.join.html_safe
             }
           },
-          hidden_field(method, id: element_id(method, options)),
+          hidden_field(method, id: create_id(method, options)),
         ].join.html_safe
       }
     end
@@ -121,14 +155,12 @@ module MdcHelper
     #   is executed.
     def image_field(method, options = {})
       value = @object.send(method)
-      container_classes = [ "mdce-image-field" ]
-      container_classes << options.delete(:class)
-      container_classes.reject! { |cls| cls.blank? }
-      container_attrs = { class: container_classes.join(" ") }
-      container_attrs[:"data-mdce-auto-init"] = "MDCEImageField" if options.delete(:auto_init) || @options[:auto_init]
-      @template.content_tag(:div, container_attrs) {
+      container_options = { class: options.delete(:class) }
+      @template.merge_class_name(container_options, "mdce-image-field")
+      container_options[:"data-mdce-auto-init"] = "MDCEImageField" if options.delete(:auto_init) || @options[:auto_init]
+      @template.content_tag(:div, container_options) {
         [
-          label(method, for: element_id(method, options), class: "mdce-image-field__proxy", tabindex: options.delete(:tabindex) || "0") {
+          label(method, for: create_id(method, options), class: "mdce-image-field__proxy", tabindex: options.delete(:tabindex) || "0") {
             if value.blank?
               image = @template.content_tag(:span, "Select Image...", class: "mdc-button")
             else
@@ -181,15 +213,14 @@ module MdcHelper
       elem_classes << "mdc-button--compact" if options.delete(:compact)
       elem_classes << "mdc-button--dense" if options.delete(:dense)
       elem_classes << "mdc-button--raised" if options.delete(:raised)
-      elem_classes << options[:class] if options[:class].present?
-      options[:class] = elem_classes.join(" ")
+      @template.merge_class_name(options, *elem_classes)
       options[:"data-mdc-auto-init"] = "MDCRipple" if options.delete(:auto_init) || @options[:auto_init]
       super(value, options, &block)
     end
 
     private
 
-    def element_id(method, options)
+    def create_id(method, options)
       options[:id] = "#{object_name}_#{method}" if options[:id].blank?
       options[:id]
     end

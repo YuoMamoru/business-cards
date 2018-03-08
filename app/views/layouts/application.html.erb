@@ -12,7 +12,39 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="mdc-typography">
-    <%= yield %>
+  <body class="mdc-typography res-body">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <button class="material-icons mdc-toolbar__menu-icon res-main-menu">menu</button>
+          <span class="mdc-toolbar__title">Restus Potal</span>
+        </section>
+      </div>
+    </header>
+    <div class="mdc-toolbar-fixed-adjust res-content">
+      <aside class="mdc-drawer mdc-drawer--persistent mdc-drawer--open res-drawer">
+        <nav class="mdc-drawer__drawer">
+          <div class="mdc-list-group">
+            <nav class="mdc-list">
+              <%= mdc_list_item_link_to "Mail", "https://mail.google.com/mail/", icon: "email" %>
+              <%= mdc_list_item_link_to "Calendar", "https://calendar.google.com/calendar/", icon: "event" %>
+              <%= mdc_list_item_link_to "Business Cards",
+                                        { controller: "companies", action: "index" },
+                                        icon: "contact_mail",
+                                        selected: [ "companies", "cards" ].include?(controller.controller_name) %>
+            </nav>
+
+            <hr class="mdc-list-divider">
+
+            <nav class="mdc-list">
+              <%= mdc_list_item_link_to "G Sute Account", "https://myaccount.google.com/", icon: "account_circle" %>
+            </nav>
+          </div>
+        </nav>
+      </aside>
+      <main class="res-main">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
