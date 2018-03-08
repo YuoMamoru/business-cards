@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: "root#index"
+
   resources :cards, except: [ :new ]
   resources :companies do
     resources :cards, only: [ :new ]
