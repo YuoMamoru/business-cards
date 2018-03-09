@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module MdcHelper
-  # Create a Material Design link button using Material Components for the Web.
+  # Create a Material Design link button using {Material Components for the Web}[https://material.io/components/web/].
   #
   # === Additional optins
   #
@@ -20,6 +20,13 @@ module MdcHelper
     link_to(name, options, html_options, &block)
   end
 
+  # Create a Material Design list item link using {Material Components for the Web}[https://material.io/components/web/].
+  #
+  # === Additional optins
+  #
+  # * <tt>:icon</tt> - Specify the icon at the beginning of the list item.
+  #   This method use the {Material Icons}[https://material.io/icons/].
+  # * <tt>:selected</tt> - If set this option to true, the list item becomes selected state.
   def mdc_list_item_link_to(name, options = nil, html_options = nil)
     icon = html_options.delete(:icon)
     item_classes = [ "mdc-list-item" ]
@@ -37,6 +44,23 @@ module MdcHelper
     end
   end
 
+  # Merge class attribute in <tt>options</tt> into <tt>class_names</tt>.
+  #
+  #   options = { id: "elem" }
+  #   merge_class_name(options, "foo")
+  #   options                        # => {:id =>"elem", :class=>"foo"}
+  #
+  #   options = { id: "elem", class: "foo" }
+  #   merge_class_name(options, "bar")
+  #   options                        # => {:id =>"elem", :class=>"foo bar"}
+  #
+  #   options = { id: "elem", class: "foo bar" }
+  #   merge_class_name(options, "foo baz")
+  #   options                        # => {:id =>"elem", :class=>"foo bar baz"}
+  #
+  #   options = { id: "elem", class: "foo bar" }
+  #   merge_class_name(options, "foo", "baz")
+  #   options                        # => {:id =>"elem", :class=>"foo bar baz"}
   def merge_class_name(options, *class_name)
     class_names =
       class_name.inject([]) do |classes, cn|
