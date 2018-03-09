@@ -1,8 +1,7 @@
 @import "theme-colors";
-// @import 'material-components-web';
-@import '@material/theme/mixins';
-@import '@material/floating-label/mixins';
-@import '@material/textfield/variables';
+@import "@material/theme/mixins";
+@import "@material/floating-label/mixins";
+@import "@material/textfield/variables";
 
 .mdce-image-field {
   display: inline-flex;
@@ -12,25 +11,27 @@
   margin-top: 36px;
   margin-bottom: 8px;
   will-change: opacity, transform, color;
-  
+
   &__proxy:focus {
-    @include mdc-theme-prop(outline-color, primary)
+    @include mdc-theme-prop(outline-color, primary);
   }
 
   &__label {
+    @include mdc-floating-label-ink-color($mdc-text-field-label);
+
     position: absolute;
     top: 3px;
     left: 0;
     transform-origin: left top;
-    transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1), color 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 180ms cubic-bezier(.4, 0, .2, 1), color 180ms cubic-bezier(.4, 0, .2, 1);
     cursor: text;
-    @include mdc-floating-label-ink-color($mdc-text-field-label);
 
     &--float-above {
-      transform: translateY(-100%) scale(0.75);
+      transform: translateY(-100%) scale(.75);
       cursor: auto;
     }
   }
+
   .mdce-image-field--focused:not(.mdce-image-field--disabled) &__label {
     @include mdc-floating-label-ink-color(primary);
   }

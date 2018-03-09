@@ -5,20 +5,20 @@ html {
 .res-body {
   display: flex;
   flex-direction: column;
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
   min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .res-content {
   display: flex;
   flex: 1 1 auto;
-  height: 100%;
   box-sizing: border-box;
+  height: 100%;
 }
 
 .res-main {
-  padding-left: 16px;
   padding-right: 16px;
+  padding-left: 16px;
 }

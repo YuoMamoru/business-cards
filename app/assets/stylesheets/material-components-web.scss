@@ -17,6 +17,7 @@
 // Theme colors
 @import "theme-colors";
 
+// Material Components for the Web
 @import "@material/button/mdc-button";
 @import "@material/card/mdc-card";
 @import "@material/checkbox/mdc-checkbox";
@@ -47,4 +48,5 @@
 // @import "@material/top-app-bar/mdc-top-app-bar";
 @import "@material/typography/mdc-typography";
 
+// Original Components
 @import "mdce-image-field"
