@@ -79,7 +79,7 @@ module MdcHelper
           @template.content_tag(:div, class: "mdc-menu mdc-select__menu") {
             @template.content_tag(:ul, class: "mdc-list mdc-menu__items") {
               choices.map { |choice|
-                attrs = { class: "mdc-list-item", role: "option", id: choice, tabindex: "0" }
+                attrs = { class: "mdc-list-item", role: "option", "data-value": choice, tabindex: "0" }
                 attrs[:"aria-selected"] = "true" if value == choice
                 @template.content_tag(:li, label_content(choice), attrs)
               }.join.html_safe
