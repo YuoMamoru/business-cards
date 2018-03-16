@@ -5,7 +5,7 @@ document.addEventListener 'turbolinks:load', ->
     element.MDCSelect.listen 'MDCSelect:change', (e) ->
       hiddenEl = e.target.querySelector 'input[type="hidden"]'
       if hiddenEl
-        hiddenEl.value = e.detail.value
+        hiddenEl.value = e.detail.selectedOptions[0].dataset.value
 
   for element in document.querySelectorAll 'div[data-mdce-auto-init="MDCEImageField"]'
     inputProxy = element.querySelector '.mdce-image-field__proxy'
