@@ -99,21 +99,42 @@ module MdcHelper
     #
     # * <tt>:atuto_init</tt> - If set this option to true, automatic initialization
     #   is executed.
+    # * <tt>:height</tt> - Specifies the height of image. <tt>:height</tt> will be
+    #   ignored if <tt>:size</tt> is specified. The width is adjusted to maintain
+    #   the aspect ratio if <tt>:size</tt> and <tt>:width</tt> is not specified.
+    # * <tt>:max_height</tt> - Specifies the maximum height of image. This opetion
+    #   is implemented using style of img tag.
+    # * <tt>:max_width</tt> - Specifies the maximum height of image. This opetion
+    #   is implemented using style of img tag.
+    # * <tt>:size</tt> - Supplied as "{Width}x{Height}" or "{Number}", so "30x45" becomes
+    #   width="30" and height="45", and "50" becomes width="50" and height="50".
+    #   <tt>:size</tt> will be ignored if the value is not in the correct format.
+    # * <tt>:width</tt> - Specifies the width of image. <tt>:width</tt> will be
+    #   ignored if <tt>:size</tt> is specified. The height is adjusted to maintain
+    #   the aspect ratio if <tt>:size</tt> and <tt>:height</tt> is not specified.
     def image_field(method, options = {})
       value = @object.send(method)
       container_options = { class: options.delete(:class) }
       @template.merge_class_name(container_options, "mdce-image-field")
       container_options[:"data-mdce-auto-init"] = "MDCEImageField" if options.delete(:auto_init) || @options[:auto_init]
       @template.content_tag(:div, container_options) {
+        style_options = []
+        style_options << "max-width:#{options.delete(:max_width)}px" if options.has_key?(:max_width)
+        style_options << "max-height:#{options.delete(:max_height)}px" if options.has_key?(:max_height)
+        style_attr = style_options.empty? ? nil : style_options.join(";")
         [
-          label(method, for: create_id(method, options), class: "mdce-image-field__proxy", tabindex: options.delete(:tabindex) || "0") {
+          label(method, for: create_id(method, options), class: "mdce-image-field__proxy", tabindex: options.delete(:tabindex) || "0", style: style_attr) {
             if value.blank?
-              image = @template.content_tag(:span, "Select Image...", class: "mdc-button")
+              select_button = @template.content_tag(:span, "Select Image...", class: "mdc-button mdce-image-field__button")
+              image = nil
             else
+              select_button = @template.content_tag(:span, "Select Image...", class: "mdc-button mdce-image-field__button", style: "display:none")
               image_options = {
                 size: options.delete(:size),
                 width: options.delete(:width),
                 height: options.delete(:height),
+                class: "mdce-image-field__image",
+                style: style_attr,
               }
               image = @template.base64_image_tag(value, image_options)
             end
@@ -127,6 +148,7 @@ module MdcHelper
               end
             end
             [
+              select_button,
               image,
               file_field(method, options),
             ].join.html_safe

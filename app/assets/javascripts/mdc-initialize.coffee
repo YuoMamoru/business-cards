@@ -18,16 +18,19 @@ document.addEventListener 'turbolinks:load', ->
     element.querySelector('input[type="file"]').addEventListener 'change', (e) ->
       imgElm = e.target.parentElement.querySelector 'img'
       unless imgElm
-        e.target.parentElement.removeChild(e.target.parentElement.querySelector 'span')
+        (e.target.parentElement.querySelector '.mdce-image-field__button').style.display = "none"
         imgElm = document.createElement 'img'
-        imgElm.setAttribute 'height', '192'
-        e.target.parentElement.insertBefore imgElm, e.target.parentElement.firstChild
+        imgElm.style.maxWidth = e.target.parentElement.style.maxWidth
+        imgElm.style.maxHeight = e.target.parentElement.style.maxHeight
+        imgElm.classList.add 'mdce-image-field__image'
+        e.target.parentElement.insertBefore imgElm, e.target
       file = e.target.files[0]
+      return unless file
       reader = new FileReader()
-      reader.imageElement = e.target.parentElement.querySelector 'img'
+      reader.imageElement = e.target.parentElement.querySelector '.mdce-image-field__image'
       reader.addEventListener 'load', (e) ->
         imgElm.removeAttribute('width')
-        e.target.imageElement.setAttribute 'src', e.target.result
+        e.target.imageElement.src = e.target.result
       reader.readAsDataURL file
     , false
 , false
