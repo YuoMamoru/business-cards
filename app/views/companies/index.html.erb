@@ -1,4 +1,4 @@
-<h2 class="mdc-typography--headline content-company">Company List</h2>
+<h2 class="mdc-typography--headline content-company"><%= t(".company_list")%></h2>
 
 <div class="mdc-layout-grid">
   <div class="mdc-layout-grid__inner">
@@ -29,23 +29,23 @@
       <div class="mdc-list-group res-list res-company-info" style="display:none">
         <div class="mdc-list-group__subheader res-list-group__subheader">
           <span class="mdc-typography--title res-company-info__name"></span>
-          <%= mdc_button_tag "Edit", compact: true, class: "res-list-group__subheader-button res-company-edit-button" %>
+          <%= mdc_button_tag t("helpers.button.edit"), compact: true, class: "res-list-group__subheader-button res-company-edit-button" %>
         </div>
         <ul class="mdc-list">
           <li class="mdc-list-item">
-            Short name
+            <%= Company.human_attribute_name(:short_name) %>
             <span class="mdc-list-item__meta res-company-info__short-name"></span>
           </li>
           <li class="mdc-list-item">
-            Kana name
+            <%= Company.human_attribute_name(:kana_name) %>
             <span class="mdc-list-item__meta res-company-info__kana-name"></span>
           </li>
           <li class="mdc-list-item">
-            En name
+            <%= Company.human_attribute_name(:en_name) %>
             <span class="mdc-list-item__meta res-company-info__en-name"></span>
           </li>
           <li class="mdc-list-item">
-            Web site
+            <%= Company.human_attribute_name(:web_site) %>
             <span class="mdc-list-item__meta res-company-info__web-site"></span>
           </li>
         </ul>
@@ -55,7 +55,7 @@
   </div>
 </div>
 
-<%= mdc_fab "add", label: "New Company", class: "res-add-fab res-company-add-button", auto_init: true %>
+<%= mdc_fab "add", label: t(".create_company"), class: "res-add-fab res-company-add-button", auto_init: true %>
 
 <aside class="mdc-dialog res-company-dialog"
        role="dialog"
@@ -72,7 +72,7 @@
     <div class="mdc-dialog__surface">
       <header class="mdc-dialog__header">
         <h2 id="res-company-dialog-label" class="mdc-dialog__header__title">
-          Edit company
+          <%= t(".edit_company")%>
         </h2>
       </header>
       <section id="res-company-dialog-form" class="mdc-dialog__body mdc-dialog__body--scrollable">
@@ -105,8 +105,8 @@
         </div>
       </section>
       <footer class="mdc-dialog__footer">
-        <%= form.button "Cancel", type: "button", class: "mdc-dialog__footer__button mdc-dialog__footer__button--cancel" %>
-        <%= form.button "Submit", class: "mdc-dialog__footer__button mdc-dialog__footer__button--accept res-company-submit" %>
+        <%= form.button t("helpers.button.cancel"), type: "button", class: "mdc-dialog__footer__button mdc-dialog__footer__button--cancel" %>
+        <%= form.button t("helpers.submit.submit"), class: "mdc-dialog__footer__button mdc-dialog__footer__button--accept res-company-submit" %>
       </footer>
     </div>
     <div class="mdc-dialog__backdrop"></div>
