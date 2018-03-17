@@ -57,7 +57,7 @@
 
 <%= mdc_fab "add", label: "New Company", class: "res-add-fab res-company-add-button", auto_init: true %>
 
-<aside class="mdc-dialog res-company-dialog"
+<div class="mdc-dialog res-company-dialog"
        role="dialog"
        aria-hidden="true"
        aria-labelledby="res-company-dialog-label"
@@ -75,7 +75,7 @@
           Edit company
         </h2>
       </header>
-      <section id="res-company-dialog-form" class="mdc-dialog__body mdc-dialog__body--scrollable">
+      <div id="res-company-dialog-form" class="mdc-dialog__body mdc-dialog__body--scrollable">
         <div class="field">
           <%= form.text_field :name, required: true, maxlength: 255 %>
         </div>
@@ -103,7 +103,7 @@
         <div class="field">
           <%= form.text_field :web_site, maxlength: 255 %>
         </div>
-      </section>
+      </div>
       <footer class="mdc-dialog__footer">
         <%= form.button "Cancel", type: "button", class: "mdc-dialog__footer__button mdc-dialog__footer__button--cancel" %>
         <%= form.button "Submit", class: "mdc-dialog__footer__button mdc-dialog__footer__button--accept res-company-submit" %>
@@ -111,7 +111,7 @@
     </div>
     <div class="mdc-dialog__backdrop"></div>
   <% end %>
-</aside>
+</div>
 
 <div class="mdc-snackbar res-companies-snackbar"
      aria-live="assertive"
