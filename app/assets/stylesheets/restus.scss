@@ -5,6 +5,11 @@ html {
   height: 100%;
 }
 
+.mdc-toolbar__title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .res-body {
   display: flex;
   flex-direction: column;
