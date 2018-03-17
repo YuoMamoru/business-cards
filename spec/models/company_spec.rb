@@ -40,4 +40,19 @@ RSpec.describe Company, type: :model do
     @company.category_position = ""
     expect(@company).to_not be_valid
   end
+
+  it "responses formal name when category position is non" do
+    @company.category_position = :non
+    expect(@company.formal_name).to eq "Company Name"
+  end
+
+  it "responses formal name when category position is before" do
+    @company.category_position = :before
+    expect(@company.formal_name).to eq "株式会社Company Name"
+  end
+
+  it "responses formal name when category position is after" do
+    @company.category_position = :after
+    expect(@company.formal_name).to eq "Company Name株式会社"
+  end
 end

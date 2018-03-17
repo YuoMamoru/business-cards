@@ -23,7 +23,7 @@ document.addEventListener('turbolinks:load', (evt) => {
     company: null,
 
     showInfo() {
-      for (const field of ['name', 'short_name', 'kana_name', 'en_name', 'web_site', 'note']) {
+      for (const field of ['formal_name', 'short_name', 'kana_name', 'en_name', 'web_site', 'note']) {
         this.infoElm.querySelector(`.res-company-info__${field.replace('_', '-')}`).innerHTML = this.company[field] || '';
       }
       this.infoElm.style.display = '';

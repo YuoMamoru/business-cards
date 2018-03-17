@@ -11,4 +11,15 @@ class Company < ApplicationRecord
   validates :kana_name, presence: true
   validates :category, presence: true
   validates :category_position, presence: true
+
+  def formal_name
+    case category_position.intern
+    when :before
+      self.class.human_attribute_name(category, locale: :ja) + name
+    when :after
+      name + self.class.human_attribute_name(category, locale: :ja)
+    else
+      name
+    end
+  end
 end
