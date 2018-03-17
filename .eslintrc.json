@@ -20,6 +20,9 @@
         "no-restricted-syntax": [
             "off", { "selector": "ForOfStatement" }
         ],
+        "no-underscore-dangle": [
+            "error", { "allowAfterThis": true }
+        ],
         "no-unused-vars": [
             "error", { "args": "none" }
         ]
