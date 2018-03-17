@@ -12,9 +12,9 @@
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">business</i>
         <% end %>
         <% if company.web_site.present? %>
-          <%= link_to company.name, company.web_site, class: "res-list-item__link" %>
+          <%= link_to company.short_name, company.web_site, class: "res-list-item__link" %>
         <% else %>
-          <%= company.name %>
+          <%= company.short_name %>
         <% end %>
           <%= mdc_list_item_meta_icon_link_to "info", company_path(company.id, :json),
                                               remote: true,
@@ -28,7 +28,7 @@
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
       <div class="mdc-list-group res-list res-company-info" style="display:none">
         <div class="mdc-list-group__subheader res-list-group__subheader">
-          <span class="mdc-typography--title res-company-info__name"></span>
+          <span class="mdc-typography--title res-company-info__formal-name"></span>
           <%= mdc_button_tag t("helpers.button.edit"), compact: true, class: "res-list-group__subheader-button res-company-edit-button" %>
         </div>
         <ul class="mdc-list">
