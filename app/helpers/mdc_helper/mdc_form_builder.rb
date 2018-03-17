@@ -47,7 +47,7 @@ module MdcHelper
         @template.merge_class_name(label_options, "mdc-floating-label--float-above") if @object.send(method).present?
         [
           super(method, options),
-          label(method, label_options),
+          label(label_content(method), label_options),
           @template.content_tag(:div, nil, class: "mdc-line-ripple"),
         ].join.html_safe
       }
@@ -125,10 +125,10 @@ module MdcHelper
         [
           label(method, for: create_id(method, options), class: "mdce-image-field__proxy", tabindex: options.delete(:tabindex) || "0", style: style_attr) {
             if value.blank?
-              select_button = @template.content_tag(:span, "Select Image...", class: "mdc-button mdce-image-field__button")
+              select_button = @template.content_tag(:span, "#{image_default_value}...", class: "mdc-button mdce-image-field__button")
               image = nil
             else
-              select_button = @template.content_tag(:span, "Select Image...", class: "mdc-button mdce-image-field__button", style: "display:none")
+              select_button = @template.content_tag(:span, "#{image_default_value}...", class: "mdc-button mdce-image-field__button", style: "display:none")
               image_options = {
                 size: options.delete(:size),
                 width: options.delete(:width),
@@ -202,6 +202,22 @@ module MdcHelper
       content = ActionView::Helpers::Tags::Translator.new(@object, object_name, method_or_text, scope: "helpers.label").translate
       content ||= method_or_text.humanize
       content
+    end
+
+    def image_default_value
+      object = convert_to_model(@object)
+
+      model = if object.respond_to?(:model_name)
+        object.model_name.human
+      else
+        @object_name.to_s.humanize
+      end
+
+      defaults = []
+      defaults << :"helpers.image.#{object_name}.select"
+      defaults << :"helpers.image.select"
+
+      I18n.t(defaults.shift, model: model, default: defaults)
     end
   end
 end
