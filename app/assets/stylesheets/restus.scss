@@ -67,3 +67,19 @@ html {
   right: 24px;
   bottom: 24px;
 }
+
+.mdc-text-field__input {
+  &[maxlength="255"] {
+    width: 592px;
+  }
+
+  &[maxlength="31"] {
+    width: 453px;
+  }
+}
+
+.mdc-select {
+  min-width: 120px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
