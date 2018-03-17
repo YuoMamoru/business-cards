@@ -1,3 +1,6 @@
+@import "theme-colors";
+@import "@material/list/mixins";
+
 html {
   height: 100%;
 }
@@ -19,6 +22,43 @@ html {
 }
 
 .res-main {
+  width: 100%;
   padding-right: 16px;
   padding-left: 16px;
+}
+
+.res-list {
+  border: 1px solid rgba(0, 0, 0, .1);
+
+  &-item__link {
+    color: inherit;
+  }
+
+  &-group__subheader {
+    display: flex;
+
+    &-button {
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+}
+
+.mdc-list-item__meta.material-icons {
+  text-decoration: none;
+}
+
+.res-company-info-link--selected {
+  @include mdc-theme-prop(color, primary-light);
+}
+
+.mdc-dialog__body--scrollable {
+  max-height: calc(100vh - 195px);
+  overflow-y: auto;
+}
+
+.res-add-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
 }
