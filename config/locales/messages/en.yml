@@ -28,6 +28,10 @@ en:
         non: none
         before: before
         after: after
+        # omit_ltd: ""
+        # omit_llc: ""
+        # omit_foundation: ""
+        # omit_university: ""
   errors:
     format: "%{attribute} %{message}"
     messages:

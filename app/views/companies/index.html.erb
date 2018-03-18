@@ -12,9 +12,9 @@
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">business</i>
         <% end %>
         <% if company.web_site.present? %>
-          <%= link_to company.short_name, company.web_site, class: "res-list-item__link" %>
+          <%= link_to company.omit_name, company.web_site, class: "res-list-item__link" %>
         <% else %>
-          <%= company.short_name %>
+          <%= company.omit_name %>
         <% end %>
           <%= mdc_list_item_meta_icon_link_to "info", company_path(company.id, :json),
                                               remote: true,
