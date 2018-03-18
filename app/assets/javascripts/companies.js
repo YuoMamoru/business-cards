@@ -135,8 +135,8 @@ document.addEventListener('turbolinks:load', (evt) => {
   // Behavior of info icon
   const onLoadComplete = (e) => {
     const xhr = e.detail[0];
-    if (xhr.status >= 400) {
-      const message = `Failed to get company info. (${xhr.status})`;
+    if (xhr.status === 0 || xhr.status >= 400) {
+      const message = I18n.t('js.companies.failed_to_get_company_info', { status: xhr.status });
       document.querySelector('.res-companies-snackbar').MDCSnackbar.show({ message });
       return;
     }
@@ -175,15 +175,16 @@ document.addEventListener('turbolinks:load', (evt) => {
   contents.formElm.addEventListener('ajax:complete', (e) => {
     const xhr = e.detail[0];
     let message;
-    if (xhr.status < 400) {
+    if (xhr.status !== 0 && xhr.status < 400) {
       contents.company = JSON.parse(e.detail[0].responseText);
       contents.showInfo();
       contents.setupForm();
       message =
         xhr.responseURL.match(`${contents.formElm.dataset.newPath}$`) ?
-          'Company was successfully created.' : 'Company was successfully updated.';
+          I18n.t('js.companies.successfully_created') :
+          I18n.t('js.companies.successfully_updated');
     } else {
-      message = `Failed to save data. (${xhr.status})`;
+      message = I18n.t('js.companies.failed_to_save', { status: xhr.status });
     }
     document.querySelector('.res-companies-snackbar').MDCSnackbar.show({ message });
   }, false);
