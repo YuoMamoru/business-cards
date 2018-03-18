@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = Company.order(:kana_name)
   end
 
   # GET /companies/1.json
