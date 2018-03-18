@@ -7,6 +7,27 @@ en:
         restrict_dependent_destroy:
           has_one: "Cannot delete record because a dependent %{record} exists"
           has_many: "Cannot delete record because dependent %{record} exist"
+    models:
+      company: company
+      card: business card
+    attributes:
+      company:
+        name: name
+        short_name: short name
+        kana_name: kana name
+        en_name: name in English
+        category: category
+        category_position: category position
+        note: note
+        web_site: web site
+        logo_image: logo image
+        ltd: LTD
+        llc: LLC
+        foundation: foundation
+        university: university
+        non: none
+        before: before
+        after: after
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -46,9 +67,27 @@ en:
         one: 1 error prohibited this %{model} from being saved
         other: "%{count} errors prohibited this %{model} from being saved"
   helpers:
+    button:
+      cancel: Cancel
+      edit: Edit
+      submit: Save
+    image:
+      select: Select image
     select:
       prompt: Please select
     submit:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+  layouts:
+    application:
+      mail: Main
+      calendar: Calendar
+      company_settings: Company Settings
+      business_cards: Business Cards
+      g_sute_account: G Sute Account
+  companies:
+    index:
+      companies_list: List of Comanies
+      create_company: Create Company
+      edit_company: Edit Company
