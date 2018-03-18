@@ -22,4 +22,15 @@ class Company < ApplicationRecord
       name
     end
   end
+
+  def omit_name
+    case category_position.intern
+    when :before
+      self.class.human_attribute_name("omit_#{category}", locale: :ja) + short_name
+    when :after
+      short_name + self.class.human_attribute_name("omit_#{category}", locale: :ja)
+    else
+      short_name
+    end
+  end
 end

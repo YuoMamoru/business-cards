@@ -28,6 +28,10 @@ ja:
         non: なし
         before: 前
         after: 後
+        omit_ltd: （株）
+        omit_llc: （同）
+        omit_foundation: （財）
+        omit_university: ""
   errors:
     format: "%{attribute}%{message}"
     messages:
