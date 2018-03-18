@@ -64,14 +64,15 @@ ja:
     button:
       cancel: キャンセル
       edit: 編集
+      submit: 保存
     image:
       select: 画像の選択
     select:
       prompt: 選択してください
     submit:
-      create: 登録
-      submit: 保存
-      update: 更新
+      create: "%{model}の登録"
+      submit: "%{model}の保存"
+      update: "%{model}の更新"
   layouts:
     application:
       mail: メール
@@ -81,6 +82,6 @@ ja:
       g_sute_account: G Sute アカウント
   companies:
     index:
-      company_list: 取引先一覧
+      companes_list: 取引先一覧
       create_company: 取引先の作成
       edit_company: 取引先の編集
