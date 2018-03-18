@@ -24,3 +24,6 @@
 /yarn-error.log
 
 .byebug_history
+
+# Ignore compiled translate file
+/app/assets/javascripts/i18n/translations.js

@@ -8,7 +8,8 @@
         "document": false,
         "XMLHttpRequest": false,
         "mdc": false,
-        "Rails": false
+        "Rails": false,
+        "I18n": false
     },
     "rules": {
         "func-names": [
