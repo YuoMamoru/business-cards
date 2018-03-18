@@ -134,7 +134,13 @@ document.addEventListener('turbolinks:load', (evt) => {
 
   // Behavior of info icon
   const onLoadComplete = (e) => {
-    contents.company = JSON.parse(e.detail[0].responseText);
+    const xhr = e.detail[0];
+    if (xhr.status >= 400) {
+      const message = `Failed to get company info. (${xhr.status})`;
+      document.querySelector('.res-companies-snackbar').MDCSnackbar.show({ message });
+      return;
+    }
+    contents.company = JSON.parse(xhr.responseText);
     contents.showInfo();
     contents.setupForm();
     contents.changeInfoIconState();
@@ -177,7 +183,7 @@ document.addEventListener('turbolinks:load', (evt) => {
         xhr.responseURL.match(`${contents.formElm.dataset.newPath}$`) ?
           'Company was successfully created.' : 'Company was successfully updated.';
     } else {
-      message = `${xhr.status}: ${xhr.statusText}`;
+      message = `Failed to save data. (${xhr.status})`;
     }
     document.querySelector('.res-companies-snackbar').MDCSnackbar.show({ message });
   }, false);
