@@ -91,3 +91,9 @@ en:
       companies_list: List of Comanies
       create_company: Create Company
       edit_company: Edit Company
+  js:
+    companies:
+      failed_to_get_company_info: Failed to get company info. (%{status})
+      failed_to_save: Failed to save company. (%{status})
+      successfully_created: Company was successfully created.
+      successfully_updated: Company was successfully updated.
