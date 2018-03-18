@@ -3,18 +3,18 @@
 <div class="mdc-layout-grid">
   <div class="mdc-layout-grid__inner">
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-      <ul class="mdc-list mdc-list--avatar-list res-list">
+      <ul class="mdc-list mdc-list--avatar-list res-list res-company-list">
       <% @companies.each do |company| %>
-        <li class="mdc-list-item" data-company-id="<%= company.id %>">
+        <li class="mdc-list-item res-company-item" data-company-id="<%= company.id %>">
         <% if company.logo_image.present? %>
-          <%= base64_image_tag company.logo_image, height: 40, alt: "logo", class: "mdc-list-item__graphic" %>
+          <%= base64_image_tag company.logo_image, height: 40, alt: "logo", class: "mdc-list-item__graphic res-company-item__logo" %>
         <% else %>
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">business</i>
+          <i class="material-icons mdc-list-item__graphic res-company-item__logo" aria-hidden="true">business</i>
         <% end %>
         <% if company.web_site.present? %>
-          <%= link_to company.omit_name, company.web_site, class: "res-list-item__link" %>
+          <%= link_to company.omit_name, company.web_site, class: "res-list-item__link res-company-item__omit-name" %>
         <% else %>
-          <%= company.omit_name %>
+          <span class="res-company-item__omit-name"><%= company.omit_name %></span>
         <% end %>
           <%= mdc_list_item_meta_icon_link_to "info", company_path(company.id, :json),
                                               remote: true,

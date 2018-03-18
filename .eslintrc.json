@@ -18,6 +18,7 @@
         "function-paren-newline": [
             "error", "consistent"
         ],
+        "no-continue": "off",
         "no-restricted-syntax": [
             "off", { "selector": "ForOfStatement" }
         ],

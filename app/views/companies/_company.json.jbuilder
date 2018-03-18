@@ -7,6 +7,8 @@ else
   json.logo_image {
     json.base64_data company.logo_image.base64_data
     json.content_type company.logo_image.content_type
+    json.width company.logo_image.width
+    json.height company.logo_image.height
   }
 end
 json.url company_url(company, format: :json)
