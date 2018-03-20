@@ -1,5 +1,8 @@
 @import "theme-colors";
-@import "@material/list/mixins";
+@import "@material/list/variables";
+@import "@material/theme/mixins";
+@import "@material/typography/mixins";
+@import "@material/typography/variables";
 
 html {
   height: 100%;
@@ -46,6 +49,18 @@ html {
       margin-right: 0;
       margin-left: auto;
     }
+  }
+
+  &-group__subfooter {
+    $mdc-list-subheader-virtual-height: 3rem;
+    $mdc-list-subheader-leading: map-get(map-get($mdc-typography-styles, body2), line-height);
+    $mdc-list-subheader-margin:
+      ($mdc-list-subheader-virtual-height - $mdc-list-subheader-leading) / 2;
+
+    @include mdc-typography(body2);
+    @include mdc-theme-prop(color, text-secondary-on-background);
+
+    margin: $mdc-list-subheader-margin $mdc-list-side-padding;
   }
 }
 
