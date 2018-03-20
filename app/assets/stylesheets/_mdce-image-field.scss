@@ -1,7 +1,7 @@
 @import "theme-colors";
 @import "@material/theme/mixins";
 @import "@material/floating-label/mixins";
-@import "@material/textfield/variables";
+// @import "@material/textfield/variables";
 
 .mdce-image-field {
   display: inline-flex;
@@ -24,6 +24,7 @@
     left: 0;
     transform-origin: left top;
     transition: transform 180ms cubic-bezier(.4, 0, .2, 1), color 180ms cubic-bezier(.4, 0, .2, 1);
+    white-space: nowrap;
     cursor: text;
 
     &--float-above {
