@@ -8,6 +8,7 @@ bundler_args: "--without development --deployment"
 cache: bundler
 
 install:
+  - gem install bundler
   - bundle install
   - npm install
 
@@ -18,5 +19,5 @@ before_script:
 script:
   - npm run lint
   - bin/rails test
-  - bin/rspec
-  - brakeman -z -A --except CheckUnscopedFind -w1
+  - bin/rails spec
+  - bin/bundle exec brakeman -z -A --except CheckUnscopedFind -w1

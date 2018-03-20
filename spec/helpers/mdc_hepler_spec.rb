@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require "spec_helper"
+require "rails_helper"
 
-RSpec.describe MdcHelper do
-  include MdcHelper
-
+RSpec.describe MdcHelper, type: :helper do
   describe "#merge_class_name" do
     it "adds class attribute if option have no class attribute" do
       options = { id: "elm_id" }

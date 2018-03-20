@@ -42,6 +42,8 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  # Linter
+  gem 'rubocop'
   # Adds RSpec
   gem 'rspec-rails'
   # Security checker
@@ -58,8 +60,6 @@ group :development do
   # For debug
   gem 'ruby-debug-ide'
   gem 'debase'
-  # Linter
-  gem 'rubocop'
   # For spring
   gem 'spring-commands-rspec'
   # Code completion
