@@ -8,8 +8,6 @@ module MdcHelper
   #
   # * <tt>:atuto_init</tt> - If set this option to true, automatic initialization
   #   is executed using MDC-auto-init module.
-  # * <tt>:compact</tt> - If set this option to true, creates a button in which
-  #   the amount of horizontal padding is reduced.
   # * <tt>:dense</tt> - If set this option to true, creates a button of which text
   #   is compressed to make it slightly smaller.
   # * <tt>:raised</tt> - If set this option to true, creates a button that is elevated
@@ -23,7 +21,6 @@ module MdcHelper
       options ||= {}
     end
     elem_classes =  [ "mdc-button" ]
-    elem_classes << "mdc-button--compact" if options.delete(:compact)
     elem_classes << "mdc-button--dense" if options.delete(:dense)
     elem_classes << "mdc-button--raised" if options.delete(:raised)
     elem_classes << "mdc-button--unelevated" if options.delete(:unelevated)
@@ -61,8 +58,6 @@ module MdcHelper
   #
   # * <tt>:atuto_init</tt> - If set this option to true, automatic initialization
   #   is executed using MDC-auto-init module.
-  # * <tt>:compact</tt> - If set this option to true, creates a button in which
-  #   the amount of horizontal padding is reduced.
   # * <tt>:dense</tt> - If set this option to true, creates a button of which text
   #   is compressed to make it slightly smaller.
   # * <tt>:raised</tt> - If set this option to true, creates a button that is elevated
@@ -73,7 +68,6 @@ module MdcHelper
     active_options = block_given? ? options : html_options
     active_options ||= {}
     elem_classes =  [ "mdc-button" ]
-    elem_classes << "mdc-button--compact" if active_options.delete(:compact)
     elem_classes << "mdc-button--dense" if active_options.delete(:dense)
     elem_classes << "mdc-button--raised" if active_options.delete(:raised)
     elem_classes << "mdc-button--unelevated" if active_options.delete(:unelevated)

@@ -10,7 +10,7 @@
     "lint:ruby": "rubocop"
   },
   "dependencies": {
-    "material-components-web": "0.32.0"
+    "material-components-web": "0.33.0"
   },
   "devDependencies": {
     "eslint": "^4.18.2",
