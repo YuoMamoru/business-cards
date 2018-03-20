@@ -92,7 +92,7 @@ en:
       g_sute_account: G Sute Account
   companies:
     index:
-      companies_list: List of Comanies
+      company_settings: 取引先設定
       create_company: Create Company
       edit_company: Edit Company
   js:
