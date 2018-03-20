@@ -86,7 +86,7 @@ ja:
       g_sute_account: G Sute アカウント
   companies:
     index:
-      companes_list: 取引先一覧
+      company_settings: 取引先設定
       create_company: 取引先の作成
       edit_company: 取引先の編集
   js:
