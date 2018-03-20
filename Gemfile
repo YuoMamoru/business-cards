@@ -44,6 +44,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   # Adds RSpec
   gem 'rspec-rails'
+  # Security checker
+  gem 'brakeman'
 end
 
 group :development do

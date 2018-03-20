@@ -1,0 +1,22 @@
+language: ruby
+
+rvm: 
+ - 2.5.0
+
+bundler_args: "--without development --deployment"
+
+cache: bundler
+
+install:
+  - bundle install
+  - npm install
+
+before_script:
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+
+script:
+  - npm run lint
+  - bin/rails test
+  - bin/rspec
+  - brakeman -z -A --except CheckUnscopedFind -w1
