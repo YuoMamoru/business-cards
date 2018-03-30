@@ -22,7 +22,7 @@
       </div>
     </header>
     <div class="mdc-toolbar-fixed-adjust res-content">
-      <aside class="mdc-drawer mdc-drawer--persistent mdc-drawer--open res-drawer">
+      <aside class="mdc-drawer mdc-drawer--persistent<% if cookies[:drawer].present? %> mdc-drawer--open<% end %> res-drawer">
         <nav class="mdc-drawer__drawer">
           <div class="mdc-list-group">
             <nav class="mdc-list">
