@@ -1,88 +1,55 @@
-<%= form_with(model: card, local: true) do |form| %>
+<%= form_with(model: card,
+              auto_init: true,
+              local: true,
+              builder: MdcFormHelper::MdcFormBuilder) do |form| %>
   <% if card.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
-
-      <ul>
-      <% card.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+    <div class="res-error-explanation">
+      <p class="mdc-typography--title res-error-explanation__result">
+        <%= t("errors.template.header", count: card.errors.count, model: Card.model_name.human) %>:
+      </p>
+      <ul class="res-error-explanation__message-list">
+    <% card.errors.full_messages.each do |message| %>
+        <li class="res-error-explanation__message-item"><%= message %></li>
+    <% end %>
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= form.label :company %>
-    <%= @card.company.name %>
-    <%= form.hidden_field :company_id %>
+    <%= form.text_field :name, required: true, maxlength: 31 %>
   </div>
-
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :kana_name, required: true, maxlength: 63 %>
   </div>
-
   <div class="field">
-    <%= form.label :kana_name %>
-    <%= form.text_field :kana_name %>
+    <%= form.select :company_id, Company.order(:kana_name).map{|c| [c.id, c.omit_name]} %>
   </div>
-
   <div class="field">
-    <%= form.label :department %>
-    <%= form.text_field :department %>
+    <%= form.text_field :department, maxlength: 31 %>
+    <%= form.text_field :position, maxlength: 31 %>
   </div>
-
   <div class="field">
-    <%= form.label :position %>
-    <%= form.text_field :position %>
+    <%= form.text_field :qualification, maxlength: 255 %>
   </div>
-
   <div class="field">
-    <%= form.label :postcode %>
-    <%= form.text_field :postcode %>
+    <%= form.text_field :postcode, maxlength: 8, pattern: "\\d{3}-\\d{4}" %>
+    <%= form.text_field :address, maxlength: 255 %>
   </div>
-
   <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.text_field :tel, maxlength: 15, pattern: "0[\\d\\-]{11,14}" %>
+    <%= form.text_field :fax, maxlength: 15, pattern: "0[\\d\\-]{11,14}" %>
   </div>
-
   <div class="field">
-    <%= form.label :tel %>
-    <%= form.text_field :tel %>
+    <%= form.text_field :mail, maxlength: 255, pattern: "[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+" %>
   </div>
-
   <div class="field">
-    <%= form.label :fax %>
-    <%= form.text_field :fax %>
+    <%= form.image_field :front_image, max_height: 192, accept: "image/png, image/jpeg, image/gif" %>
+    <%= form.image_field :back_image, max_height: 192, accept: "image/png, image/jpeg, image/gif" %>
   </div>
-
   <div class="field">
-    <%= form.label :mail %>
-    <%= form.text_field :mail %>
+    <%= form.text_field :note, maxlength: 255 %>
   </div>
-
-  <div class="field">
-    <%= form.label :front_image %>
-    <%= form.file_field :front_image, accept: "image/png, image/jpeg, image/gif" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :back_image %>
-    <%= form.file_field :back_image, accept: "image/png, image/jpeg, image/gif" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :qualification %>
-    <%= form.text_field :qualification %>
-  </div>
-
-  <div class="field">
-    <%= form.label :note %>
-    <%= form.text_field :note %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= mdc_link_to t("helpers.button.cancel"), {action: :index}, auto_init: true %>
+    <%= form.submit raised: true, class: "res-button--raised--secondary" %>
   </div>
 <% end %>

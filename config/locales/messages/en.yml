@@ -32,6 +32,22 @@ en:
         # omit_llc: ""
         # omit_foundation: ""
         # omit_university: ""
+      card:
+        name: name
+        kana_name: kana name
+        company: company
+        company_id: company
+        department: department
+        position: position
+        postcode: postcode
+        address: 所address在地
+        tel: phone
+        fax: FAX
+        mail: mail
+        front_image: front image
+        back_image: back image
+        qualification: qualification
+        note: note
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -83,6 +99,8 @@ en:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+
+  # Controllers & Views
   layouts:
     application:
       mail: Main
@@ -90,11 +108,24 @@ en:
       company_settings: Company Settings
       business_cards: Business Cards
       g_sute_account: G Sute Account
+  cards:
+    create:
+      successfully_created: Card was successfully created.
+    destroy:
+      successfully_destroyed: Card was successfully destroyed.
+    index:
+      create_card: Create Card
+      edit_card: Edit Card
+      business_cards: Business Cards
+    update:
+      successfully_updated: Card was successfully updated.
   companies:
     index:
       company_settings: 取引先設定
       create_company: Create Company
       edit_company: Edit Company
+
+  # JavaScript
   js:
     companies:
       failed_to_get_company_info: Failed to get company info. (%{status})

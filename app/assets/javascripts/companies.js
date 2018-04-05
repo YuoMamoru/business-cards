@@ -1,7 +1,7 @@
 'use strict';
 
 document.addEventListener('turbolinks:load', (evt) => {
-  if (!document.querySelector('.content-company')) {
+  if (!document.querySelector('.content-companies')) {
     return;
   }
 

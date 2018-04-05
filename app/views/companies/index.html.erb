@@ -67,7 +67,7 @@
                 format: :json,
                 class: "res-company-form",
                 auto_init: true,
-                builder: MdcHelper::MdcFormBuilder,
+                  builder: MdcFormHelper::MdcFormBuilder,
                 data: { "new-path": companies_path(format: :json) }) do |form| %>
     <div class="mdc-dialog__surface">
       <header class="mdc-dialog__header">

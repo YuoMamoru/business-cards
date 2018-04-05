@@ -1,8 +1,12 @@
-@import "theme-colors";
+@import "variables";
 @import "@material/list/variables";
 @import "@material/theme/mixins";
 @import "@material/typography/mixins";
 @import "@material/typography/variables";
+@import "@material/layout-grid/variables";
+@import "@material/layout-grid/mixins";
+@import "@material/button/mixins";
+@import "@material/textfield/variables";
 
 html {
   height: 100%;
@@ -26,16 +30,50 @@ html {
   display: flex;
   flex: 1 1 auto;
   box-sizing: border-box;
-  height: 100%;
+  width: 100%;
+  height: calc(100% - #{$content-title-height});
 }
 
 .res-main {
   width: 100%;
-  padding-right: 16px;
-  padding-left: 16px;
+}
 
-  > .mdc-layout-grid {
-    padding: 0;
+.res-content-title {
+  @each $size in map-keys($mdc-layout-grid-columns) {
+    @include mdc-layout-grid-media-query_($size) {
+      $margin: map-get($mdc-layout-grid-default-margin, $size);
+
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: $margin;
+      padding: var(--mdc-layout-grid-margin-#{$size}, #{$margin});
+    }
+  }
+}
+
+.res-none {
+  display: none;
+}
+
+.res-content-area {
+  width: 100%;
+}
+
+.res-content-list {
+  margin: 0 8px;
+  border: 1px solid rgba(0, 0, 0, .1);
+
+  .mdc-list-group__subheader {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+  }
+
+  .mdc-list-item {
+    height: 36px;
+  }
+
+  .mdc-list {
+    padding-bottom: 6px;
   }
 }
 
@@ -66,8 +104,145 @@ html {
 
     margin: $mdc-list-subheader-margin $mdc-list-side-padding;
   }
+
+  &--content .mdc-list-item {
+    height: unset;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 }
 
+// Navication in contents
+.res-nav {
+  width: 240px;
+
+  &__nav {
+    display: inline-flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 232px;
+    height: 100%;
+    margin-left: 8px;
+    border: 1px solid #e4e4e4;
+    border-bottom: none;
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  .res-nav__title {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    height: 48px;
+    padding: 0 16px;
+  }
+
+  .mdc-list-item__graphic {
+    margin-right: 16px;
+  }
+}
+
+// Cards
+.res-card {
+  position: absolute;
+  width: 448px;
+  transition: top 150ms linear, left 150ms linear; // TODO
+
+  &__media {
+    background-color: $mdc-theme-primary; // TODO
+    color: map-get($mdc-theme-property-values, text-primary-on-primary); // TODO
+
+    &::before {
+      margin-top: 28.57%;
+    }
+
+    &__icon-button-area {
+      padding: 8px;
+      text-align: right;
+    }
+
+    &__title {
+      position: absolute;
+      bottom: 28px;
+      padding-left: 72px;
+    }
+
+    &__caption {
+      display: block;
+    }
+  }
+
+  &__fab {
+    position: absolute;
+    top: 108px;
+    left: 8px;
+  }
+
+  &__main {
+    padding-top: 18px;
+  }
+}
+
+// Icon button
+.res-icon-button {
+  display: inline-flex;
+  position: relative;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  background-color: transparent;
+  fill: currentColor;
+  color: white;
+  color: var(--mdc-theme-text-primary-on-secondary, white);
+  font-size: 18px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0;
+    pointer-events: none;
+    content: "";
+  }
+
+  &::before {
+    transition: opacity 15ms linear;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    opacity: .12;
+  }
+
+  &::after {
+    transition: opacity 150ms linear;
+  }
+
+  &:active::after {
+    opacity: .24;
+  }
+}
+
+//////////////////////////////////////////
 .mdc-list-item__meta.material-icons {
   text-decoration: none;
 }
@@ -81,10 +256,29 @@ html {
   overflow-y: auto;
 }
 
+// FAB
 .res-add-fab {
   position: fixed;
   right: 24px;
   bottom: 24px;
+}
+
+// Froms
+.res-form-container {
+  @each $size in map-keys($mdc-layout-grid-columns) {
+    @include mdc-layout-grid-media-query_($size) {
+      $margin: map-get($mdc-layout-grid-default-margin, $size);
+
+      padding: 0 $margin 8px;
+      padding: 0 var(--mdc-layout-grid-margin-#{$size}, #{$margin}) 8px;
+    }
+  }
+}
+
+.mdc-text-field,
+.mdc-select,
+.mdce-image-field {
+  vertical-align: top;
 }
 
 .mdc-text-field__input {
@@ -101,6 +295,35 @@ html {
   min-width: 120px;
   margin-top: 12px;
   margin-bottom: 12px;
+}
+
+.res-button--raised--secondary {
+  @include mdc-button-filled-accessible($mdc-theme-secondary);
+}
+
+.mdc-fab {
+  text-decoration: none;
+}
+
+.res-error-explanation {
+  padding: 16px;
+  border: 1px solid #e4e4e4;
+  background-color: #fafafa;
+
+  &__result {
+    margin: 0;
+    color: $mdc-text-field-error;
+  }
+
+  &__message-list {
+    margin: 4px 0;
+    color: $mdc-text-field-error;
+  }
+
+  &__message-item {
+    padding: 4px 0;
+    color: $mdc-text-field-error;
+  }
 }
 
 // Responding to issues #719 in Material Components for the Web

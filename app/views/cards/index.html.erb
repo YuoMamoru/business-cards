@@ -1,49 +1,93 @@
-<p id="notice"><%= notice %></p>
+<h2 class="mdc-typography--headline res-content-title"><%= t(".business_cards")%></h2>
 
-<h1>Cards</h1>
+<div class="res-content content-cards">
+  <aside class="res-nav">
+    <nav class="res-nav__nav">
+      <div class="mdc-typography--subheading2 res-nav__title"><%= Company.model_name.human %></div>
+      <ul class="mdc-list">
+      <% @companies.each do |company| %>
+        <li class="mdc-list-item res-item-company" data-mdc-auto-init="MDCRipple">
+          <div class="mdc-list-item__graphic">
+            <%= mdc_check_box_tag "comp#{company.id}", company.id, true, auto_init: true, id: nil, class: "res-cards-company-checkbox" %>
+          </div><%= company.short_name %>
+        </li>
+      <% end %>
+      </ul>
+    </nav>
+  </aside>
+  <div class="res-content-area">
+    <div class="mdc-list-group res-content-list res-cards-list">
+      <%= mdc_divided_list @cards, :kana_name, :kana, avatar_list: true do |card| %>
+        <li class="mdc-list-item res-card-item" data-card-url="<%= card_path(card, format: :json) %>" data-card-id="<%= card.id %>" data-company-id="<%= card.company.id %>">
+        <% if card.company.logo_image.present? %>
+          <%= base64_image_tag card.company.logo_image, height: 36, alt: "logo", title: card.company.omit_name, class: "mdc-list-item__graphic res-company-item__logo" %>
+        <% else %>
+          <i class="material-icons mdc-list-item__graphic res-company-item__logo" aria-hidden="true" title="<%= card.company.omit_name %>">business</i>
+        <% end %>
+          <%= card.name %>
+          <span class="mdc-list-item__meta"><%= card.department %> <%= card.position %></span>
+        </li>
+      <% end %>
+    </div>
+  </div>
+  <div class="mdc-card res-card res-cards-card" style="display:none">
+    <div class="mdc-card__media res-card__media">
+      <div class="mdc-card__media-content">
+        <div class="res-card__media__icon-button-area">
+          <%= mdc_icon_button_tag "delete", title: "delete", class: "res-cards-card-delete" %>
+          <%= mdc_icon_button_tag "close", title: "close", class: "res-cards-card-close" %>
+        </div>
+        <div class="res-card__media__title">
+          <span class="mdc-typography--title res-card-info__name"></span>
+          <span class="mdc-typography--caption res-card__media__caption res-card-info__qualification"></span>
+        </div>
+      </div>
+    </div>
+    <div class="res-card__main">
+      <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive res-list--content">
+        <li class="mdc-list-item res-cards-content__name">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">business</i>
+          <span class="mdc-list-item__text">
+            <span class="res-card-info__company-name--label"></span><a class="res-list-item__link res-card-info__company-name--link" href="#"></a>
+            <span class="mdc-list-item__secondary-text res-card-info__department"></span>
+          </span>
+        </li>
+        <li class="mdc-list-item">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">place</i>
+          <a class="res-list-item__link res-card-info__post-address" href="#"></a>
+        </li>
+        <li class="mdc-list-item">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">phone</i>
+          <a class="res-list-item__link res-card-info__tel" href="#"></a>
+        </li>
+        <li class="mdc-list-item">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">print</i>
+          <span class="res-card-info__fax"></span>
+        </li>
+        <li class="mdc-list-item">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">email</i>
+          <a class="res-list-item__link res-card-info__mail" href="#"></a>
+        </li>
+        <li class="mdc-list-item">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">note</i>
+          <span class="res-list-item__link res-card-info__note"></span>
+        </li>
+      </ul>
+    </div>
+    <%= mdc_fab_link_to "edit", "#", mini: true, class: "res-card__fab", label: t(".edit_card"), title: t(".edit_card") %>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Company</th>
-      <th>Name</th>
-      <th>Kana name</th>
-      <th>Department</th>
-      <th>Position</th>
-      <th>Postcode</th>
-      <th>Address</th>
-      <th>Tel</th>
-      <th>Fax</th>
-      <th>Mail</th>
-      <th>Front image</th>
-      <th>Back image</th>
-      <th>Qualification</th>
-      <th>Note</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%= mdc_fab_link_to "add", {action: :new}, class: "res-add-fab res-card-add-button", label: t(".create_card"), title: t(".create_card") %>
 
-  <tbody>
-    <% @cards.each do |card| %>
-      <tr>
-        <td><%= card.company.name %></td>
-        <td><%= card.name %></td>
-        <td><%= card.kana_name %></td>
-        <td><%= card.department %></td>
-        <td><%= card.position %></td>
-        <td><%= card.postcode %></td>
-        <td><%= card.address %></td>
-        <td><%= card.tel %></td>
-        <td><%= card.fax %></td>
-        <td><%= card.mail %></td>
-        <td><%= base64_image_tag card.front_image, height: 48 %></td>
-        <td><%= base64_image_tag card.back_image, height: 48 %></td>
-        <td><%= card.qualification %></td>
-        <td><%= card.note %></td>
-        <td><%= link_to 'Show', card %></td>
-        <td><%= link_to 'Edit', edit_card_path(card) %></td>
-        <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="mdc-snackbar res-cards-snackbar"
+       aria-live="assertive"
+       aria-atomic="true"
+       aria-hidden="true"
+       data-mdc-auto-init="MDCSnackbar"
+       data-message="<%= notice %>">
+    <div class="mdc-snackbar__text res-cards-result"></div>
+    <div class="mdc-snackbar__action-wrapper">
+      <button type="button" class="mdc-snackbar__action-button"></button>
+    </div>
+  </div>
+</div>

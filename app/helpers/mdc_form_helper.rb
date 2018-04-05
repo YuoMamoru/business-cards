@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module MdcHelper
+module MdcFormHelper
   # An +MdcFormBuilder+ object is associated with a particular model object and
   # allows you to generate Material Design fields associated with the model object.
   # The fields is generated using {Material Design for the Web}[https://material.io/components/web/].
@@ -25,6 +25,8 @@ module MdcHelper
   #     <%= form.text_field :title, id: :post_title, :auto_init: true %>
   #   <% end %>
   class MdcFormBuilder < ActionView::Helpers::FormBuilder
+    include OptionHelper
+
     # Create a Material Design text field using Material Components for the Web.
     #
     # === Additional optins
@@ -37,20 +39,20 @@ module MdcHelper
       container_classes = [ "mdc-text-field" ]
       container_classes << "mdc-text-field--dense" if options.delete(:dense)
       container_classes << "mdc-text-field--disabled" if options[:disabled]
-      @template.merge_class_name(options, *container_classes)
+      merge_class_name(options, *container_classes)
       container_options = { class: options.delete(:class) }
       container_options[:"data-mdc-auto-init"] = "MDCTextField" if options.delete(:auto_init) || @options[:auto_init]
       create_id(method, options)
       options[:class] = "mdc-text-field__input"
-      @template.content_tag(:div, container_options) {
+      @template.content_tag(:div, container_options) do
         label_options = { class: "mdc-floating-label", for: options[:id] }
-        @template.merge_class_name(label_options, "mdc-floating-label--float-above") if @object.send(method).present?
+        merge_class_name(label_options, "mdc-floating-label--float-above") if @object.send(method).present?
         [
           super(method, options),
           label(label_content(method), label_options),
           @template.content_tag(:div, nil, class: "mdc-line-ripple"),
         ].join.html_safe
-      }
+      end
     end
 
     # Create a Material Design single-option select menus using Material Components for the Web.
@@ -63,11 +65,11 @@ module MdcHelper
       value = @object.send(method)
       container_attrs = { class: "mdc-select", role: "listbox" }
       container_attrs[:"data-mdc-auto-init"] = "MDCSelect" if options.delete(:auto_init) || @options[:auto_init]
-      @template.content_tag(:div, container_attrs) {
+      @template.content_tag(:div, container_attrs) do
         tabindex = options.delete(:tabindex)
         tabindex ||= "0"
         [
-          @template.content_tag(:div, class: "mdc-select__surface", tabindex: tabindex) {
+          @template.content_tag(:div, class: "mdc-select__surface", tabindex: tabindex) do
             label_classes = [ "mdc-select__label" ]
             label_classes << "mdc-select__label--float-above" if value.present?
             [
@@ -75,19 +77,26 @@ module MdcHelper
               @template.content_tag(:div, label_content(value), class: "mdc-select__selected-text"),
               @template.content_tag(:div, nil, class: "mdc-select__bottom-line"),
             ].join.html_safe
-          },
-          @template.content_tag(:div, class: "mdc-menu mdc-select__menu") {
-            @template.content_tag(:ul, class: "mdc-list mdc-menu__items") {
+          end,
+          @template.content_tag(:div, class: "mdc-menu mdc-select__menu") do
+            @template.content_tag(:ul, class: "mdc-list mdc-menu__items") do
               choices.map { |choice|
-                attrs = { class: "mdc-list-item", role: "option", "data-value": choice, tabindex: "0" }
-                attrs[:"aria-selected"] = "true" if value == choice
-                @template.content_tag(:li, label_content(choice), attrs)
+                if !choice.is_a?(String) && choice.respond_to?(:first) && choice.respond_to?(:last)
+                  key = choice.first
+                  name = choice.last
+                else
+                  key = choice
+                  name = label_content(choice)
+                end
+                attrs = { class: "mdc-list-item", role: "option", "data-value": key, tabindex: "0" }
+                attrs[:"aria-selected"] = "true" if value == key
+                @template.content_tag(:li, name, attrs)
               }.join.html_safe
-            }
-          },
+            end
+          end,
           hidden_field(method, id: create_id(method, options)),
         ].join.html_safe
-      }
+      end
     end
 
     # Create a file upload field for image file. This component uses an input tag
@@ -115,15 +124,15 @@ module MdcHelper
     def image_field(method, options = {})
       value = @object.send(method)
       container_options = { class: options.delete(:class) }
-      @template.merge_class_name(container_options, "mdce-image-field")
+      merge_class_name(container_options, "mdce-image-field")
       container_options[:"data-mdce-auto-init"] = "MDCEImageField" if options.delete(:auto_init) || @options[:auto_init]
-      @template.content_tag(:div, container_options) {
+      @template.content_tag(:div, container_options) do
         style_options = []
         style_options << "max-width:#{options.delete(:max_width)}px" if options.has_key?(:max_width)
         style_options << "max-height:#{options.delete(:max_height)}px" if options.has_key?(:max_height)
         style_attr = style_options.empty? ? nil : style_options.join(";")
         [
-          label(method, for: create_id(method, options), class: "mdce-image-field__proxy", tabindex: options.delete(:tabindex) || "0", style: style_attr) {
+          label(method, for: create_id(method, options), class: "mdce-image-field__proxy", tabindex: options.delete(:tabindex) || "0", style: style_attr) do
             if value.blank?
               select_button = @template.content_tag(:span, "#{image_default_value}...", class: "mdc-button mdce-image-field__button")
               image = nil
@@ -152,10 +161,10 @@ module MdcHelper
               image,
               file_field(method, options),
             ].join.html_safe
-          },
+          end,
           @template.content_tag(:div, label_content(method), class: "mdce-image-field__label mdce-image-field__label--float-above"),
         ].join.html_safe
-      }
+      end
     end
 
     # This helper method behaves like <tt>button</tt> method, but it does not accept
@@ -182,7 +191,7 @@ module MdcHelper
       elem_classes << "mdc-button--dense" if options.delete(:dense)
       elem_classes << "mdc-button--raised" if options.delete(:raised)
       elem_classes << "mdc-button--unelevated" if options.delete(:unelevated)
-      @template.merge_class_name(options, *elem_classes)
+      merge_class_name(options, *elem_classes)
       options[:"data-mdc-auto-init"] = "MDCRipple" if options.delete(:auto_init) || @options[:auto_init]
       super(value, options, &block)
     end
