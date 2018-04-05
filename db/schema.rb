@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228101559) do
+ActiveRecord::Schema.define(version: 20180328014908) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "company_id", null: false
     t.string "name", limit: 31, null: false
     t.string "kana_name", limit: 63, null: false
-    t.string "department"
-    t.string "position"
+    t.string "department", limit: 31
+    t.string "position", limit: 31
     t.string "postcode", limit: 8
     t.string "address", limit: 255
     t.string "tel", limit: 15

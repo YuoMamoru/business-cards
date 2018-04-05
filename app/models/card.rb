@@ -6,6 +6,8 @@ class Card < ApplicationRecord
 
   validates :name, length: { maximum: 31 }, presence: true
   validates :kana_name, length: { maximum: 63 }, presence: true
+  validates :department, length: { maximum: 31 }
+  validates :position, length: { maximum: 31 }
   validates :postcode, format: { with: /\A(|\d{3}\-\d{4})\z/ }
   validates :address, length: { maximum: 255 }
   validates :tel, format: { with: /\A(|0[\d\-]{11,14})\z/ }

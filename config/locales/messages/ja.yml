@@ -32,6 +32,22 @@ ja:
         omit_llc: （同）
         omit_foundation: （財）
         omit_university: ""
+      card:
+        name: 氏名
+        kana_name: カナ名
+        company: 会社
+        company_id: 会社
+        department: 部署
+        position: 役職
+        postcode: 郵便番号
+        address: 所在地
+        tel: 電話
+        fax: FAX
+        mail: メール
+        front_image: 表画像
+        back_image: 裏画像
+        qualification: 資格等
+        note: 備考
   errors:
     format: "%{attribute}%{message}"
     messages:
@@ -77,6 +93,8 @@ ja:
       create: "%{model}の登録"
       submit: "%{model}の保存"
       update: "%{model}の更新"
+
+  # Controllers & Views
   layouts:
     application:
       mail: メール
@@ -84,11 +102,24 @@ ja:
       company_settings: 取引先設定
       business_cards: 名刺
       g_sute_account: G Sute アカウント
+  cards:
+    create:
+      successfully_created: 名刺を登録しました。
+    destroy:
+      successfully_destroyed: 名刺を削除しました。
+    index:
+      create_card: 名刺の登録
+      edit_card: 名刺の編集
+      business_cards: 名刺
+    update:
+      successfully_updated: 名刺を更新しました。
   companies:
     index:
       company_settings: 取引先設定
       create_company: 取引先の作成
       edit_company: 取引先の編集
+
+  # JavaScript
   js:
     companies:
       failed_to_get_company_info: 取引先情報が取得できませんでした。 (%{status})

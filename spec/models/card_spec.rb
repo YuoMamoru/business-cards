@@ -43,6 +43,26 @@ RSpec.describe Card, type: :model do
     expect(@card).to be_invalid
   end
 
+  it "is valid when its department is not too long" do
+    @card.department = "0" * 31
+    expect(@card).to be_valid
+  end
+
+  it "is invalid when its department is too long" do
+    @card.department = "0" * 32
+    expect(@card).to be_invalid
+  end
+
+  it "is valid when its position is not too long" do
+    @card.position = "0" * 31
+    expect(@card).to be_valid
+  end
+
+  it "is invalid when its position is too long" do
+    @card.position = "0" * 32
+    expect(@card).to be_invalid
+  end
+
   it "is valid with a valid postcode" do
     @card.postcode = "123-4567"
     expect(@card).to be_valid

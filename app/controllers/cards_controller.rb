@@ -6,10 +6,10 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all
+    @cards = Card.includes(:company).order(:kana_name)
+    @companies = @cards.map { |card| card.company }.uniq.sort { |a, b| a.kana_name <=> b.kana_name }
   end
 
-  # GET /cards/1
   # GET /cards/1.json
   def show
   end
@@ -30,7 +30,7 @@ class CardsController < ApplicationController
 
     respond_to do |format|
       if @card.save
-        format.html { redirect_to @card, notice: "Card was successfully created." }
+        format.html { redirect_to cards_path, notice: t(".successfully_created") }
         format.json { render :show, status: :created, location: @card }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class CardsController < ApplicationController
   def update
     respond_to do |format|
       if @card.update(card_params)
-        format.html { redirect_to @card, notice: "Card was successfully updated." }
+        format.html { redirect_to cards_path, notice: t(".successfully_updated") }
         format.json { render :show, status: :ok, location: @card }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class CardsController < ApplicationController
   def destroy
     @card.destroy
     respond_to do |format|
-      format.html { redirect_to cards_url, notice: "Card was successfully destroyed." }
+      format.html { redirect_to cards_url, notice: t(".successfully_destroyed") }
       format.json { head :no_content }
     end
   end

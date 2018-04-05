@@ -1,0 +1,25 @@
+kana:
+  - key: ァ
+    name: 英字記号
+  - key: カ
+    name: あ
+  - key: サ
+    name: か
+  - key: タ
+    name: さ
+  - key: ナ
+    name: た
+  - key: ハ
+    name: な
+  - key: マ
+    name: は
+  - key: ヤ
+    name: ま
+  - key: ラ
+    name: や
+  - key: ワ
+    name: ら
+  - key: ン
+    name: わ
+  - key: null
+    name: その他
