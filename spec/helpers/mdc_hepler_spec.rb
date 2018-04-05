@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe MdcHelper, type: :helper do
+RSpec.describe OptionHelper, type: :helper do
   describe "#merge_class_name" do
     it "adds class attribute if option have no class attribute" do
       options = { id: "elm_id" }
