@@ -42,6 +42,8 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     ast (2.4.0)
+    autoprefixer-rails (8.2.0)
+      execjs
     bindex (0.5.0)
     brakeman (4.2.1)
     builder (3.2.3)
@@ -64,7 +66,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    crass (1.0.3)
+    crass (1.0.4)
     debase (0.2.2)
       debase-ruby_core_source (>= 0.10.2)
     debase-ruby_core_source (0.10.2)
@@ -191,7 +193,7 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.1)
       tilt (~> 2.0)
-    solargraph (0.18.1)
+    solargraph (0.18.2)
       bundler (~> 1.14)
       coderay (~> 1.1)
       eventmachine (~> 1.2, >= 1.2.5)
@@ -245,6 +247,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   brakeman
   byebug
   capybara (~> 2.13)
