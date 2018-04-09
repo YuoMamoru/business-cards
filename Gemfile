@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 # Rials I18n translations on JavaScript
 gem 'i18n-js'
 
+# for SASS
+gem 'autoprefixer-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

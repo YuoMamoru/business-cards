@@ -21,7 +21,7 @@
     <%= form.text_field :kana_name, required: true, maxlength: 63 %>
   </div>
   <div class="field">
-    <%= form.select :company_id, Company.order(:kana_name).map{|c| [c.id, c.omit_name]} %>
+    <%= form.select :company_id, Company.order(:kana_name).map{|c| [c.omit_name, c.id]}, card.company ? {} : { include_blank: true }, { required: true } %>
   </div>
   <div class="field">
     <%= form.text_field :department, maxlength: 31 %>

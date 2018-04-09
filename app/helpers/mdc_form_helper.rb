@@ -61,41 +61,21 @@ module MdcFormHelper
     #
     # * <tt>:atuto_init</tt> - If set this option to true, automatic initialization
     #   is executed using MDC-auto-init module.
+    # * <tt>:box</tt> - If set this option to true, styles the select as a box select.
     def select(method, choices = nil, options = {}, html_options = {}, &block)
-      value = @object.send(method)
-      container_attrs = { class: "mdc-select", role: "listbox" }
-      container_attrs[:"data-mdc-auto-init"] = "MDCSelect" if options.delete(:auto_init) || @options[:auto_init]
-      @template.content_tag(:div, container_attrs) do
-        tabindex = options.delete(:tabindex)
-        tabindex ||= "0"
-        [
-          @template.content_tag(:div, class: "mdc-select__surface", tabindex: tabindex) do
-            label_classes = [ "mdc-select__label" ]
-            label_classes << "mdc-select__label--float-above" if value.present?
-            [
-              @template.content_tag(:div, label_content(method), class: label_classes.join(" ")),
-              @template.content_tag(:div, label_content(value), class: "mdc-select__selected-text"),
-              @template.content_tag(:div, nil, class: "mdc-select__bottom-line"),
-            ].join.html_safe
-          end,
-          @template.content_tag(:div, class: "mdc-menu mdc-select__menu") do
-            @template.content_tag(:ul, class: "mdc-list mdc-menu__items") do
-              choices.map { |choice|
-                if !choice.is_a?(String) && choice.respond_to?(:first) && choice.respond_to?(:last)
-                  key = choice.first
-                  name = choice.last
-                else
-                  key = choice
-                  name = label_content(choice)
-                end
-                attrs = { class: "mdc-list-item", role: "option", "data-value": key, tabindex: "0" }
-                attrs[:"aria-selected"] = "true" if value == key
-                @template.content_tag(:li, name, attrs)
-              }.join.html_safe
-            end
-          end,
-          hidden_field(method, id: create_id(method, options)),
-        ].join.html_safe
+      container_classes = [ "mdc-select" ]
+      container_classes << "mdc-select--box" if options.delete(:box)
+      merge_class_name(html_options, *container_classes)
+      container_options = { class: html_options.delete(:class) }
+      container_options[:"data-mdc-auto-init"] = "MDCSelect" if options.delete(:auto_init) || @options[:auto_init]
+      create_id(method, html_options)
+      html_options[:class] = "mdc-select__native-control"
+      @template.content_tag(:div, container_options) do
+        @template.safe_join([
+          super,
+          @template.content_tag(:div, label_content(method), class: "mdc-select__label"),
+          @template.content_tag(:div, nil, class: "mdc-select__bottom-line"),
+        ])
       end
     end
 

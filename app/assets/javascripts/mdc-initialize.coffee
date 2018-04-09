@@ -1,11 +1,14 @@
 document.addEventListener 'turbolinks:load', ->
   mdc.autoInit()
 
+  onBlurSelect = (e) ->
+    if e.target.hasAttribute('required') and not e.target.value
+      e.target.parentElement.classList.add 'mdc-select--invalid'
+    else
+      e.target.parentElement.classList.remove 'mdc-select--invalid'
   for element in document.querySelectorAll 'div[data-mdc-auto-init="MDCSelect"]'
-    element.MDCSelect.listen 'MDCSelect:change', (e) ->
-      hiddenEl = e.target.querySelector 'input[type="hidden"]'
-      if hiddenEl
-        hiddenEl.value = e.detail.selectedOptions[0].dataset.value
+    element.MDCSelect.listen 'change', onBlurSelect
+    element.querySelector('select[class="mdc-select__native-control"]').addEventListener 'blur', onBlurSelect, false
 
   for element in document.querySelectorAll 'div[data-mdce-auto-init="MDCEImageField"]'
     inputProxy = element.querySelector '.mdce-image-field__proxy'

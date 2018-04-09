@@ -7,6 +7,7 @@
 @import "@material/layout-grid/mixins";
 @import "@material/button/mixins";
 @import "@material/textfield/variables";
+@import "@material/select/mixins";
 
 html {
   height: 100%;
@@ -248,7 +249,7 @@ html {
 }
 
 .res-company-info-link--selected {
-  @include mdc-theme-prop(color, primary-light);
+  @include mdc-theme-prop(color, primary);
 }
 
 .mdc-dialog__body--scrollable {
@@ -295,6 +296,22 @@ html {
   min-width: 120px;
   margin-top: 12px;
   margin-bottom: 12px;
+
+  &__native-control:required + .mdc-select__label::after {
+    margin-left: 1px;
+    content: "*";
+  }
+
+  &__native-control:required:focus + .mdc-select__label::after {
+    color: $mdc-text-field-error;
+  }
+
+  &--invalid {
+    @include mdc-select-label-color($mdc-text-field-error);
+    @include mdc-select-bottom-line-color($mdc-text-field-error);
+    @include mdc-select-focused-label-color($mdc-text-field-error);
+    @include mdc-select-focused-bottom-line-color($mdc-text-field-error);
+  }
 }
 
 .res-button--raised--secondary {
