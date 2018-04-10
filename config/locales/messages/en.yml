@@ -103,7 +103,7 @@ en:
   # Controllers & Views
   layouts:
     application:
-      mail: Main
+      mail: Mail
       calendar: Calendar
       company_settings: Company Settings
       business_cards: Business Cards
@@ -121,7 +121,7 @@ en:
       successfully_updated: Card was successfully updated.
   companies:
     index:
-      company_settings: 取引先設定
+      company_settings: Company Settings
       create_company: Create Company
       edit_company: Edit Company
 
