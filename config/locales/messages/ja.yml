@@ -114,10 +114,18 @@ ja:
     update:
       successfully_updated: 名刺を更新しました。
   companies:
+    create:
+      create_company: 取引先の作成
+      successfully_created: 取引先を登録しました。
+    destroy:
+      successfully_destroyed: 取引先を削除しました。
     index:
       company_settings: 取引先設定
       create_company: 取引先の作成
       edit_company: 取引先の編集
+    update:
+      edit_company: 取引先の編集
+      successfully_updated: 取引先を更新しました。
 
   # JavaScript
   js:

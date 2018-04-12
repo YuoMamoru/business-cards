@@ -71,6 +71,12 @@ html {
 
   .mdc-list-item {
     height: 36px;
+    cursor: pointer;
+
+    .mdc-list-item__graphic {
+      width: 36px;
+      height: 36px;
+    }
   }
 
   .mdc-list {
@@ -139,7 +145,7 @@ html {
     padding: 0 16px;
   }
 
-  .mdc-list-item__graphic {
+  .mdc-list-item .mdc-list-item__graphic {
     margin-right: 16px;
   }
 }

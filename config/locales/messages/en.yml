@@ -120,10 +120,18 @@ en:
     update:
       successfully_updated: Card was successfully updated.
   companies:
+    create:
+      create_company: Create Company
+      successfully_created: Company was successfully created.
+    destroy:
+      successfully_destroyed: Company was successfully destroyed.
     index:
       company_settings: Company Settings
       create_company: Create Company
       edit_company: Edit Company
+    update:
+      edit_company: Edit Company
+      successfully_updated: Company was successfully updated.
 
   # JavaScript
   js:
