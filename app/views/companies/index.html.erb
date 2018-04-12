@@ -1,123 +1,66 @@
-<h2 class="mdc-typography--headline content-company"><%= t(".company_settings")%></h2>
+<h2 class="mdc-typography--headline res-content-title"><%= t(".company_settings")%></h2>
 
-<div class="mdc-layout-grid">
-  <div class="mdc-layout-grid__inner">
-    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-      <ul class="mdc-list mdc-list--avatar-list res-list res-company-list">
-      <% @companies.each do |company| %>
-        <li class="mdc-list-item res-company-item" data-company-id="<%= company.id %>">
+<div class="res-content content-companies">
+  <div class="res-content-area">
+    <div class="mdc-list-group res-content-list res-companies-list">
+      <%= mdc_divided_list @companies, :kana_name, :kana, avatar_list: true do |company| %>
+        <li class="mdc-list-item res-companies-item" data-company-url="<%= company_path(company, format: :json) %>" data-company-id="<%= company.id %>">
         <% if company.logo_image.present? %>
-          <%= base64_image_tag company.logo_image, height: 40, alt: "logo", class: "mdc-list-item__graphic res-company-item__logo" %>
+          <%= base64_image_tag company.logo_image, height: 36, alt: "logo", title: company.omit_name, class: "mdc-list-item__graphic res-company-item__logo" %>
         <% else %>
-          <i class="material-icons mdc-list-item__graphic res-company-item__logo" aria-hidden="true">business</i>
+          <i class="material-icons mdc-list-item__graphic res-company-item__logo" aria-hidden="true" title="<%= company.omit_name %>">business</i>
         <% end %>
-        <% if company.web_site.present? %>
-          <%= link_to company.omit_name, company.web_site, class: "res-list-item__link res-company-item__omit-name" %>
-        <% else %>
-          <span class="res-company-item__omit-name"><%= company.omit_name %></span>
-        <% end %>
-          <%= mdc_list_item_meta_icon_link_to "info", company_path(company.id, :json),
-                                              remote: true,
-                                              label: "View more information",
-                                              title: "More info",
-                                              class: "res-company-info-link" %>
+          <%= company.formal_name %>
         </li>
       <% end %>
-      </ul>
-    </div>
-    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-      <div class="mdc-list-group res-list res-company-info" style="display:none">
-        <div class="mdc-list-group__subheader res-list-group__subheader">
-          <span class="mdc-typography--title res-company-info__formal-name"></span>
-          <%= mdc_button_tag t("helpers.button.edit"), compact: true, class: "res-list-group__subheader-button res-company-edit-button" %>
-        </div>
-        <ul class="mdc-list">
-          <li class="mdc-list-item">
-            <%= Company.human_attribute_name(:short_name) %>
-            <span class="mdc-list-item__meta res-company-info__short-name"></span>
-          </li>
-          <li class="mdc-list-item">
-            <%= Company.human_attribute_name(:kana_name) %>
-            <span class="mdc-list-item__meta res-company-info__kana-name"></span>
-          </li>
-          <li class="mdc-list-item">
-            <%= Company.human_attribute_name(:en_name) %>
-            <span class="mdc-list-item__meta res-company-info__en-name"></span>
-          </li>
-          <li class="mdc-list-item">
-            <%= Company.human_attribute_name(:web_site) %>
-            <span class="mdc-list-item__meta res-company-info__web-site"></span>
-          </li>
-        </ul>
-        <div class="res-list-group__subfooter res-company-info__note"></div>
-      </div>
     </div>
   </div>
-</div>
-
-<%= mdc_fab "add", label: t(".create_company"), class: "res-add-fab res-company-add-button", auto_init: true %>
-
-<div class="mdc-dialog res-company-dialog"
-       role="dialog"
-       aria-hidden="true"
-       aria-labelledby="res-company-dialog-label"
-       aria-describedby="res-company-dialog-form"
-       data-mdc-auto-init="MDCDialog">
-  <%= form_with(model: Company.new,
-                format: :json,
-                class: "res-company-form",
-                auto_init: true,
-                  builder: MdcFormHelper::MdcFormBuilder,
-                data: { "new-path": companies_path(format: :json) }) do |form| %>
-    <div class="mdc-dialog__surface">
-      <header class="mdc-dialog__header">
-        <h2 id="res-company-dialog-label" class="mdc-dialog__header__title">
-          <%= t(".edit_company")%>
-        </h2>
-      </header>
-      <div id="res-company-dialog-form" class="mdc-dialog__body mdc-dialog__body--scrollable">
-        <div class="field">
-          <%= form.text_field :name, required: true, maxlength: 255 %>
+  <div class="mdc-card res-card res-companies-card" style="display:none">
+    <div class="mdc-card__media res-card__media">
+      <div class="mdc-card__media-content">
+        <div class="res-card__media__icon-button-area">
+          <%= mdc_icon_button_tag "delete", title: "delete", class: "res-companies-card-delete" %>
+          <%= mdc_icon_button_tag "close", title: "close", class: "res-companies-card-close" %>
         </div>
-        <div class="field">
-          <%= form.text_field :short_name, required: true, maxlength: 31 %>
-        </div>
-        <div class="field">
-          <%= form.text_field :kana_name, required: true, maxlength: 255 %>
-        </div>
-        <div class="field">
-          <%= form.text_field :en_name, maxlength: 255 %>
-        </div>
-        <div class="field">
-          <%= form.select :category, Company.categories.keys.to_a %>
-          <%= form.select :category_position, Company.category_positions.keys.to_a %>
-        </div>
-        <div class="field">
-          <%= form.image_field :logo_image, max_height: 192, accept: "image/png, image/jpeg, image/gif" %>
-        </div>
-        <div class="field">
-          <%= form.text_field :web_site, maxlength: 255 %>
-        </div>
-        <div class="field">
-          <%= form.text_field :note, maxlength: 255 %>
+        <div class="res-card__media__title">
+          <span class="mdc-typography--title res-company-info__name"></span>
         </div>
       </div>
-      <footer class="mdc-dialog__footer">
-        <%= form.button t("helpers.button.cancel"), type: "button", class: "mdc-dialog__footer__button mdc-dialog__footer__button--cancel" %>
-        <%= form.button t("helpers.button.submit"), class: "mdc-dialog__footer__button mdc-dialog__footer__button--accept res-company-submit" %>
-      </footer>
     </div>
-    <div class="mdc-dialog__backdrop"></div>
-  <% end %>
-</div>
+    <div class="res-card__main">
+      <ul class="mdc-list mdc-list--non-interactive res-list--content">
+        <li class="mdc-list-item">
+          <i class="material-icons mdc-list-item__graphic" title="<%= Company.human_attribute_name(:kana_name) %>" aria-hidden="true">record_voice_over</i>
+          <span class="res-company-info__kana-name"></span>
+        </li>
+        <li class="mdc-list-item">
+          <i class="material-icons mdc-list-item__graphic" title="<%= Company.human_attribute_name(:en_name) %>" aria-hidden="true">language</i>
+          <span class="res-company-info__en-name"></span>
+        </li>
+        <li class="mdc-list-item">
+          <i class="material-icons mdc-list-item__graphic" title="<%= Company.human_attribute_name(:web_site) %>" aria-hidden="true">web</i>
+          <a class="res-list-item__link res-company-info__web-site" href="#"></a>
+        </li>
+        <li class="mdc-list-item">
+          <i class="material-icons mdc-list-item__graphic" title="<%= Company.human_attribute_name(:note) %>" aria-hidden="true">note</i>
+          <span class="res-company-info__note"></span>
+        </li>
+      </ul>
+    </div>
+    <%= mdc_fab_link_to "edit", "#", mini: true, class: "res-card__fab", label: t(".edit_company"), title: t(".edit_company") %>
+  </div>
 
-<div class="mdc-snackbar res-companies-snackbar"
-     aria-live="assertive"
-     aria-atomic="true"
-     aria-hidden="true"
-     data-mdc-auto-init="MDCSnackbar">
-  <div class="mdc-snackbar__text res-companies-result"></div>
-  <div class="mdc-snackbar__action-wrapper">
-    <button type="button" class="mdc-snackbar__action-button"></button>
+  <%= mdc_fab_link_to "add", {action: :new}, class: "res-add-fab res-companies-add-button", label: t(".create_company"), title: t(".create_company") %>
+
+  <div class="mdc-snackbar res-companies-snackbar"
+       aria-live="assertive"
+       aria-atomic="true"
+       aria-hidden="true"
+       data-mdc-auto-init="MDCSnackbar"
+       data-message="<%= notice %>">
+    <div class="mdc-snackbar__text res-companies-result"></div>
+    <div class="mdc-snackbar__action-wrapper">
+      <button type="button" class="mdc-snackbar__action-button"></button>
+    </div>
   </div>
 </div>
