@@ -14,9 +14,9 @@ class CardsController < ApplicationController
   def show
   end
 
-  # GET /companies/:company_id/cards/new
+  # GET /cards/new
   def new
-    @card = Card.new(company_id: params[:company_id])
+    @card = Card.new
   end
 
   # GET /cards/1/edit
