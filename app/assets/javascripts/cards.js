@@ -5,13 +5,13 @@ document.addEventListener('turbolinks:load', (evt) => {
     return;
   }
 
-  // Contents object that manages company page
+  // Contents object that manages cards page
   const contents = {
+    // HTML Dom Objects
     cardListElm: document.querySelector('.res-cards-list'),
     cardElm: document.querySelector('.res-cards-card'),
     cardFabElm: document.querySelector('.res-card__fab'),
     fabElm: document.querySelector('.res-card-add-button'),
-    formContainerElm: document.querySelector('.res-cards-form-container'),
     snackbarElm: document.querySelector('.res-cards-snackbar'),
 
     toggleListItem(companyId, willOpen) {
@@ -177,8 +177,6 @@ document.addEventListener('turbolinks:load', (evt) => {
   contents.cardElm.querySelector('.res-cards-card-close').addEventListener('click', (e) => {
     contents.hideCard();
   }, false);
-
-  window.contents = contents; // TODO
 
   setTimeout(() => contents.showSnackbar(), 150);
 }, false);
