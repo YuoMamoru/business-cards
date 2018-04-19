@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/YuoMamoru/business-cards.svg?branch=master)](https://travis-ci.org/YuoMamoru/business-cards)
 [![Dependency Status](https://gemnasium.com/badges/github.com/YuoMamoru/business-cards.svg)](https://gemnasium.com/github.com/YuoMamoru/business-cards)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6cfbc849bb8aca1d3db3/maintainability)](https://codeclimate.com/github/YuoMamoru/business-cards/maintainability)
+[![GitHub license](https://img.shields.io/github/license/YuoMamoru/business-cards.svg)](https://github.com/YuoMamoru/business-cards/blob/master/LICENSE)
 
 # Business Cards
 
