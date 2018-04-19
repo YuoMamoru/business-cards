@@ -6,7 +6,14 @@ document.addEventListener('turbolinks:load', (evt) => {
   }
 
   // Contents object that manages cards page
-  const contents = {
+  const contents = new Restus.ListContent({ // eslint-disable-line no-unused-vars
+    SNACKBAR_SELECTOR: '.res-cards-snackbar',
+    LIST_ITEM_SELECTOR: '.res-card-item',
+    CARD_SELECTOR: '.res-cards-card',
+    CARD_CLOSE_SELECTOR: '.res-cards-card-close',
+    CARD_KEY: 'cardId',
+    URL_KEY: 'cardUrl',
+  }, {
     // HTML Dom Objects
     cardListElm: document.querySelector('.res-cards-list'),
     cardElm: document.querySelector('.res-cards-card'),
@@ -61,45 +68,6 @@ document.addEventListener('turbolinks:load', (evt) => {
       this.cardFabElm.href = card.editPath;
     },
 
-    showCard(clickX = 400, clickY = 200) {
-      let cardLeft = clickX - 16;
-      let cardTop = clickY - 32;
-      const hidden = !this.cardElm.clientHeight;
-      this.cardElm.style.left = `${cardLeft}px`;
-      this.cardElm.style.top = `${cardTop}px`;
-      this.cardElm.style.display = '';
-      const cardWidth = this.cardElm.clientWidth;
-      const cardHeight = this.cardElm.clientHeight;
-      if (window.innerWidth < cardLeft + cardWidth + 8 ||
-          window.innerHeight < cardTop + cardHeight + 8) {
-        if (hidden) {
-          this.cardElm.style.transition = 'unset';
-        }
-        if (window.innerWidth < cardLeft + cardWidth + 8) {
-          cardLeft = Math.max(window.innerWidth - cardWidth - 8, 8);
-        }
-        if (window.innerHeight < cardTop + cardHeight + 8) {
-          cardTop = Math.max(window.innerHeight - cardHeight - 8, 72);
-        }
-        this.cardElm.style.left = `${cardLeft}px`;
-        this.cardElm.style.top = `${cardTop}px`;
-        if (hidden) {
-          setTimeout(() => { this.cardElm.style.transition = ''; }, 150);
-        }
-      }
-    },
-
-    hideCard() {
-      this.cardElm.style.display = 'none';
-    },
-
-    showSnackbar(message = null) {
-      const snackbarMessage = message || this.snackbarElm.dataset.message;
-      if (snackbarMessage) {
-        this.snackbarElm.MDCSnackbar.show({ message: snackbarMessage });
-      }
-    },
-
     _setCardCompanyNameField(card) {
       const companyNameElm = card.company.webSite ?
         this.cardElm.querySelector('.res-card-info__company-name--link') :
@@ -139,7 +107,7 @@ document.addEventListener('turbolinks:load', (evt) => {
         elm.parentElement.style.display = 'none';
       }
     },
-  };
+  });
 
   const onClickCompanyList = (e) => {
     const checkbox = e.currentTarget.querySelector('.mdc-checkbox').MDCCheckbox;
@@ -151,32 +119,4 @@ document.addEventListener('turbolinks:load', (evt) => {
   for (const listItemElm of document.querySelectorAll('.res-item-company')) {
     listItemElm.addEventListener('click', onClickCompanyList, false);
   }
-
-  const onClickCardItem = (e) => {
-    if (Number(contents.cardElm.dataset.cardId) === Number(e.currentTarget.dataset.cardId)) {
-      contents.showCard(e.clientX, e.clientY);
-      return;
-    }
-    Rails.ajax({
-      type: 'GET',
-      dataType: 'JSON',
-      url: e.currentTarget.dataset.cardUrl,
-      beforeSend(xhr, options) {
-        return true;
-      },
-      success(card, statusText, xhr) {
-        contents.setCard(card);
-        contents.showCard(e.clientX, e.clientY);
-      },
-    });
-  };
-  for (const cardItem of document.querySelectorAll('.res-card-item')) {
-    cardItem.addEventListener('click', onClickCardItem, false);
-  }
-
-  contents.cardElm.querySelector('.res-cards-card-close').addEventListener('click', (e) => {
-    contents.hideCard();
-  }, false);
-
-  setTimeout(() => contents.showSnackbar(), 150);
 }, false);

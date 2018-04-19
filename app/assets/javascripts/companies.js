@@ -6,13 +6,16 @@ document.addEventListener('turbolinks:load', (evt) => {
   }
 
   // Contents object that manages companies page
-  const contents = {
+  const contents = new Restus.ListContent({ // eslint-disable-line no-unused-vars
+    SNACKBAR_SELECTOR: '.res-companies-snackbar',
+    LIST_ITEM_SELECTOR: '.res-companies-item',
+    CARD_SELECTOR: '.res-companies-card',
+    CARD_CLOSE_SELECTOR: '.res-companies-card-close',
+    CARD_KEY: 'companyId',
+    URL_KEY: 'companyUrl',
+  }, {
     // HTML Dom Objects
-    listElm: document.querySelector('.res-companies-list'),
-    cardElm: document.querySelector('.res-companies-card'),
     cardFabElm: document.querySelector('.res-card__fab'),
-    fabElm: document.querySelector('.res-card-add-button'),
-    snackbarElm: document.querySelector('.res-companies-snackbar'),
 
     setCard(company) {
       if (company.id === Number(this.cardElm.dataset.companyId)) {
@@ -26,45 +29,6 @@ document.addEventListener('turbolinks:load', (evt) => {
       this._setCardAnchorField(company, 'webSite');
       this._setCardField(company, 'note');
       this.cardFabElm.href = company.editPath;
-    },
-
-    showCard(clickX = 400, clickY = 200) {
-      let cardLeft = clickX - 16;
-      let cardTop = clickY - 32;
-      const hidden = !this.cardElm.clientHeight;
-      this.cardElm.style.left = `${cardLeft}px`;
-      this.cardElm.style.top = `${cardTop}px`;
-      this.cardElm.style.display = '';
-      const cardWidth = this.cardElm.clientWidth;
-      const cardHeight = this.cardElm.clientHeight;
-      if (window.innerWidth < cardLeft + cardWidth + 8 ||
-          window.innerHeight < cardTop + cardHeight + 8) {
-        if (hidden) {
-          this.cardElm.style.transition = 'unset';
-        }
-        if (window.innerWidth < cardLeft + cardWidth + 8) {
-          cardLeft = Math.max(window.innerWidth - cardWidth - 8, 8);
-        }
-        if (window.innerHeight < cardTop + cardHeight + 8) {
-          cardTop = Math.max(window.innerHeight - cardHeight - 8, 72);
-        }
-        this.cardElm.style.left = `${cardLeft}px`;
-        this.cardElm.style.top = `${cardTop}px`;
-        if (hidden) {
-          setTimeout(() => { this.cardElm.style.transition = ''; }, 150);
-        }
-      }
-    },
-
-    hideCard() {
-      this.cardElm.style.display = 'none';
-    },
-
-    showSnackbar(message = null) {
-      const snackbarMessage = message || this.snackbarElm.dataset.message;
-      if (snackbarMessage) {
-        this.snackbarElm.MDCSnackbar.show({ message: snackbarMessage });
-      }
     },
 
     _setCardField(card, fieldName) {
@@ -95,34 +59,5 @@ document.addEventListener('turbolinks:load', (evt) => {
     _camelToKebab(word) {
       return word.replace(/^[A-Z]/, c => c.toLowerCase()).replace(/[A-Z]/g, c => `-${c.toLowerCase()}`);
     },
-  };
-
-  // Initialize events
-  const onClickCardItem = (e) => {
-    if (Number(contents.cardElm.dataset.companyId) === Number(e.currentTarget.dataset.companyId)) {
-      contents.showCard(e.clientX, e.clientY);
-      return;
-    }
-    Rails.ajax({
-      type: 'GET',
-      dataType: 'JSON',
-      url: e.currentTarget.dataset.companyUrl,
-      beforeSend(xhr, options) {
-        return true;
-      },
-      success(company, statusText, xhr) {
-        contents.setCard(company);
-        contents.showCard(e.clientX, e.clientY);
-      },
-    });
-  };
-  for (const cardItem of document.querySelectorAll('.res-companies-item')) {
-    cardItem.addEventListener('click', onClickCardItem, false);
-  }
-
-  contents.cardElm.querySelector('.res-companies-card-close').addEventListener('click', (e) => {
-    contents.hideCard();
-  }, false);
-
-  setTimeout(() => contents.showSnackbar(), 150);
+  });
 }, false);
