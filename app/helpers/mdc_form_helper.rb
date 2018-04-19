@@ -47,11 +47,11 @@ module MdcFormHelper
       @template.content_tag(:div, container_options) do
         label_options = { class: "mdc-floating-label", for: options[:id] }
         merge_class_name(label_options, "mdc-floating-label--float-above") if @object.send(method).present?
-        [
+        @template.safe_join([
           super(method, options),
           label(label_content(method), label_options),
           @template.content_tag(:div, nil, class: "mdc-line-ripple"),
-        ].join.html_safe
+        ])
       end
     end
 
@@ -111,7 +111,7 @@ module MdcFormHelper
         style_options << "max-width:#{options.delete(:max_width)}px" if options.has_key?(:max_width)
         style_options << "max-height:#{options.delete(:max_height)}px" if options.has_key?(:max_height)
         style_attr = style_options.empty? ? nil : style_options.join(";")
-        [
+        @template.safe_join([
           label(method, for: create_id(method, options), class: "mdce-image-field__proxy", tabindex: options.delete(:tabindex) || "0", style: style_attr) do
             if value.blank?
               select_button = @template.content_tag(:span, "#{image_default_value}...", class: "mdc-button mdce-image-field__button")
@@ -136,14 +136,14 @@ module MdcFormHelper
                 options[:style] = "#{options};display:none"
               end
             end
-            [
+            @template.safe_join([
               select_button,
               image,
               file_field(method, options),
-            ].join.html_safe
+            ])
           end,
           @template.content_tag(:div, label_content(method), class: "mdce-image-field__label mdce-image-field__label--float-above"),
-        ].join.html_safe
+        ])
       end
     end
 

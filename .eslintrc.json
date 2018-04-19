@@ -10,7 +10,8 @@
         "FileReader": false,
         "mdc": false,
         "Rails": false,
-        "I18n": false
+        "I18n": false,
+        "Restus": false
     },
     "rules": {
         "func-names": [

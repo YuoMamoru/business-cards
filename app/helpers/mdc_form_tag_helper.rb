@@ -137,7 +137,7 @@ module MdcFormTagHelper
     label = options.delete(:label)
     check_box =
       content_tag(:div, container_options) do
-        [
+        safe_join([
           check_box_tag(name, value, checked, options.merge(class: "mdc-checkbox__native-control")),
           content_tag(:div, class: "mdc-checkbox__background") do
             content_tag(:svg, class: "mdc-checkbox__checkmark", viewBox: "0 0 24 24") do
@@ -145,26 +145,26 @@ module MdcFormTagHelper
             end
           end,
           content_tag(:div, nil, class: "mdc-checkbox__mixedmark"),
-        ].join.html_safe
+        ])
       end
     if label.blank?
       check_box
     elsif options.has_key?(:id) && options[:id].blank?
       label_tag do
         content_tag(:div, form_options) do
-          [
+          safe_join([
             form_classes.include?("mdc-form-field--align-end") ? label : "",
             check_box,
             form_classes.include?("mdc-form-field--align-end") ? "" : label,
-          ].join.html_safe
+          ])
         end
       end
     else
       content_tag(:div, form_options) do
-        [
+        safe_join([
           check_box,
           label_tag(options[:id].blank? ? name : options[:id], label)
-        ].join.html_safe
+        ])
       end
     end
   end
