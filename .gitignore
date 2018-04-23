@@ -35,3 +35,6 @@
 
 # Ignore compiled translate file
 /app/assets/javascripts/i18n/translations.js
+
+# Ignore coverage reports
+/coverage/*
