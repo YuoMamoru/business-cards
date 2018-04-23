@@ -4,14 +4,7 @@ require "rails_helper"
 
 RSpec.describe Card, type: :model do
   before do
-    company = Company.create(name: "Company Name",
-                             short_name: "Comp",
-                             kana_name: "comp name",
-                             category: :ltd,
-                             category_position: :after)
-    @card = Card.new(company: company,
-                     name: "0" * 31,
-                     kana_name: "0" * 63)
+    @card = FactoryBot.build(:card)
   end
 
   it "is valid with a company, name, kana name" do
