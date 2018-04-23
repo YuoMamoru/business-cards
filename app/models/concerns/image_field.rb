@@ -5,9 +5,9 @@ module ImageField
     fields.each do |field|
       instance_variable_name = :"@#{field}"
       define_method(field) {
-        if instance_variable_get(instance_variable_name).nil?
+        if !instance_variable_defined?(instance_variable_name) || instance_variable_get(instance_variable_name).nil?
           value = super()
-          instance_variable_set(instance_variable_name, Image.new(value)) unless value.nil?
+          instance_variable_set(instance_variable_name, value.nil? ? nil : Image.new(value))
         end
         instance_variable_get(instance_variable_name)
       }
