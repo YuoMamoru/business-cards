@@ -1,3 +1,7 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=caafaf988393467d4e549b54331511085b9817212ee864e4f3db01c8d9dfa648
+
 language: ruby
 
 rvm: 
@@ -15,9 +19,15 @@ install:
 before_script:
   - bundle exec rake db:create
   - bundle exec rake db:migrate
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
   - npm run lint
   - bin/rails test
   - bin/rails spec
   - bin/bundle exec brakeman -z -A --except CheckUnscopedFind -w1
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
