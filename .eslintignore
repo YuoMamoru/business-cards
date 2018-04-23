@@ -1,5 +1,6 @@
 app/assets/javascripts/cable.js
 app/assets/javascripts/i18n/translations.js
 public/javascripts/i18n.js
+coverage/*
 nodemodule/*
 vendor/*

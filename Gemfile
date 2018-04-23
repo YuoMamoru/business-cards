@@ -56,8 +56,6 @@ group :development, :test do
   gem 'rspec-rails'
   # Test data
   gem 'factory_bot_rails'
-  # Security checker
-  gem 'brakeman'
 end
 
 group :development do
@@ -74,6 +72,13 @@ group :development do
   gem 'spring-commands-rspec'
   # Code completion
   gem 'solargraph'
+end
+
+group :test do
+  # Test coverage
+  gem 'simplecov', require: false
+  # Security checker
+  gem 'brakeman'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
