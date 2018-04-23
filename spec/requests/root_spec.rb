@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe "Root", type: :request do
   describe "GET /" do
-    it "works! (now write some real specs)" do
+    it "works!" do
       get root_path
       expect(response).to have_http_status(200)
     end

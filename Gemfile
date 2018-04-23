@@ -52,10 +52,6 @@ group :development, :test do
   gem 'chromedriver-helper'
   # Linter
   gem 'rubocop'
-  # Adds RSpec
-  gem 'rspec-rails'
-  # Test data
-  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -75,8 +71,12 @@ group :development do
 end
 
 group :test do
+  # Adds RSpec
+  gem 'rspec-rails'
   # Test coverage
   gem 'simplecov', require: false
+  # Test data
+  gem 'factory_bot_rails'
   # Security checker
   gem 'brakeman'
 end
