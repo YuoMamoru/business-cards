@@ -4,11 +4,7 @@ require "rails_helper"
 
 RSpec.describe Company, type: :model do
   before do
-    @company = Company.new(name: "Company Name",
-                           short_name: "Comp",
-                           kana_name: "comp name",
-                           category: :ltd,
-                           category_position: :after)
+    @company = FactoryBot.build(:company)
   end
 
   it "is valid with a name, short name, kana name, category and category position" do

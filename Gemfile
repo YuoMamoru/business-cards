@@ -54,6 +54,8 @@ group :development, :test do
   gem 'rubocop'
   # Adds RSpec
   gem 'rspec-rails'
+  # Test data
+  gem 'factory_bot_rails'
   # Security checker
   gem 'brakeman'
 end
