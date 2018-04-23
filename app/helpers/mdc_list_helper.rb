@@ -78,7 +78,7 @@ module MdcListHelper
   #     # omitted below
   #
   #   # app/models/people.erb
-  #   class Person < ApplicationRecord
+  #   class Person < ActiveRecord::Base
   #     def name_lower
   #       name.downcase
   #     end
