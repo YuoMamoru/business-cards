@@ -3,6 +3,7 @@ ignoreFiles:
   - node_modules/**/*
   - vendor/**/*
   - app/assets/stylesheets/normalize.css
+  - app/assets/stylesheets/_mdc-select.scss
 plugins:
   - stylelint-selector-bem-pattern
   - stylelint-scss
