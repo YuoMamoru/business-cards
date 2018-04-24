@@ -4,7 +4,7 @@
               builder: MdcFormHelper::MdcFormBuilder) do |form| %>
   <% if company.errors.any? %>
     <div class="res-error-explanation">
-      <p class="mdc-typography--title res-error-explanation__result">
+      <p class="mdc-typography--headline6 res-error-explanation__result">
         <%= t("errors.template.header", count: company.errors.count, model: Company.model_name.human) %>:
       </p>
       <ul class="res-error-explanation__message-list">
