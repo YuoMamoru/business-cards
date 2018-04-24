@@ -67,12 +67,22 @@ RSpec.describe Card, type: :model do
   end
 
   it "is valid when its address is not too long" do
-    @card.address = "0" * 255
+    @card.address = "0" * 127
     expect(@card).to be_valid
   end
 
   it "is invalid when its address is too long" do
-    @card.address = "0" * 256
+    @card.address = "0" * 128
+    expect(@card).to be_invalid
+  end
+
+  it "is valid when its building is not too long" do
+    @card.building = "0" * 127
+    expect(@card).to be_valid
+  end
+
+  it "is invalid when its building is too long" do
+    @card.building = "0" * 128
     expect(@card).to be_invalid
   end
 
