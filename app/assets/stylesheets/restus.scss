@@ -154,11 +154,11 @@ html {
 .res-card {
   position: absolute;
   width: 448px;
-  transition: top 150ms linear, left 150ms linear; // TODO
+  transition: top 150ms linear, left 150ms linear; // FIXME:
 
   &__media {
-    background-color: $mdc-theme-primary; // TODO
-    color: map-get($mdc-theme-property-values, text-primary-on-primary); // TODO
+    background-color: $mdc-theme-primary; // FIXME:
+    color: map-get($mdc-theme-property-values, on-primary); // FIXME:
 
     &::before {
       margin-top: 28.57%;

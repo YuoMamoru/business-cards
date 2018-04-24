@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module MdcHelper
-  SUPPORT_VERSION = "0.34.1"
+  SUPPORT_VERSION = "0.35.0"
 
   # Create javascript include tag for {Material Components for the Web}[https://material.io/components/web/].
   def mdc_javascript_include_tag

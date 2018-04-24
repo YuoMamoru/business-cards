@@ -1,9 +1,9 @@
-<h2 class="mdc-typography--headline res-content-title"><%= t(".business_cards")%></h2>
+<h2 class="mdc-typography--headline5 res-content-title"><%= t(".business_cards")%></h2>
 
 <div class="res-content content-cards">
   <aside class="res-nav">
     <nav class="res-nav__nav">
-      <div class="mdc-typography--subheading2 res-nav__title"><%= Company.model_name.human %></div>
+      <div class="mdc-typography--subtitle1 res-nav__title"><%= Company.model_name.human %></div>
       <ul class="mdc-list">
       <% @companies.each do |company| %>
         <li class="mdc-list-item res-item-company" data-mdc-auto-init="MDCRipple">
@@ -38,7 +38,7 @@
           <%= mdc_icon_button_tag "close", title: "close", class: "res-cards-card-close" %>
         </div>
         <div class="res-card__media__title">
-          <span class="mdc-typography--title res-card-info__name"></span>
+          <span class="mdc-typography--headline6 res-card-info__name"></span>
           <span class="mdc-typography--caption res-card__media__caption res-card-info__qualification"></span>
         </div>
       </div>

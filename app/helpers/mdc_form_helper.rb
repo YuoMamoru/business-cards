@@ -73,8 +73,8 @@ module MdcFormHelper
       @template.content_tag(:div, container_options) do
         @template.safe_join([
           super,
-          @template.content_tag(:div, label_content(method), class: "mdc-select__label"),
-          @template.content_tag(:div, nil, class: "mdc-select__bottom-line"),
+          @template.content_tag(:div, label_content(method), class: "mdc-floating-label"),
+          @template.content_tag(:div, nil, class: "mdc-line-ripple"),
         ])
       end
     end
