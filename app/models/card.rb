@@ -9,7 +9,8 @@ class Card < ApplicationRecord
   validates :department, length: { maximum: 31 }
   validates :position, length: { maximum: 31 }
   validates :postcode, format: { with: /\A(|\d{3}\-\d{4})\z/ }
-  validates :address, length: { maximum: 255 }
+  validates :address, length: { maximum: 127 }
+  validates :building, length: { maximum: 127 }
   validates :tel, format: { with: /\A(|0[\d\-]{11,14})\z/ }
   validates :fax, format: { with: /\A(|0[\d\-]{11,14})\z/ }
   validates :mail, format: { with: /\A(|[\w+\-.]+@[a-z\d\-.]+\.[a-z]+)\z/ }, length: { maximum: 255 }

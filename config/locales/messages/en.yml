@@ -40,7 +40,8 @@ en:
         department: department
         position: position
         postcode: postcode
-        address: 所address在地
+        address: address
+        building: building
         tel: phone
         fax: FAX
         mail: mail

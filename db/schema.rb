@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328014908) do
+ActiveRecord::Schema.define(version: 2018_04_24_023108) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "company_id", null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20180328014908) do
     t.string "department", limit: 31
     t.string "position", limit: 31
     t.string "postcode", limit: 8
-    t.string "address", limit: 255
+    t.string "address", limit: 127
     t.string "tel", limit: 15
     t.string "fax", limit: 15
     t.string "mail", limit: 255
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20180328014908) do
     t.boolean "deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "building", limit: 127
     t.index ["company_id"], name: "index_cards_on_company_id"
   end
 

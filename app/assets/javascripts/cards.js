@@ -57,9 +57,9 @@ document.addEventListener('turbolinks:load', (evt) => {
       this.cardElm.querySelector('.res-card-info__department').innerText = `${card.department} ${card.position}`;
       this._setCardAnchorField(
         card,
-        'post-address',
+        'post-address-building',
         (value, c) => `https://www.google.co.jp/maps/place/${encodeURIComponent(c.address)}`,
-        card.postcode ? `〒${card.postcode} ${card.address}` : card.address,
+        card.postcode ? `〒${card.postcode} ${card.address} ${card.building}` : `${card.address} ${card.building}`,
       );
       this._setCardAnchorField(card, 'tel', value => `tel:${value.replace(/-/g, '')}`);
       this._setCardField(card, 'fax');

@@ -41,6 +41,7 @@ ja:
         position: 役職
         postcode: 郵便番号
         address: 所在地
+        building: 建物等
         tel: 電話
         fax: FAX
         mail: メール
