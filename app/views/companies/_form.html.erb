@@ -27,7 +27,6 @@
     <%= form.text_field :en_name, maxlength: 255 %>
   </div>
   <div class="field">
-  <% puts company.new_record? %>
     <%= form.select :category, Company.categories.keys.map{|key| [Company.human_attribute_name(key), key]}, {}, { required: true } %>
     <%= form.select :category_position, Company.category_positions.keys.map{|key| [Company.human_attribute_name(key), key]}, {}, { required: true } %>
   </div>
