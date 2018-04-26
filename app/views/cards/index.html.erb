@@ -42,39 +42,39 @@
           <span class="mdc-typography--caption res-card__media__caption res-card-info__qualification"></span>
         </div>
       </div>
+      <%= mdc_fab_link_to "edit", "#", mini: true, class: "res-card__fab", label: t(".edit_card"), title: t(".edit_card") %>
     </div>
     <div class="res-card__main">
       <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive res-list--content">
         <li class="mdc-list-item res-cards-content__name">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">business</i>
+          <i class="material-icons mdc-list-item__graphic" title="<%= Card.human_attribute_name(:company) %>" aria-hidden="true">business</i>
           <span class="mdc-list-item__text">
             <span class="res-card-info__company-name--label"></span><a class="res-list-item__link res-card-info__company-name--link" href="#"></a>
             <span class="mdc-list-item__secondary-text res-card-info__department"></span>
           </span>
         </li>
         <li class="mdc-list-item">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">place</i>
+          <i class="material-icons mdc-list-item__graphic" title="<%= Card.human_attribute_name(:address) %>" aria-hidden="true">place</i>
           <a class="res-list-item__link res-card-info__post-address-building" href="#"></a>
         </li>
         <li class="mdc-list-item">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">phone</i>
+          <i class="material-icons mdc-list-item__graphic" title="<%= Card.human_attribute_name(:tel) %>" aria-hidden="true">phone</i>
           <a class="res-list-item__link res-card-info__tel" href="#"></a>
         </li>
         <li class="mdc-list-item">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">print</i>
+          <i class="material-icons mdc-list-item__graphic" title="<%= Card.human_attribute_name(:fax) %>" aria-hidden="true">print</i>
           <span class="res-card-info__fax"></span>
         </li>
         <li class="mdc-list-item">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">email</i>
+          <i class="material-icons mdc-list-item__graphic" title="<%= Card.human_attribute_name(:mail) %>" aria-hidden="true">email</i>
           <a class="res-list-item__link res-card-info__mail" href="#"></a>
         </li>
         <li class="mdc-list-item">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">note</i>
+          <i class="material-icons mdc-list-item__graphic" title="<%= Card.human_attribute_name(:note) %>" aria-hidden="true">note</i>
           <span class="res-card-info__note"></span>
         </li>
       </ul>
     </div>
-    <%= mdc_fab_link_to "edit", "#", mini: true, class: "res-card__fab", label: t(".edit_card"), title: t(".edit_card") %>
   </div>
 
   <%= mdc_fab_link_to "add", {action: :new}, class: "res-add-fab res-card-add-button", label: t(".create_card"), title: t(".create_card") %>
