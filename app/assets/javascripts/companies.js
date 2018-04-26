@@ -29,6 +29,12 @@ document.addEventListener('turbolinks:load', (evt) => {
       this._setCardAnchorField(company, 'webSite');
       this._setCardField(company, 'note');
       this.cardFabElm.href = company.editPath;
+      const mediaElm = this.cardElm.querySelector('.mdc-card__media');
+      if (company.color) {
+        mediaElm.style.setProperty('background-color', company.color);
+      } else {
+        mediaElm.style.removeProperty('background-color');
+      }
     },
 
     _setCardField(card, fieldName) {

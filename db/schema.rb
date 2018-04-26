@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_24_023108) do
+ActiveRecord::Schema.define(version: 2018_04_26_095623) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "company_id", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_04_24_023108) do
     t.string "web_site", limit: 255
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "color", limit: 7
     t.index ["kana_name"], name: "index_companies_on_kana_name"
   end
 

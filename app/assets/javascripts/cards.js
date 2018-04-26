@@ -66,6 +66,12 @@ document.addEventListener('turbolinks:load', (evt) => {
       this._setCardAnchorField(card, 'mail', value => `mailto:${value}`);
       this._setCardField(card, 'note');
       this.cardFabElm.href = card.editPath;
+      const mediaElm = this.cardElm.querySelector('.mdc-card__media');
+      if (card.company.color) {
+        mediaElm.style.setProperty('background-color', card.company.color);
+      } else {
+        mediaElm.style.removeProperty('background-color');
+      }
     },
 
     _setCardCompanyNameField(card) {

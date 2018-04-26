@@ -1,0 +1,16 @@
+default: &default
+  uri:
+    images_annotate: https://vision.googleapis.com/v1/images:annotate
+    document_analize: https://language.googleapis.com/v1beta2/documents:analyzeEntities
+
+development:
+  <<: *default
+  key: {YOUR_GOOGLE_API_KEY}
+
+test:
+  <<: *default
+  key: {YOUR_GOOGLE_API_KEY}
+
+production:
+  <<: *default
+  key: {YOUR_GOOGLE_API_KEY}

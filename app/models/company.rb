@@ -12,6 +12,8 @@ class Company < ApplicationRecord
   validates :category, presence: true
   validates :category_position, presence: true
 
+  before_save :set_color
+
   def formal_name
     case category_position.intern
     when :before
@@ -32,5 +34,19 @@ class Company < ApplicationRecord
     else
       short_name
     end
+  end
+
+  private
+
+  def set_color
+    if logo_image_changed?
+      if logo_image
+        image_annotate = GoogleApi::ImageAnnotate.new(logo_image.data)
+        self.color = (image_annotate.get_properties.dominant_colors.first.hex rescue nil)
+      else
+        self.color = nil
+      end
+    end
+    self
   end
 end
