@@ -76,6 +76,7 @@ html {
     .mdc-list-item__graphic {
       width: 36px;
       height: 36px;
+      border-radius: unset;
     }
   }
 
@@ -153,7 +154,7 @@ html {
 // Cards
 .res-card {
   position: absolute;
-  width: 448px;
+  width: 540px;
   transition: top 150ms linear, left 150ms linear; // FIXME:
 
   &__media {
@@ -161,7 +162,7 @@ html {
     color: map-get($mdc-theme-property-values, on-primary); // FIXME:
 
     &::before {
-      margin-top: 28.57%;
+      margin-top: 25%;
     }
 
     &__icon-button-area {
@@ -182,8 +183,9 @@ html {
 
   &__fab {
     position: absolute;
-    top: 108px;
+    bottom: -20px;
     left: 8px;
+    z-index: 2;
   }
 
   &__main {
@@ -289,12 +291,18 @@ html {
 }
 
 .mdc-text-field__input {
-  &[maxlength="255"] {
-    width: 592px;
+  max-width: 592px;
+
+  &[maxlength="127"] {
+    width: 420px;
+  }
+
+  &[maxlength="63"] {
+    width: 390px;
   }
 
   &[maxlength="31"] {
-    width: 453px;
+    width: 360px;
   }
 }
 

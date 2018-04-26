@@ -26,6 +26,7 @@
           <span class="mdc-typography--headline6 res-company-info__name"></span>
         </div>
       </div>
+      <%= mdc_fab_link_to "edit", "#", mini: true, class: "res-card__fab", label: t(".edit_company"), title: t(".edit_company") %>
     </div>
     <div class="res-card__main">
       <ul class="mdc-list mdc-list--non-interactive res-list--content">
@@ -47,7 +48,6 @@
         </li>
       </ul>
     </div>
-    <%= mdc_fab_link_to "edit", "#", mini: true, class: "res-card__fab", label: t(".edit_company"), title: t(".edit_company") %>
   </div>
 
   <%= mdc_fab_link_to "add", {action: :new}, class: "res-add-fab res-companies-add-button", label: t(".create_company"), title: t(".create_company") %>
