@@ -48,8 +48,8 @@
     setCard(obj) {} // eslint-disable-line class-methods-use-this
 
     showCard(clickX = 400, clickY = 200) {
-      let cardLeft = clickX - 16;
-      let cardTop = clickY - 32;
+      let cardLeft = clickX + 96;
+      let cardTop = clickY - 96;
       const hidden = !this.cardElm.clientHeight;
       this.cardElm.style.left = `${cardLeft}px`;
       this.cardElm.style.top = `${cardTop}px`;
