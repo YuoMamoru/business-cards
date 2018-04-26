@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 json.key_format! camelize: :lower
-json.extract! company, :id, :formal_name, :omit_name, :name, :short_name, :kana_name, :en_name, :category, :category_position, :note, :web_site, :created_at, :updated_at
+json.extract! company, :id, :formal_name, :omit_name, :name, :short_name, :kana_name, :en_name, :category, :category_position, :note, :web_site, :color, :created_at, :updated_at
 if company.logo_image.nil?
   json.logo_image nil
 else

@@ -158,8 +158,8 @@ html {
   transition: top 150ms linear, left 150ms linear; // FIXME:
 
   &__media {
-    background-color: $mdc-theme-primary; // FIXME:
-    color: map-get($mdc-theme-property-values, on-primary); // FIXME:
+    background-color: #888;
+    color: white;
 
     &::before {
       margin-top: 25%;

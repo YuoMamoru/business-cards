@@ -17,6 +17,7 @@ install:
   - npm install
 
 before_script:
+  - cp config/google_api.yml.sample config/google_api.yml
   - bin/bundle exec rake db:create
   - bin/bundle exec rake db:migrate
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -26,7 +27,7 @@ before_script:
 script:
   - npm run lint
   - bin/rails test
-  - bin/rspec
+  - bin/rspec --tag ~google_api
   - bin/bundle exec brakeman -z -A --except CheckUnscopedFind -w1
 
 after_script:
