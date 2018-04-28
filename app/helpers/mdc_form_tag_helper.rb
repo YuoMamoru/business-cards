@@ -149,21 +149,11 @@ module MdcFormTagHelper
       end
     if label.blank?
       check_box
-    elsif options.has_key?(:id) && options[:id].blank?
-      label_tag do
-        content_tag(:div, form_options) do
-          safe_join([
-            form_classes.include?("mdc-form-field--align-end") ? label : "",
-            check_box,
-            form_classes.include?("mdc-form-field--align-end") ? "" : label,
-          ])
-        end
-      end
     else
       content_tag(:div, form_options) do
         safe_join([
           check_box,
-          label_tag(options[:id].blank? ? name : options[:id], label)
+          label_tag(options[:id].blank? ? name : options[:id], label),
         ])
       end
     end
