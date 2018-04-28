@@ -114,10 +114,14 @@ en:
       successfully_created: Card was successfully created.
     destroy:
       successfully_destroyed: Card was successfully destroyed.
+    edit:
+      edit_card: Edit Card
     index:
       create_card: Create Card
       edit_card: Edit Card
       business_cards: Business Cards
+    new:
+      create_card: Create Card
     update:
       successfully_updated: Card was successfully updated.
   companies:
