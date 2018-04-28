@@ -311,12 +311,12 @@ html {
   margin-top: 12px;
   margin-bottom: 12px;
 
-  &__native-control:required + .mdc-select__label::after {
+  &__native-control:required + .mdc-floating-label::after {
     margin-left: 1px;
     content: "*";
   }
 
-  &__native-control:required:focus + .mdc-select__label::after {
+  &__native-control:required:focus + .mdc-floating-label::after {
     color: $mdc-text-field-error;
   }
 
