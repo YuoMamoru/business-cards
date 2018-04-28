@@ -356,18 +356,3 @@ html {
     color: $mdc-text-field-error;
   }
 }
-
-// Responding to issues #719 in Material Components for the Web
-// https://github.com/material-components/material-components-web/issues/719
-.mdc-dialog .mdc-select {
-  /* stylelint-disable declaration-no-important */
-  position: relative !important;
-
-  &__menu {
-    top: inherit !important;
-    left: inherit !important;
-    max-height: calc(100vh - 64px) !important;
-    margin-top: 44px;
-  }
-  /* stylelint-enable */
-}
