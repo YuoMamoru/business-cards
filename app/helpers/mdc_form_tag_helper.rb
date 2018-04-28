@@ -159,6 +159,35 @@ module MdcFormTagHelper
     end
   end
 
+  # Create a Material Design switch using {Material Components for the Web}[https://material.io/components/web/].
+  # See ActionView::Helpers::FormTagHelper#check_box_tag for options and attributes.
+  #
+  # === Additional optins
+  #
+  # * <tt>:label</tt> - Specifies label content.
+  def mdc_switch(name, value = "1", checked = false, options = {})
+    container_classes = [ "mdc-switch" ]
+    merge_class_name(options, *container_classes)
+    container_options = { class: options.delete(:class) }
+    label = options.delete(:label)
+    sw = content_tag(:div, container_options) do
+      safe_join([
+        check_box_tag(name, value, checked, options.merge(class: "mdc-switch__native-control", role: "switch", "aria-checked": checked)),
+        content_tag(:div, class: "mdc-switch__background") do
+          content_tag(:div, "", class: "mdc-switch__knob")
+        end,
+      ])
+    end
+    if label.blank?
+      sw
+    else
+      safe_join([
+        sw,
+        label_tag(options[:id].blank? ? name : options[:id], label),
+      ], "\n")
+    end
+  end
+
   # Create a Material Design link button using {Material Components for the Web}[https://material.io/components/web/].
   # See ActionView::Helpers::UrlHelper#link_to for signegure or options.
   #
