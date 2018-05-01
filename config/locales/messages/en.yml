@@ -116,6 +116,8 @@ en:
       successfully_destroyed: Card was successfully destroyed.
     edit:
       edit_card: Edit Card
+    form:
+      use_assistance: Use assistance
     index:
       create_card: Create Card
       edit_card: Edit Card

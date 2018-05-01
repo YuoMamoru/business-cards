@@ -8,6 +8,7 @@
         "document": false,
         "XMLHttpRequest": false,
         "FileReader": false,
+        "FormData": false,
         "mdc": false,
         "Rails": false,
         "I18n": false,

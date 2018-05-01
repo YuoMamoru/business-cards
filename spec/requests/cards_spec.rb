@@ -75,4 +75,11 @@ RSpec.describe "Cards", type: :request do
       }.to change(Card.all, :count).by(0)
     end
   end
+
+  describe "POST /card/ocr.json" do
+    it "works!", google_api: true do
+      post card_ocr_path(format: "json"), params: { image: fixture_file_upload("business_card.png", "image/png") }
+      expect(response).to have_http_status(200)
+    end
+  end
 end
