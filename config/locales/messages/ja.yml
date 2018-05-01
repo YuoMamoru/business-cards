@@ -110,6 +110,8 @@ ja:
       successfully_destroyed: 名刺を削除しました。
     edit:
       edit_card: 名刺の編集
+    form:
+      use_assistance: 入力補助
     index:
       create_card: 名刺の登録
       edit_card: 名刺の編集

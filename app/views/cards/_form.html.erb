@@ -1,6 +1,7 @@
 <%= form_with(model: card,
               auto_init: true,
               local: true,
+              class: "content-cards-form",
               builder: MdcFormHelper::MdcFormBuilder) do |form| %>
   <% if card.errors.any? %>
     <div class="res-error-explanation">
@@ -14,43 +15,48 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.text_field :name, required: true, maxlength: 31 %>
+  <div class="field field-left">
+    <%= form.image_field :front_image, max_height: 256, accept: "image/png, image/jpeg, image/gif" %>
+    <%= form.image_field :back_image, max_height: 256, accept: "image/png, image/jpeg, image/gif" %><br />
+    <%= mdc_switch nil, nil, true, label: t(".use_assistance"), id: "use-assistance" %>
   </div>
   <div class="field">
-    <%= form.text_field :kana_name, required: true, maxlength: 63 %>
+    <%= form.text_field :name, required: true, maxlength: 31, list: "all-list", autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= form.select :company_id, Company.order(:kana_name).map{|c| [c.omit_name, c.id]}, {}, { required: true } %>
+    <%= form.text_field :kana_name, required: true, maxlength: 63, autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= form.text_field :department, maxlength: 31 %>
-    <%= form.text_field :position, maxlength: 31 %>
+    <%= form.select :company_id, Company.order(:kana_name).map{|c| [c.omit_name, c.id]}, {}, { required: true, class: "field-company" } %>
   </div>
   <div class="field">
-    <%= form.text_field :qualification, maxlength: 255 %>
+    <%= form.text_field :department, maxlength: 31, list: "all-list", autocomplete: "off" %>
+    <%= form.text_field :position, maxlength: 31, list: "all-list", autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= form.text_field :postcode, maxlength: 8, pattern: "\\d{3}-\\d{4}" %>
-    <%= form.text_field :address, maxlength: 127 %>
-    <%= form.text_field :building, maxlength: 127 %>
+    <%= form.text_field :qualification, maxlength: 255, list: "all-list", autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= form.text_field :tel, maxlength: 15, pattern: "0[\\d\\-]{11,14}" %>
-    <%= form.text_field :fax, maxlength: 15, pattern: "0[\\d\\-]{11,14}" %>
+    <%= form.text_field :postcode, maxlength: 8, pattern: "\\d{3}-\\d{4}", class: "field-postcode", list: "post-code-list", autocomplete: "off" %>
+    <%= form.text_field :address, maxlength: 127, list: "all-list", class: "field-address", autocomplete: "off" %>
+    <%= form.text_field :building, maxlength: 127, list: "all-list", autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= form.text_field :mail, maxlength: 255, pattern: "[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+" %>
+    <%= form.text_field :tel, maxlength: 15, pattern: "0[\\d\\-]{11,14}", class: "field-tel", list: "phone-list", autocomplete: "off" %>
+    <%= form.text_field :fax, maxlength: 15, pattern: "0[\\d\\-]{11,14}", list: "phone-list", autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= form.image_field :front_image, max_height: 192, accept: "image/png, image/jpeg, image/gif" %>
-    <%= form.image_field :back_image, max_height: 192, accept: "image/png, image/jpeg, image/gif" %>
+    <%= form.text_field :mail, maxlength: 255, pattern: "[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+", class: "field-mail", list: "mail-list", autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= form.text_field :note, maxlength: 255 %>
+    <%= form.text_field :note, maxlength: 255, autocomplete: "off" %>
   </div>
   <div class="actions">
     <%= mdc_link_to t("helpers.button.cancel"), {action: :index}, auto_init: true %>
     <%= form.submit raised: true, class: "res-button--raised--secondary" %>
   </div>
+  <datalist id="all-list"></datalist>
+  <datalist id="post-code-list"></datalist>
+  <datalist id="phone-list"></datalist>
+  <datalist id="mail-list"></datalist>
 <% end %>

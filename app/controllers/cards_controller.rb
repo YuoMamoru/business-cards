@@ -63,6 +63,19 @@ class CardsController < ApplicationController
     end
   end
 
+  # POST /cards/orc.json
+  def ocr
+    image_file = params[:image]
+    image_file.open
+    begin
+      image = image_file.read
+    ensure
+      image_file.close
+    end
+    google_api = GoogleApi::ImageAnnotate.new(image)
+    @texts = CardTextAnalyzer.new(google_api.get_text_blocks.summary&.text)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

@@ -328,6 +328,12 @@ html {
   }
 }
 
+.field-left {
+  padding-right: 8px;
+  padding-bottom: 8px;
+  float: left;
+}
+
 .res-button--raised--secondary {
   @include mdc-button-filled-accessible($mdc-theme-secondary);
 }
