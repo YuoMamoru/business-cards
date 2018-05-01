@@ -2,6 +2,7 @@
 
 require "base64"
 require "json"
+require "net/http"
 
 module GoogleApi
   SETTINGS = Rails.application.config_for(:google_api)
