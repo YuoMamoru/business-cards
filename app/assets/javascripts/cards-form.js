@@ -17,6 +17,7 @@ document.addEventListener('turbolinks:load', (evt) => {
     postCodeListElm: document.getElementById('post-code-list'),
     phoneListElm: document.getElementById('phone-list'),
     mailListElm: document.getElementById('mail-list'),
+    _optBase: document.createElement('option'),
 
     init() {
       this.frontImageElm.addEventListener('change', this.onChangeImage.bind(this), false);
@@ -53,45 +54,31 @@ document.addEventListener('turbolinks:load', (evt) => {
       if (!this.companyElm.MDCSelect.value && lists.companyId != null) {
         this.companyElm.MDCSelect.value = lists.companyId.toString();
       }
-      if (!this.postcodeElm.MDCTextField.value && lists.postCodes.length === 1) {
-        [this.postcodeElm.MDCTextField.value] = lists.postCodes;
-      }
-      if (!this.addressElm.MDCTextField.value && lists.addresses.length === 1) {
-        [this.addressElm.MDCTextField.value] = lists.addresses;
-      }
-      if (!this.telElm.MDCTextField.value && lists.phones.length === 1) {
-        [this.telElm.MDCTextField.value] = lists.phones;
-      }
-      if (!this.mailElm.MDCTextField.value && lists.mails.length === 1) {
-        [this.mailElm.MDCTextField.value] = lists.mails;
-      }
+      this._setProposedValue(this.postcodeElm.MDCTextField, lists.postCodes);
+      this._setProposedValue(this.addressElm.MDCTextField, lists.addresses);
+      this._setProposedValue(this.telElm.MDCTextField, lists.phones);
+      this._setProposedValue(this.mailElm.MDCTextField, lists.mails);
     },
 
     setDataList(lists) {
-      this.allListElm.textContent = '';
-      this.postCodeListElm.textContent = '';
-      this.phoneListElm.textContent = '';
-      this.mailListElm.textContent = '';
-      const optBase = document.createElement('option');
-      for (const line of lists.lines) {
-        const opt = optBase.cloneNode(true);
-        opt.setAttribute('value', line);
-        this.allListElm.appendChild(opt);
+      this._setProposedList(this.allListElm, lists.lines);
+      this._setProposedList(this.postCodeListElm, lists.postCodes);
+      this._setProposedList(this.phoneListElm, lists.phones);
+      this._setProposedList(this.mailListElm, lists.mails);
+    },
+
+    _setProposedValue(component, proposedValues) {
+      if (!component.value && proposedValues.length === 1) {
+        [component.value] = proposedValues; // eslint-disable-line no-param-reassign
       }
-      for (const postCode of lists.postCodes) {
-        const opt = optBase.cloneNode(true);
-        opt.setAttribute('value', postCode);
-        this.postCodeListElm.appendChild(opt);
-      }
-      for (const phone of lists.phones) {
-        const opt = optBase.cloneNode(true);
-        opt.setAttribute('value', phone);
-        this.phoneListElm.appendChild(opt);
-      }
-      for (const mail of lists.mails) {
-        const opt = optBase.cloneNode(true);
-        opt.setAttribute('value', mail);
-        this.mailListElm.appendChild(opt);
+    },
+
+    _setProposedList(listElm, proposedValues) {
+      listElm.textContent = ''; // eslint-disable-line no-param-reassign
+      for (const value of proposedValues) {
+        const opt = this._optBase.cloneNode(true);
+        opt.setAttribute('value', value);
+        listElm.appendChild(opt);
       }
     },
   };
