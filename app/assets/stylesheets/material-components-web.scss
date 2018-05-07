@@ -37,9 +37,7 @@
 @import "@material/menu/mdc-menu";
 @import "@material/radio/mdc-radio";
 @import "@material/ripple/mdc-ripple";
-// TODO: There is a bug in mdc-select, so patched it.
-// @import "@material/select/mdc-select";
-@import "mdc-select";
+@import "@material/select/mdc-select";
 // @import "@material/slider/mdc-slider";
 @import "@material/snackbar/mdc-snackbar";
 @import "@material/switch/mdc-switch";
