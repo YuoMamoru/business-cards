@@ -23,6 +23,7 @@ ja:
         logo_image: ロゴ画像
         ltd: 株式会社
         llc: 合同会社
+        limited: 有限会社
         foundation: "一般財団法人 "
         university: 大学
         non: なし
@@ -30,6 +31,7 @@ ja:
         after: 後
         omit_ltd: （株）
         omit_llc: （同）
+        omit_limited: （有）
         omit_foundation: （財）
         omit_university: ""
       card:
