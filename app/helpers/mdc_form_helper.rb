@@ -167,7 +167,7 @@ module MdcFormHelper
     #   flush with the surface.
     def button(value = nil, options = {}, &block)
       value, options = nil, value if value.is_a?(Hash)
-      elem_classes =  [ "mdc-button" ]
+      elem_classes = [ "mdc-button" ]
       elem_classes << "mdc-button--dense" if options.delete(:dense)
       elem_classes << "mdc-button--raised" if options.delete(:raised)
       elem_classes << "mdc-button--unelevated" if options.delete(:unelevated)
