@@ -38,14 +38,14 @@ RSpec.describe "Companies", type: :request do
 
     it "creates company!" do
       expect {
-        post companies_path, params: { company:  attributes }
+        post companies_path, params: { company: attributes }
         expect(response).to have_http_status(302)
       }.to change(Company.all, :count).by(1)
     end
 
     it "occors error when post data is invalid" do
       expect {
-        post companies_path, params: { company:  attributes.merge(name: nil) }
+        post companies_path, params: { company: attributes.merge(name: nil) }
         expect(response).to have_http_status(200)
       }.to change(Company.all, :count).by(0)
     end
@@ -54,7 +54,7 @@ RSpec.describe "Companies", type: :request do
   describe "PUT /company/:id" do
     it "updates company!" do
       expect {
-        put company_path(@company.id), params: { company:  @company.attributes.merge(name: "change") }
+        put company_path(@company.id), params: { company: @company.attributes.merge(name: "change") }
         expect(response).to have_http_status(302)
         expect(Company.find(@company.id).name).to_not eq @company.name
       }.to change(Company.all, :count).by(0)
@@ -62,7 +62,7 @@ RSpec.describe "Companies", type: :request do
 
     it "occors error when post data is invalid" do
       expect {
-        put company_path(@company.id), params: { company:  @company.attributes.merge(name: nil) }
+        put company_path(@company.id), params: { company: @company.attributes.merge(name: nil) }
         expect(response).to have_http_status(200)
         expect(Company.find(@company.id).name).to eq @company.name
       }.to change(Company.all, :count).by(0)

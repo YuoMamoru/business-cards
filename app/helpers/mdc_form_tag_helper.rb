@@ -20,7 +20,7 @@ module MdcFormTagHelper
     else
       options ||= {}
     end
-    elem_classes =  [ "mdc-button" ]
+    elem_classes = [ "mdc-button" ]
     elem_classes << "mdc-button--dense" if options.delete(:dense)
     elem_classes << "mdc-button--raised" if options.delete(:raised)
     elem_classes << "mdc-button--unelevated" if options.delete(:unelevated)
@@ -204,7 +204,7 @@ module MdcFormTagHelper
   def mdc_link_to(name = nil, options = nil, html_options = nil, &block)
     active_options = block_given? ? options : html_options
     active_options ||= {}
-    elem_classes =  [ "mdc-button" ]
+    elem_classes = [ "mdc-button" ]
     elem_classes << "mdc-button--dense" if active_options.delete(:dense)
     elem_classes << "mdc-button--raised" if active_options.delete(:raised)
     elem_classes << "mdc-button--unelevated" if active_options.delete(:unelevated)
