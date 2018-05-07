@@ -27,7 +27,7 @@
     <%= form.text_field :kana_name, required: true, maxlength: 63, autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= form.select :company_id, Company.order(:kana_name).map{|c| [c.omit_name, c.id]}, {}, { required: true, class: "field-company" } %>
+    <%= form.select :company_id, Company.order(:kana_name).map{|c| [c.short_name, c.id]}, {}, { required: true, class: "field-company" } %>
   </div>
   <div class="field">
     <%= form.text_field :department, maxlength: 31, list: "all-list", autocomplete: "off" %>
