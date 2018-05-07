@@ -304,6 +304,10 @@ html {
   &[maxlength="31"] {
     width: 360px;
   }
+
+  &[maxlength="8"] {
+    width: 92px;
+  }
 }
 
 .mdc-select {
