@@ -42,7 +42,7 @@ RSpec.describe "Cards", type: :request do
     it "creates card!" do
       expect {
         post cards_path, params: {
-          card:  attributes.merge(company_id: @card.company_id)
+          card: attributes.merge(company_id: @card.company_id)
         }
         expect(response).to have_http_status(302)
       }.to change(Card.all, :count).by(1)
@@ -51,7 +51,7 @@ RSpec.describe "Cards", type: :request do
     it "occors error when post data is invalid" do
       expect {
         post cards_path, params: {
-          card:  attributes.merge(company_id: nil)
+          card: attributes.merge(company_id: nil)
         }
         expect(response).to have_http_status(200)
       }.to change(Card.all, :count).by(0)
@@ -61,7 +61,7 @@ RSpec.describe "Cards", type: :request do
   describe "PUT /card/:id" do
     it "updates card!" do
       expect {
-        put card_path(@card.id), params: { card:  @card.attributes.merge(name: "change") }
+        put card_path(@card.id), params: { card: @card.attributes.merge(name: "change") }
         expect(response).to have_http_status(302)
         expect(Card.find(@card.id).name).to_not eq @card.name
       }.to change(Card.all, :count).by(0)
@@ -69,7 +69,7 @@ RSpec.describe "Cards", type: :request do
 
     it "occors error when post data is invalid" do
       expect {
-        put card_path(@card.id), params: { card:  @card.attributes.merge(name: nil) }
+        put card_path(@card.id), params: { card: @card.attributes.merge(name: nil) }
         expect(response).to have_http_status(200)
         expect(Card.find(@card.id).name).to eq @card.name
       }.to change(Card.all, :count).by(0)
