@@ -11,8 +11,10 @@ bundler_args: "--without development --deployment"
 
 cache: bundler
 
+before_install:
+  - gem update --system --no-document
+
 install:
-  - gem install -v 1.16.1 bundler
   - bundle install
   - npm install
 
