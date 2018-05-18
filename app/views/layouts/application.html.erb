@@ -28,6 +28,7 @@
             <nav class="mdc-list">
               <%= mdc_list_item_link_to t(".mail"), "https://mail.google.com/mail/", icon: "email" %>
               <%= mdc_list_item_link_to t(".calendar"), "https://calendar.google.com/calendar/", icon: "event" %>
+              <%= mdc_list_item_link_to t(".trello"), "https://trello.com/", icon: "&#xE909;", class: "trellicons" %>
               <%= mdc_list_item_link_to t(".company_settings"),
                                         { controller: "companies", action: "index" },
                                         icon: "business",

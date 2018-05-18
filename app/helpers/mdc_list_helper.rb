@@ -29,7 +29,7 @@ module MdcListHelper
     else
       link_to(options, html_options) do
         safe_join([
-          content_tag(:i, icon, class: "material-icons mdc-list-item__graphic", "aria-hidden": "true"),
+          content_tag(:i, icon.html_safe, class: "material-icons mdc-list-item__graphic", "aria-hidden": "true"),
           name,
         ], " ")
       end

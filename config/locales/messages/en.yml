@@ -107,6 +107,7 @@ en:
     application:
       mail: Mail
       calendar: Calendar
+      trello: Trello
       company_settings: Company Settings
       business_cards: Business Cards
       g_sute_account: G Sute Account

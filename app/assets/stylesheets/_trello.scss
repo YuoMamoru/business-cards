@@ -1,0 +1,14 @@
+@font-face {
+  font-family: trellicons;
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local("trellicons"),
+    url("https://a.trellocdn.com/dist/fonts/trellicons.a43f21bb84f92bbad104.ttf") format("ttf");
+  font-display: swap;
+}
+
+.trellicons .material-icons {
+  font-family: trellicons;  // stylelint-disable-line font-family-no-missing-generic-family-keyword
+  font-size: 22px;
+}
