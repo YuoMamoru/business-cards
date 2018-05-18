@@ -102,6 +102,7 @@ ja:
     application:
       mail: メール
       calendar: カレンダー
+      trello: Trello
       company_settings: 取引先設定
       business_cards: 名刺
       g_sute_account: G Sute アカウント
