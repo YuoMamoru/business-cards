@@ -36,6 +36,9 @@
 # Ignore google api information that includes api key.
 /config/google_api.yml
 
+# Ignore settings of unicorn.
+/config/unicorn.rb
+
 # Ignore compiled translate file
 /app/assets/javascripts/i18n/translations.js
 

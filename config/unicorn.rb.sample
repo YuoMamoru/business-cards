@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+timeout 15
+preload_app true
+
+raisl_root = File.expand_path("../../", __FILE__)
+
+# Use following setting if using nginx
+# listen File.expand_path("tmp/unicorn.sock", rails_root)
+listen 3000
+pid File.expand_path("tmp/unicorn.pid", rails_root)
+
+before_fork do |server, worker|
+  Signal.trap "TERM" do
+    Process.kill "QUIT", Process.pid
+  end
+
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
+end
+
+stderr_path File.expand_path("log/unicorn.log", rails_root)
+stdout_path File.expand_path("log/unicorn.log", rails_root)
