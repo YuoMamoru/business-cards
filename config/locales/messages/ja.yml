@@ -102,9 +102,12 @@ ja:
     application:
       mail: メール
       calendar: カレンダー
-      trello: Trello
+      drive: ドライブ
+      wiki: Wiki
       company_settings: 取引先設定
       business_cards: 名刺
+      github: GitHub
+      trello: Trello
       g_sute_account: G Sute アカウント
   cards:
     create:
