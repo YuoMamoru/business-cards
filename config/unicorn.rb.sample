@@ -4,7 +4,7 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true
 
-raisl_root = File.expand_path("../../", __FILE__)
+rails_root = File.expand_path("../../", __FILE__)
 
 # Use following setting if using nginx
 # listen File.expand_path("tmp/unicorn.sock", rails_root)
