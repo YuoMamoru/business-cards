@@ -107,9 +107,12 @@ en:
     application:
       mail: Mail
       calendar: Calendar
-      trello: Trello
+      drive: Drive
+      wiki: Wiki
       company_settings: Company Settings
       business_cards: Business Cards
+      github: GitHub
+      trello: Trello
       g_sute_account: G Sute Account
   cards:
     create:

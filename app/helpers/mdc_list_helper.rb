@@ -19,19 +19,26 @@ module MdcListHelper
   # * <tt>:icon</tt> - Specify the icon at the beginning of the list item.
   #   This method use the {Material Icons}[https://material.io/icons/].
   # * <tt>:selected</tt> - If set this option to true, the list item becomes selected state.
-  def mdc_list_item_link_to(name, options = nil, html_options = nil)
+  def mdc_list_item_link_to(name, options = nil, html_options = {}, &block)
     icon = html_options.delete(:icon)
     item_classes = [ "mdc-list-item" ]
     item_classes << "mdc-list-item--selected" if html_options.delete(:selected)
     merge_class_name(html_options, *item_classes)
-    if icon.blank?
+    if icon.blank? && !block_given?
       link_to(name, options, html_options)
     else
       link_to(options, html_options) do
-        safe_join([
-          content_tag(:i, icon.html_safe, class: "material-icons mdc-list-item__graphic", "aria-hidden": "true"),
-          name,
-        ], " ")
+        if block_given?
+          safe_join([
+            content_tag(:i, capture(&block), class: "mdc-list-item__graphic", "aria-hidden": "true"),
+            name,
+          ])
+        else
+          safe_join([
+            content_tag(:i, icon.html_safe, class: "material-icons mdc-list-item__graphic", "aria-hidden": "true"),
+            name,
+          ], " ")
+        end
       end
     end
   end
