@@ -9,6 +9,7 @@
 @import "@material/textfield/variables";
 @import "@material/select/mixins";
 @import "trello";
+@import "icons";
 
 html {
   height: 100%;
@@ -91,6 +92,13 @@ html {
 
   &-item__link {
     color: inherit;
+  }
+
+  &-item__anchor {
+    display: inherit;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
   }
 
   &-group__subheader {
