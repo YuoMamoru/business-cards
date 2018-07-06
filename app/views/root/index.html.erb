@@ -1,0 +1,112 @@
+<h2 class="mdc-typography--headline5 res-content-title"><%= t(".top_page")%></h2>
+
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+      <h3 class="mdc-typography--subtitle1"><%= t(".g_suite") %></h3>
+      <ul class="mdc-list mdc-list--two-line mdc-list--avatar-list res-list">
+        <li class="mdc-list-item">
+          <a href="https://mail.google.com/mail" class="res-list-item__anchor">
+            <span class="mdc-list-item__graphic icon-gmail" aria-hidden="true"></span>
+            <span class="mdc-list-item__text">
+              <%= t "layouts.application.mail" %><span class="mdc-list-item__secondary-text"><%= t(".check_mail") %></span>
+            </span>
+          </a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="https://calendar.google.com/calendar" class="res-list-item__anchor">
+            <span class="mdc-list-item__graphic icon-googlecalendar" aria-hidden="true"></span>
+            <span class="mdc-list-item__text">
+              <%= t "layouts.application.calendar" %><span class="mdc-list-item__secondary-text"><%= t(".check_schedule") %></span>
+            </span>
+          </a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="https://drive.google.com/drive" class="res-list-item__anchor">
+            <span class="mdc-list-item__graphic icon-googledrive" aria-hidden="true"></span>
+            <span class="mdc-list-item__text">
+              <%= t "layouts.application.drive" %><span class="mdc-list-item__secondary-text"><%= t(".there_are_documents") %></span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+      <h3 class="mdc-typography--subtitle1"><%= t(".office_system") %></h3>
+      <ul class="mdc-list mdc-list--two-line mdc-list--avatar-list res-list">
+        <li class="mdc-list-item">
+          <a href="http://wiki.restus.co.jp/" class="res-list-item__anchor">
+            <span class="mdc-list-item__graphic" aria-hidden="true">
+              <svg width="36px" height="36px" viewBox="0 0 226.44 196.11">
+                <polygon fill="#185FA5" points="56.61 196.11 169.83 196.11 226.44 98.06 188.7 98.06 150.96 163.43 75.48 163.43 56.61 196.11"></polygon>
+                <polygon fill="#74BC45" points="75.48 98.05 94.35 65.37 150.96 65.38 207.57 65.37 207.57 65.38 226.44 98.06 169.83 98.06 113.22 98.06 94.39 130.66 94.3 130.66 84.92 114.4 75.48 98.05"></polygon>
+                <polygon fill="#74BC45" points="0 98.06 56.6 0 113.22 0.01 169.83 0.01 169.83 0.01 188.69 32.68 132.09 32.69 75.47 32.69 18.86 130.74 0 98.06"></polygon>
+                <polygon fill="#74BC45" points="75.48 163.43 56.61 130.74 37.71 163.46 47.15 179.81 56.54 196.07 56.63 196.07 75.48 163.43"></polygon>
+              </svg>
+            </span>
+            <span class="mdc-list-item__text">
+              <%= t "layouts.application.wiki" %><span class="mdc-list-item__secondary-text"><%= t(".save_knowledge") %></span>
+            </span>
+          </a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="<%= url_for(controller: "cards", action: "index") %>" class="res-list-item__anchor">
+            <span class="mdc-list-item__graphic material-icons" aria-hidden="true">contact_mail</span>
+            <span class="mdc-list-item__text">
+              <%= t "layouts.application.business_cards" %><span class="mdc-list-item__secondary-text"><%= t(".here_is_information_on_business_cards") %></span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+      <h3 class="mdc-typography--subtitle1"><%= t(".other_links") %></h3>
+      <ul class="mdc-list res-list">
+        <li class="mdc-list-item">
+          <a href="https://github.com/" class="res-list-item__anchor">
+            <span class="mdc-list-item__graphic" aria-hidden="true">
+              <svg viewBox="0 0 16 16" version="1.1" height="24" width="24" aria-hidden="true">
+                <path fill-rule="evenodd" fill="#000" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+            </span>
+            <span class="mdc-list-item__text"><%= t "layouts.application.github" %></span>
+          </a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="https://trello.com/" class="res-list-item__anchor trellicons">
+            <span class="mdc-list-item__graphic material-icons" aria-hidden="true">&#xE909;</span>
+            <span class="mdc-list-item__text"><%= t "layouts.application.trello" %></span>
+          </a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="https://restus.co.jp/" class="res-list-item__anchor">
+            <span class="mdc-list-item__graphic" aria-hidden="true">
+              <svg width="143.64873" height="142.894" viewBox="0 0 143.64873 142.894">
+                <g transform="translate(-361.60327,-32.815)">
+                  <path style="fill:#ef7a00" d="m 420.05,72.715 c -18.683,-13.97 -39.987,-17.098 -50.826,-6.256 -6.435,6.432 -8.286,16.992
+                    -5.083,28.969 2.846,10.622 9.377,21.329 18.409,30.164 0.26,0.251 0.518,0.482 0.774,0.731 9.042,-19.79 17.911,-36.017
+                    27.771,-45.876 2.875,-2.873 5.884,-5.431 8.955,-7.732 z" />
+                  <path style="fill:#ef7a00" d="m 477.484,174.709 c -1.667,-3.943 -3.279,-7.8 -4.873,-11.571 -5.485,-13.099 -10.695,-25.531
+                    -15.853,-36.816 -11.688,11.288 -22.742,18.627 -36.708,25.353 10.646,5.132 23.004,9.921 38.695,15.859 6.021,2.281 12.254,4.637
+                    18.739,7.175 z" />
+                  <path style="fill:#e83b0c" d="m 428.99,80.446 c -2.872,-2.872 -5.874,-5.43 -8.94,-7.731 -3.071,2.301 -6.08,4.859 -8.954,7.731
+                    -9.86,9.86 -18.729,26.086 -27.771,45.876 11.688,11.288 22.741,18.627 36.726,25.353 13.966,-6.726 25.02,-14.064 36.708,-25.353
+                    -9.037,-19.79 -17.91,-36.016 -27.769,-45.876 z" />
+                  <path style="fill:#f8b500" d="m 456.758,126.322 c 0.263,-0.249 0.515,-0.479 0.771,-0.731 9.037,-8.834 15.566,-19.542
+                    18.412,-30.164 3.2,-11.977 1.355,-22.538 -5.076,-28.969 -10.841,-10.841 -32.149,-7.713 -50.815,6.256 3.066,2.301 6.068,4.859
+                    8.94,7.731 9.859,9.861 18.732,26.087 27.768,45.877 z" />
+                  <path style="fill:#f8b500" d="m 367.468,163.138 c -1.585,3.771 -3.201,7.628 -4.863,11.571 6.479,-2.538 12.711,-4.895
+                    18.733,-7.175 15.689,-5.938 28.049,-10.727 38.712,-15.859 -13.984,-6.726 -25.038,-14.064 -36.726,-25.353 -5.158,11.288
+                    -10.371,23.718 -15.856,36.816 z" />
+                  <path style="fill:#f8b500" d="m 488.837,33.815 c -8.505,0 -15.421,6.919 -15.421,15.417 0,8.504 6.916,15.422 15.421,15.422 8.5,0
+                    15.415,-6.917 15.415,-15.422 0,-8.498 -6.915,-15.417 -15.415,-15.417 z" />
+                </g>
+              </svg>
+            </span>
+            <span class="mdc-list-item__text"><%= t ".corporate_site" %></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

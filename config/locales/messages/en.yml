@@ -114,6 +114,18 @@ en:
       github: GitHub
       trello: Trello
       g_sute_account: G Sute Account
+  root:
+    index:
+      top_page: Top Page
+      g_suite: G Suite
+      check_mail: First, check mails.
+      check_schedule: Next, check schedule.
+      there_are_documents: There are office documents here.
+      office_system: Office System
+      save_knowledge: Save knowledge here.
+      here_is_information_on_business_cards: Here is information on business cards.
+      other_links: Other Links
+      corporate_site: Corporate site
   cards:
     create:
       successfully_created: Card was successfully created.
