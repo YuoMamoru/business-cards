@@ -1,0 +1,19 @@
+.mdc-list--avatar-list .mdc-list-item__graphic {
+  &.icon-gmail {
+    background-image: url("https://ssl.gstatic.com/gb/images/p1_4e5d27c6.png");
+    background-position: 0 -992px;
+    background-size: 40px 1549px;
+  }
+
+  &.icon-googlecalendar {
+    background-image: url("https://ssl.gstatic.com/gb/images/p1_4e5d27c6.png");
+    background-position: 0 -518px;
+    background-size: 40px 1549px;
+  }
+
+  &.icon-googledrive {
+    background-image: url("https://ssl.gstatic.com/gb/images/p1_4e5d27c6.png");
+    background-position: 0 -1121px;
+    background-size: 40px 1549px;
+  }
+}
