@@ -3,8 +3,7 @@
 ((self) => {
   if (self.Restus) return;
 
-  const Restus = {};
-  Restus.Content = class Content {
+  class Content {
     constructor(keyMap, properties) {
       this.snackbarElm = document.querySelector(keyMap.SNACKBAR_SELECTOR);
       this.snackbarDelay = keyMap.SNACKBAR_DELAY == null ? 150 : keyMap.SNACKBAR_DELAY;
@@ -21,10 +20,10 @@
         this.snackbarElm.MDCSnackbar.show({ message: snackbarMessage });
       }
     }
-  };
+  }
 
   /** Class representing list type content. */
-  Restus.ListContent = class ListContent extends Restus.Content {
+  class ListContent extends Content {
     /**
      * Create a ListContent.
      * @param {object} keyMap - keys of Dom.
@@ -111,7 +110,10 @@
       this.setCard(e.detail.obj);
       this.showCard(e.detail.x, e.detail.y);
     }
-  };
+  }
 
-  self.Restus = Restus; // eslint-disable-line no-param-reassign
+  self.Restus = { // eslint-disable-line no-param-reassign
+    Content,
+    ListContent,
+  };
 })(this);
