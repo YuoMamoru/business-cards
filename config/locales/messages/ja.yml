@@ -109,6 +109,18 @@ ja:
       github: GitHub
       trello: Trello
       g_sute_account: G Sute アカウント
+  root:
+    index:
+      top_page: ポータルサイト
+      g_suite: G Suite
+      check_mail: まず、メールを確認しましょう。
+      check_schedule: 次に、予定を確認。
+      there_are_documents: ここには社内ドキュメントがあります。
+      office_system: 社内システム
+      save_knowledge: ナレッジはここに蓄えましょう。
+      here_is_information_on_business_cards: ここには名刺の情報があります。
+      other_links: その他のリンク
+      corporate_site: 会社のサイト
   cards:
     create:
       successfully_created: 名刺を登録しました。
