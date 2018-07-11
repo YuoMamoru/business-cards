@@ -19,6 +19,7 @@ install:
   - npm install
 
 before_script:
+  - cp config/database.yml.sample config/database.yml
   - cp config/google_api.yml.sample config/google_api.yml
   - bin/bundle exec rake db:create
   - bin/bundle exec rake db:migrate

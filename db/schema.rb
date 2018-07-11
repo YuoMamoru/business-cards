@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_26_095623) do
+ActiveRecord::Schema.define(version: 2018_07_11_024824) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "company_id", null: false
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2018_04_26_095623) do
     t.string "tel", limit: 15
     t.string "fax", limit: 15
     t.string "mail", limit: 255
-    t.binary "front_image"
-    t.binary "back_image"
+    t.binary "front_image", limit: 1048576
+    t.binary "back_image", limit: 1048576
     t.string "qualification", limit: 255
     t.string "note", limit: 255
     t.boolean "deleted", default: false, null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_04_26_095623) do
     t.string "en_name", limit: 255
     t.integer "category", limit: 2, null: false
     t.integer "category_position", limit: 1, null: false
-    t.binary "logo_image"
+    t.binary "logo_image", limit: 1048576
     t.string "note", limit: 255
     t.string "web_site", limit: 255
     t.datetime "created_at", null: false

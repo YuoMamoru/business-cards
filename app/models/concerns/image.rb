@@ -19,6 +19,7 @@ class Image
     else
       @data = data
     end
+    @data.force_encoding("UTF-8") unless @data.frozen?
     set_matadata
   end
 
