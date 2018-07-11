@@ -115,5 +115,8 @@
   self.Restus = { // eslint-disable-line no-param-reassign
     Content,
     ListContent,
+    toCamelCase(str) {
+      return str.replace(/[-_](.)/g, (matchMedia, group) => group.toUpperCase());
+    },
   };
 })(this);

@@ -62,6 +62,7 @@ document.addEventListener('turbolinks:load', (evt) => {
         card.postcode ? `〒${card.postcode} ${card.address} ${card.building}` : `${card.address} ${card.building}`,
       );
       this._setCardAnchorField(card, 'tel', value => `tel:${value.replace(/-/g, '')}`);
+      this._setCardAnchorField(card, 'cellular-phone', value => `tel:${value.replace(/-/g, '')}`);
       this._setCardField(card, 'fax');
       this._setCardAnchorField(card, 'mail', value => `mailto:${value}`);
       this._setCardField(card, 'note');
@@ -91,8 +92,9 @@ document.addEventListener('turbolinks:load', (evt) => {
 
     _setCardField(card, fieldName) {
       const elm = this.cardElm.querySelector(`.res-card-info__${fieldName}`);
-      if (card[fieldName]) {
-        elm.innerText = card[fieldName];
+      const val = card[Restus.toCamelCase(fieldName)];
+      if (val) {
+        elm.innerText = val;
         elm.parentElement.style.display = '';
       } else {
         elm.innerText = '';
@@ -102,7 +104,7 @@ document.addEventListener('turbolinks:load', (evt) => {
 
     _setCardAnchorField(card, fieldName, getHref, value = null) {
       const elm = this.cardElm.querySelector(`.res-card-info__${fieldName}`);
-      const val = value == null ? card[fieldName] : value;
+      const val = value == null ? card[Restus.toCamelCase(fieldName)] : value;
       if (val) {
         elm.href = getHref(val, card);
         elm.innerText = val;

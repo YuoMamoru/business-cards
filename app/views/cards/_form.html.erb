@@ -43,6 +43,7 @@
   </div>
   <div class="field">
     <%= form.text_field :tel, maxlength: 15, pattern: "0[\\d\\-]{11,14}", class: "field-tel", list: "phone-list", autocomplete: "off" %>
+    <%= form.text_field :cellular_phone, maxlength: 15, pattern: "0[\\d\\-]{11,14}", list: "phone-list", autocomplete: "off" %>
     <%= form.text_field :fax, maxlength: 15, pattern: "0[\\d\\-]{11,14}", list: "phone-list", autocomplete: "off" %>
   </div>
   <div class="field">

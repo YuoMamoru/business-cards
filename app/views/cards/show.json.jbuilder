@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 json.key_format! camelize: :lower
-json.extract! @card, :id, :name, :kana_name, :department, :position, :postcode, :address, :building, :tel, :fax, :mail, :qualification, :note, :created_at, :updated_at
+json.extract! @card, :id, :name, :kana_name, :department, :position, :postcode, :address, :building, :tel, :cellular_phone, :fax, :mail, :qualification, :note, :created_at, :updated_at
 json.company do
   json.partial! "companies/company", company: @card.company
 end
