@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 json.cards do
-  json.array! @cards, :id, :company_id, :name, :kana_name, :department, :position, :postcode, :address, :tel, :fax, :mail, :front_image, :back_image, :qualification, :note, :created_at, :updated_at
+  json.array! @cards, :id, :company_id, :name, :kana_name, :department, :position, :postcode, :address, :tel, :cellular_phone, :fax, :mail, :front_image, :back_image, :qualification, :note, :created_at, :updated_at
 end
 json.companies do
   @companies.each do |company|

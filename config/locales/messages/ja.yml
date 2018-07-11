@@ -45,6 +45,7 @@ ja:
         address: 所在地
         building: 建物等
         tel: 電話
+        cellular_phone: 携帯電話
         fax: FAX
         mail: メール
         front_image: 表画像

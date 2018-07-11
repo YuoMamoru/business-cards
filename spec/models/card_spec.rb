@@ -103,6 +103,23 @@ RSpec.describe Card, type: :model do
     expect(@card).to be_invalid
   end
 
+  it "is valid with a valid cellular phone" do
+    @card.cellular_phone = "012-345-6789"
+    expect(@card).to be_valid
+  end
+
+  it "is invalid with a invalid cellular phone" do
+    @card.cellular_phone = "123-456-7890"
+    expect(@card).to be_invalid
+    @card.cellular_phone = "012(345)6789"
+    expect(@card).to be_invalid
+  end
+
+  it "is invalid when its cellular phone is too long" do
+    @card.cellular_phone = "01234-56789-0123"
+    expect(@card).to be_invalid
+  end
+
   it "is valid with a valid fax" do
     @card.fax = "012-345-6789"
     expect(@card).to be_valid
