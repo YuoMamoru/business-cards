@@ -33,6 +33,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore settings of database.
+/config/database.yml
+
 # Ignore google api information that includes api key.
 /config/google_api.yml
 
