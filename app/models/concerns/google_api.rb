@@ -19,9 +19,9 @@ module GoogleApi
         attr_reader :red, :green, :blue, :score, :pixel_fraction
 
         def initialize(dc)
-          @red = dc["color"]["red"]
-          @green = dc["color"]["green"]
-          @blue = dc["color"]["blue"]
+          @red = dc["color"]["red"] || 0
+          @green = dc["color"]["green"] || 0
+          @blue = dc["color"]["blue"] || 0
           @score = dc["score"]
           @pixel_fraction = dc["pixelFraction"]
         end
