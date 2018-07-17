@@ -47,8 +47,8 @@
     setCard(obj) {} // eslint-disable-line class-methods-use-this
 
     showCard(clickX = 400, clickY = 200) {
-      let cardLeft = clickX + 96;
-      let cardTop = clickY - 96;
+      let cardLeft = (clickX + window.pageXOffset) + 96;
+      let cardTop = (clickY + window.pageYOffset) - 96;
       const hidden = !this.cardElm.clientHeight;
       this.cardElm.style.left = `${cardLeft}px`;
       this.cardElm.style.top = `${cardTop}px`;
@@ -60,11 +60,15 @@
         if (hidden) {
           this.cardElm.style.transition = 'unset';
         }
-        if (window.innerWidth < cardLeft + cardWidth + 8) {
-          cardLeft = Math.max(window.innerWidth - cardWidth - 8, 8);
+        if (cardLeft - window.pageXOffset < 8) {
+          cardLeft = 8 + window.pageXOffset;
+        } else if (window.innerWidth < (cardLeft - window.pageXOffset) + cardWidth + 8) {
+          cardLeft = Math.max(window.innerWidth - cardWidth - 8, 8) + window.pageXOffset;
         }
-        if (window.innerHeight < cardTop + cardHeight + 8) {
-          cardTop = Math.max(window.innerHeight - cardHeight - 8, 72);
+        if (cardTop - window.pageYOffset < 72) {
+          cardTop = 72 + window.pageYOffset;
+        } else if (window.innerHeight < (cardTop - window.pageYOffset) + cardHeight + 8) {
+          cardTop = Math.max(window.innerHeight - cardHeight - 8, 72) + window.pageYOffset;
         }
         this.cardElm.style.left = `${cardLeft}px`;
         this.cardElm.style.top = `${cardTop}px`;
