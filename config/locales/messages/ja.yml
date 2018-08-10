@@ -107,6 +107,7 @@ ja:
       wiki: Wiki
       company_settings: 取引先設定
       business_cards: 名刺
+      jupyter: Jupyter
       github: GitHub
       trello: Trello
       g_sute_account: G Sute アカウント
@@ -120,6 +121,7 @@ ja:
       office_system: 社内システム
       save_knowledge: ナレッジはここに蓄えましょう。
       here_is_information_on_business_cards: ここには名刺の情報があります。
+      here_is_a_platform_of_data_minig: データマイニングのプラットフォームです。
       other_links: その他のリンク
       corporate_site: 会社のサイト
   cards:
