@@ -29,6 +29,11 @@ html {
   padding: 0;
 }
 
+.res-title__link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .res-content {
   display: flex;
   flex: 1 1 auto;
