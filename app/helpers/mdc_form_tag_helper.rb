@@ -167,15 +167,19 @@ module MdcFormTagHelper
   # * <tt>:label</tt> - Specifies label content.
   def mdc_switch(name, value = "1", checked = false, options = {})
     container_classes = [ "mdc-switch" ]
+    container_classes << "mdc-switch--checked" if checked
     merge_class_name(options, *container_classes)
     container_options = { class: options.delete(:class) }
+    container_options[:"data-mdc-auto-init"] = "MDCSwitch" if options.delete(:auto_init)
     label = options.delete(:label)
     sw = content_tag(:div, container_options) do
       safe_join([
-        check_box_tag(name, value, checked, options.merge(class: "mdc-switch__native-control", role: "switch", "aria-checked": checked)),
-        content_tag(:div, class: "mdc-switch__background") do
-          content_tag(:div, "", class: "mdc-switch__knob")
-        end,
+        content_tag(:div, "", class: "mdc-switch__track"),
+        content_tag(:div, class: "mdc-switch__thumb-underlay") do
+          content_tag(:div, class: "mdc-switch__thumb") do
+            check_box_tag(name, value, checked, options.merge(class: "mdc-switch__native-control", role: "switch", "aria-checked": checked))
+          end
+        end
       ])
     end
     if label.blank?

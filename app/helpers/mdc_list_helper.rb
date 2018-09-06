@@ -16,13 +16,17 @@ module MdcListHelper
   #
   # === Additional optins
   #
+  # * <tt>:activated</tt> - If set this option to true, the list item becomes
+  #   activated state.
   # * <tt>:icon</tt> - Specify the icon at the beginning of the list item.
   #   This method use the {Material Icons}[https://material.io/icons/].
-  # * <tt>:selected</tt> - If set this option to true, the list item becomes selected state.
+  # * <tt>:selected</tt> - If set this option to true, the list item becomes
+  #   selected state.
   def mdc_list_item_link_to(name, options = nil, html_options = {}, &block)
     icon = html_options.delete(:icon)
     item_classes = [ "mdc-list-item" ]
     item_classes << "mdc-list-item--selected" if html_options.delete(:selected)
+    item_classes << "mdc-list-item--activated" if html_options.delete(:activated)
     merge_class_name(html_options, *item_classes)
     if icon.blank? && !block_given?
       link_to(name, options, html_options)
