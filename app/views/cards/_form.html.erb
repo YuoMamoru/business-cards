@@ -15,44 +15,44 @@
       </ul>
     </div>
   <% end %>
-  <div class="field field-left">
+  <div class="res-field field-left">
     <%= form.image_field :front_image, max_height: 256, accept: "image/png, image/jpeg, image/gif" %>
     <%= form.image_field :back_image, max_height: 256, accept: "image/png, image/jpeg, image/gif" %><br />
-    <%= mdc_switch nil, nil, true, label: t(".use_assistance"), id: "use-assistance" %>
+    <%= mdc_switch nil, nil, true, label: t(".use_assistance"), id: "use-assistance", auto_init: true %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :name, required: true, maxlength: 31, list: "all-list", autocomplete: "off" %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :kana_name, required: true, maxlength: 63, autocomplete: "off" %>
   </div>
-  <div class="field">
-    <%= form.select :company_id, Company.order(:kana_name).map{|c| [c.short_name, c.id]}, {}, { required: true, class: "field-company" } %>
+  <div class="res-field">
+    <%= form.select :company_id, Company.order(:kana_name).map{|c| [c.short_name, c.id]}, { box: true }, { required: true, class: "field-company" } %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :department, maxlength: 31, list: "all-list", autocomplete: "off" %>
     <%= form.text_field :position, maxlength: 31, list: "all-list", autocomplete: "off" %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :qualification, maxlength: 255, list: "all-list", autocomplete: "off" %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :postcode, maxlength: 8, pattern: "\\d{3}-\\d{4}", class: "field-postcode", list: "post-code-list", autocomplete: "off" %>
     <%= form.text_field :address, maxlength: 127, list: "all-list", class: "field-address", autocomplete: "off" %>
     <%= form.text_field :building, maxlength: 127, list: "all-list", autocomplete: "off" %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :tel, maxlength: 15, pattern: "0[\\d\\-]{11,14}", class: "field-tel", list: "phone-list", autocomplete: "off" %>
     <%= form.text_field :cellular_phone, maxlength: 15, pattern: "0[\\d\\-]{11,14}", list: "phone-list", autocomplete: "off" %>
     <%= form.text_field :fax, maxlength: 15, pattern: "0[\\d\\-]{11,14}", list: "phone-list", autocomplete: "off" %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :mail, maxlength: 255, pattern: "[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+", class: "field-mail", list: "mail-list", autocomplete: "off" %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :note, maxlength: 255, autocomplete: "off" %>
   </div>
-  <div class="actions">
+  <div class="res-actions">
     <%= mdc_link_to t("helpers.button.cancel"), {action: :index}, auto_init: true %>
     <%= form.submit raised: true, class: "res-button--raised--secondary" %>
   </div>

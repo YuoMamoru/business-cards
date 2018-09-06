@@ -13,52 +13,50 @@
   </head>
 
   <body class="mdc-typography res-body">
-    <header class="mdc-toolbar mdc-toolbar--fixed">
-      <div class="mdc-toolbar__row">
-        <div class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <button class="material-icons mdc-toolbar__menu-icon res-main-menu">menu</button>
-          <h1 class="mdc-toolbar__title"><a href="/" class="res-title__link">Restus Potal</a></h1>
+    <aside class="mdc-drawer mdc-drawer--modal res-drawer">
+      <div class="mdc-drawer__header">
+        <h3 class="mdc-drawer__title"><%= t ".menu" %></h3>
+      </div>
+      <div class="mdc-drawer__content">
+        <nav class="mdc-list">
+          <%= mdc_list_item_link_to t(".mail"), "https://mail.google.com/mail/", icon: "email", tabindex: 0 %>
+          <%= mdc_list_item_link_to t(".calendar"), "https://calendar.google.com/calendar/", icon: "event" %>
+          <%= mdc_list_item_link_to t(".drive"), "https://drive.google.com/drive/", icon: "folder" %>
+          <%= mdc_list_item_link_to t(".wiki"), "http://wiki.restus.co.jp/", icon: "create" %>
+          <%= mdc_list_item_link_to t(".company_settings"),
+                                    { controller: "companies", action: "index" },
+                                    icon: "business",
+                                    activated: controller.controller_name == "companies" %>
+          <%= mdc_list_item_link_to t(".business_cards"),
+                                    { controller: "cards", action: "index" },
+                                    icon: "contact_mail",
+                                    activated: controller.controller_name == "cards" %>
+
+          <hr class="mdc-list-divider">
+
+          <%= mdc_list_item_link_to t(".github"), "https://github.com/" do %>
+            <svg viewBox="0 0 16 16" version="1.1" height="24" width="24" aria-hidden="true">
+              <path fill-rule="evenodd" fill="#000" fill-opacity=".54" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+            </svg>
+          <% end %>
+          <%= mdc_list_item_link_to t(".trello"), "https://trello.com/", icon: "&#xE909;", class: "trellicons" %>
+
+          <hr class="mdc-list-divider">
+
+          <%= mdc_list_item_link_to t(".g_sute_account"), "https://myaccount.google.com/", icon: "account_circle" %>
+        </nav>
+      </div>
+    </aside>
+    <div class="mdc-drawer-scrim"></div>
+    <header class="mdc-top-app-bar">
+      <div class="mdc-top-app-bar__row">
+        <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <button class="material-icons mdc-top-app-bar__navigation-icon res-main-menu">menu</button>
+          <h1 class="mdc-top-app-bar__title"><a href="/" class="res-title__link">Restus Potal</a></h1>
         </div>
       </div>
     </header>
     <div class="mdc-toolbar-fixed-adjust res-content">
-      <aside class="mdc-drawer mdc-drawer--persistent<% if cookies[:drawer].present? %> mdc-drawer--open<% end %> res-drawer">
-        <nav class="mdc-drawer__drawer">
-          <div class="mdc-list-group">
-            <nav class="mdc-list">
-              <%= mdc_list_item_link_to t(".mail"), "https://mail.google.com/mail/", icon: "email" %>
-              <%= mdc_list_item_link_to t(".calendar"), "https://calendar.google.com/calendar/", icon: "event" %>
-              <%= mdc_list_item_link_to t(".drive"), "https://drive.google.com/drive/", icon: "folder" %>
-              <%= mdc_list_item_link_to t(".wiki"), "http://wiki.restus.co.jp/", icon: "create" %>
-              <%= mdc_list_item_link_to t(".company_settings"),
-                                        { controller: "companies", action: "index" },
-                                        icon: "business",
-                                        selected: controller.controller_name == "companies" %>
-              <%= mdc_list_item_link_to t(".business_cards"),
-                                        { controller: "cards", action: "index" },
-                                        icon: "contact_mail",
-                                        selected: controller.controller_name == "cards" %>
-            </nav>
-
-            <hr class="mdc-list-divider">
-
-            <nav class="mdc-list">
-              <%= mdc_list_item_link_to t(".github"), "https://github.com/" do %>
-                <svg viewBox="0 0 16 16" version="1.1" height="24" width="24" aria-hidden="true">
-                  <path fill-rule="evenodd" fill="#000" fill-opacity=".54" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                </svg>
-              <% end %>
-              <%= mdc_list_item_link_to t(".trello"), "https://trello.com/", icon: "&#xE909;", class: "trellicons" %>
-            </nav>
-
-            <hr class="mdc-list-divider">
-
-            <nav class="mdc-list">
-              <%= mdc_list_item_link_to t(".g_sute_account"), "https://myaccount.google.com/", icon: "account_circle" %>
-            </nav>
-          </div>
-        </nav>
-      </aside>
       <main class="res-main">
         <%= yield %>
       </main>

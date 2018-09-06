@@ -14,32 +14,32 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :name, required: true, maxlength: 255 %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :short_name, required: true, maxlength: 31 %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :kana_name, required: true, maxlength: 255 %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :en_name, maxlength: 255 %>
   </div>
-  <div class="field">
-    <%= form.select :category, Company.categories.keys.map{|key| [Company.human_attribute_name(key), key]}, {}, { required: true } %>
-    <%= form.select :category_position, Company.category_positions.keys.map{|key| [Company.human_attribute_name(key), key]}, {}, { required: true } %>
+  <div class="res-field">
+    <%= form.select :category, Company.categories.keys.map{|key| [Company.human_attribute_name(key), key]}, { box: true }, { required: true } %>
+    <%= form.select :category_position, Company.category_positions.keys.map{|key| [Company.human_attribute_name(key), key]}, { box: true }, { required: true } %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.image_field :logo_image, max_height: 192, accept: "image/png, image/jpeg, image/gif" %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :web_site, maxlength: 255 %>
   </div>
-  <div class="field">
+  <div class="res-field">
     <%= form.text_field :note, maxlength: 255 %>
   </div>
-  <div class="actions">
+  <div class="res-actions">
     <%= mdc_link_to t("helpers.button.cancel"), {action: :index}, auto_init: true %>
     <%= form.submit raised: true, class: "res-button--raised--secondary" %>
   </div>
