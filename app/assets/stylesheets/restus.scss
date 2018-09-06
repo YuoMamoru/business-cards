@@ -291,9 +291,8 @@ html {
 }
 
 // Froms
-.res-field,
-.res-actions {
-  padding: 4px 0;
+.res-field {
+  line-height: 4;
 }
 
 .res-form-container {
@@ -335,8 +334,6 @@ html {
 
 .mdc-select {
   min-width: 120px;
-  margin-top: 12px;
-  margin-bottom: 12px;
 
   &__native-control:required + .mdc-floating-label::after {
     margin-left: 1px;
