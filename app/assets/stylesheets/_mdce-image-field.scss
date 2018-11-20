@@ -19,7 +19,7 @@
     @include mdc-floating-label-ink-color($mdc-text-field-label);
 
     position: absolute;
-    top: 3px;
+    top: 26px;
     left: 0;
     transform-origin: left top;
     transition: transform 180ms cubic-bezier(.4, 0, .2, 1), color 180ms cubic-bezier(.4, 0, .2, 1);
