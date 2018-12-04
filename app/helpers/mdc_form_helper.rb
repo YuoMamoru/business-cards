@@ -107,7 +107,7 @@ module MdcFormHelper
       merge_class_name(container_options, "mdce-image-field")
       container_options[:"data-mdce-auto-init"] = "MDCEImageField" if options.delete(:auto_init) || @options[:auto_init]
       @template.content_tag(:div, container_options) do
-        style_options = []
+        style_options = ["line-height:initial"]
         style_options << "max-width:#{options.delete(:max_width)}px" if options.has_key?(:max_width)
         style_options << "max-height:#{options.delete(:max_height)}px" if options.has_key?(:max_height)
         style_attr = style_options.empty? ? nil : style_options.join(";")
