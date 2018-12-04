@@ -15,11 +15,31 @@ document.addEventListener('turbolinks:load', (evt) => {
     URL_KEY: 'cardUrl',
   }, {
     // HTML Dom Objects
+    companyListElm: document.querySelector('.res-company-list'),
+    complayListHeaderCheckboxElm: document.querySelector('.res-cards-company-header-checkbox'),
     cardListElm: document.querySelector('.res-cards-list'),
     cardElm: document.querySelector('.res-cards-card'),
     cardFabElm: document.querySelector('.res-card__fab'),
     fabElm: document.querySelector('.res-card-add-button'),
     snackbarElm: document.querySelector('.res-cards-snackbar'),
+
+    updateHeaderCheckboxState() {
+      let checked = null;
+      for (const checkbox of this.companyListElm.querySelectorAll('input[type="checkbox"]')) {
+        if (checked == null) {
+          ({ checked } = checkbox);
+        } else if (checked !== checkbox.checked) {
+          this.complayListHeaderCheckboxElm.MDCCheckbox.checked = false;
+          this.complayListHeaderCheckboxElm.MDCCheckbox.indeterminate = true;
+          return;
+        }
+      }
+      if (checked == null) {
+        return;
+      }
+      this.complayListHeaderCheckboxElm.MDCCheckbox.indeterminate = false;
+      this.complayListHeaderCheckboxElm.MDCCheckbox.checked = checked;
+    },
 
     toggleListItem(companyId, willOpen) {
       const listItems = this.cardListElm.querySelectorAll(`.res-card-item[data-company-id="${companyId}"]`);
@@ -117,12 +137,26 @@ document.addEventListener('turbolinks:load', (evt) => {
     },
   });
 
+  const onClickCompanyListHeaderCheckbox = (e) => {
+    const { checked } = contents.complayListHeaderCheckboxElm.MDCCheckbox;
+    for (const listItemElm of document.querySelectorAll('.res-item-company')) {
+      const companyCheckbox = listItemElm.querySelector('.mdc-checkbox').MDCCheckbox;
+      if (companyCheckbox.checked !== checked) {
+        companyCheckbox.checked = checked;
+        contents.toggleListItem(companyCheckbox.value, checked);
+      }
+    }
+  };
+  const listHeaderCheckbox = document.querySelector('.res-cards-company-header-checkbox');
+  listHeaderCheckbox.addEventListener('click', onClickCompanyListHeaderCheckbox, false);
+
   const onClickCompanyList = (e) => {
     const checkbox = e.currentTarget.querySelector('.mdc-checkbox').MDCCheckbox;
     if (e.target.tagName !== 'INPUT' || e.target.type !== 'checkbox') {
       checkbox.checked = !checkbox.checked;
     }
     contents.toggleListItem(checkbox.value, checkbox.checked);
+    contents.updateHeaderCheckboxState();
   };
   for (const listItemElm of document.querySelectorAll('.res-item-company')) {
     listItemElm.addEventListener('click', onClickCompanyList, false);
