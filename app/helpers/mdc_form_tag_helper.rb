@@ -140,11 +140,13 @@ module MdcFormTagHelper
         safe_join([
           check_box_tag(name, value, checked, options.merge(class: "mdc-checkbox__native-control")),
           content_tag(:div, class: "mdc-checkbox__background") do
-            content_tag(:svg, class: "mdc-checkbox__checkmark", viewBox: "0 0 24 24") do
-              content_tag(:path, nil, class: "mdc-checkbox__checkmark-path", fill: "none", stroke: "white", d: "M1.73,12.91 8.1,19.28 22.79,4.59")
-            end
+            safe_join([
+              content_tag(:svg, class: "mdc-checkbox__checkmark", viewBox: "0 0 24 24") do
+                content_tag(:path, nil, class: "mdc-checkbox__checkmark-path", fill: "none", stroke: "white", d: "M1.73,12.91 8.1,19.28 22.79,4.59")
+              end,
+              content_tag(:div, nil, class: "mdc-checkbox__mixedmark"),
+            ])
           end,
-          content_tag(:div, nil, class: "mdc-checkbox__mixedmark"),
         ])
       end
     if label.blank?
