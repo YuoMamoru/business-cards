@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :card do
     association :company
-    name("0" * 31)
-    kana_name("0" * 63)
+    name { "0" * 31 }
+    kana_name { "0" * 63 }
   end
 end
