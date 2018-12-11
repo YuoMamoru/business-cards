@@ -84,6 +84,8 @@ group :test do
   gem 'factory_bot_rails'
   # Security checker
   gem 'brakeman'
+  # Test coverage (Codecov)
+  gem 'codecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
