@@ -163,7 +163,7 @@ html {
 .res-card {
   position: absolute;
   width: 540px;
-  transition: top 150ms linear, left 150ms linear; // FIXME:
+  transition: top 150ms cubic-bezier(.4, 0, .2, 1), left 150ms cubic-bezier(.4, 0, .2, 1);
 
   &__media {
     background-color: #888;
