@@ -118,7 +118,6 @@ en:
       g_sute_account: G Sute Account
   root:
     index:
-      top_page: Top Page
       g_suite: G Suite
       check_mail: First, check mails.
       check_schedule: Next, check schedule.

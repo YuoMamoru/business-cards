@@ -8,16 +8,14 @@
 @import "@material/button/mixins";
 @import "@material/textfield/variables";
 @import "@material/select/mixins";
+@import "@material/top-app-bar/variables";
 @import "trello";
 @import "icons";
 
+$res-content-margin: 8px;
+
 html {
   height: 100%;
-}
-
-.mdc-toolbar__title {
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 .res-body {
@@ -47,16 +45,9 @@ html {
 }
 
 .res-content-title {
-  @each $size in map-keys($mdc-layout-grid-columns) {
-    @include mdc-layout-grid-media-query_($size) {
-      $margin: map-get($mdc-layout-grid-default-margin, $size);
-
-      box-sizing: border-box;
-      margin: 0 auto;
-      padding: $margin;
-      padding: var(--mdc-layout-grid-margin-#{$size}, #{$margin});
-    }
-  }
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 16px;
 }
 
 .res-none {
@@ -68,7 +59,7 @@ html {
 }
 
 .res-content-list {
-  margin: 0 8px;
+  margin: 0 $res-content-margin;
   border: 1px solid rgba(0, 0, 0, .1);
 
   .mdc-list-group__subheader {
@@ -129,8 +120,8 @@ html {
 
   &--content .mdc-list-item {
     height: unset;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: $res-content-margin;
+    padding-bottom: $res-content-margin;
   }
 }
 
@@ -147,10 +138,9 @@ html {
     flex-direction: column;
     box-sizing: border-box;
     width: 232px;
-    height: 100%;
-    margin-left: 8px;
+    height: calc(100% - $res-content-margin);
+    margin-left: $res-content-margin;
     border: 1px solid #e4e4e4;
-    border-bottom: none;
     overflow: hidden;
     touch-action: none;
   }
@@ -184,7 +174,7 @@ html {
     }
 
     &__icon-button-area {
-      padding: 8px;
+      padding: $res-content-margin;
       text-align: right;
     }
 
@@ -202,7 +192,7 @@ html {
   &__fab {
     position: absolute;
     bottom: -20px;
-    left: 8px;
+    left: $res-content-margin;
     z-index: 2;
   }
 
@@ -278,6 +268,26 @@ html {
   @include mdc-theme-prop(color, primary);
 }
 
+.res-company-list {
+  max-height: calc(100vh - #{$mdc-top-app-bar-row-height} - 66px - 56px - #{$res-content-margin});
+  overflow-y: auto;
+}
+
+.res-cards-list {
+  max-height: calc(100vh - #{$mdc-top-app-bar-row-height} - 66px - #{$res-content-margin});
+  overflow-y: auto;
+}
+
+@media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+  .res-company-list {
+    max-height: calc(100vh - #{$mdc-top-app-bar-mobile-row-height} - 66px - 56px - #{$res-content-margin});
+  }
+
+  .res-cards-list {
+    max-height: calc(100vh - #{$mdc-top-app-bar-mobile-row-height} - 66px - #{$res-content-margin});
+  }
+}
+
 .mdc-dialog__body--scrollable {
   max-height: calc(100vh - 195px);
   overflow-y: auto;
@@ -300,8 +310,8 @@ html {
     @include mdc-layout-grid-media-query_($size) {
       $margin: map-get($mdc-layout-grid-default-margin, $size);
 
-      padding: 0 $margin 8px;
-      padding: 0 var(--mdc-layout-grid-margin-#{$size}, #{$margin}) 8px;
+      padding: 0 $margin $res-content-margin;
+      padding: 0 var(--mdc-layout-grid-margin-#{$size}, #{$margin}) $res-content-margin;
     }
   }
 }
@@ -353,8 +363,8 @@ html {
 }
 
 .field-left {
-  padding-right: 8px;
-  padding-bottom: 8px;
+  padding-right: $res-content-margin;
+  padding-bottom: $res-content-margin;
   float: left;
 }
 
