@@ -72,8 +72,9 @@ module MdcFormHelper
       html_options[:class] = "mdc-select__native-control"
       @template.content_tag(:div, container_options) do
         @template.safe_join([
+          @template.content_tag(:i, nil, class: "mdc-select__dropdown-icon"),
           super,
-          @template.content_tag(:div, label_content(method), class: "mdc-floating-label"),
+          @template.content_tag(:label, label_content(method), class: "mdc-floating-label"),
           @template.content_tag(:div, nil, class: "mdc-line-ripple"),
         ])
       end
@@ -173,7 +174,13 @@ module MdcFormHelper
       elem_classes << "mdc-button--unelevated" if options.delete(:unelevated)
       merge_class_name(options, *elem_classes)
       options[:"data-mdc-auto-init"] = "MDCRipple" if options.delete(:auto_init) || @options[:auto_init]
-      super(value, options, &block)
+      super(options) do
+        if block_given?
+          @template.content_tag(:span, class: "mdc-button__label", &block)
+        else
+          @template.content_tag(:span, value || submit_default_value, class: "mdc-button__label")
+        end
+      end
     end
 
     private

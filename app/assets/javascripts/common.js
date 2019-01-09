@@ -15,9 +15,11 @@
     }
 
     showSnackbar(message = null) {
-      const snackbarMessage = message || this.snackbarElm.dataset.message;
-      if (snackbarMessage) {
-        this.snackbarElm.MDCSnackbar.show({ message: snackbarMessage });
+      if (message) {
+        this.snackbarElm.MDCSnackbar.labelText = message;
+      }
+      if (this.snackbarElm.MDCSnackbar.labelText) {
+        this.snackbarElm.MDCSnackbar.open();
       }
     }
   }
