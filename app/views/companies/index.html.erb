@@ -52,15 +52,12 @@
 
   <%= mdc_fab_link_to "add", {action: :new}, class: "res-add-fab res-companies-add-button", label: t(".create_company"), title: t(".create_company") %>
 
-  <div class="mdc-snackbar res-companies-snackbar"
-       aria-live="assertive"
-       aria-atomic="true"
-       aria-hidden="true"
-       data-mdc-auto-init="MDCSnackbar"
-       data-message="<%= notice %>">
-    <div class="mdc-snackbar__text res-companies-result"></div>
-    <div class="mdc-snackbar__action-wrapper">
-      <button type="button" class="mdc-snackbar__action-button"></button>
+  <div class="mdc-snackbar res-companies-snackbar" data-mdc-auto-init="MDCSnackbar">
+    <div class="mdc-snackbar__surface">
+      <div class="mdc-snackbar__label res-companies-result" role="status" aria-live="polite"><%= notice %></div>
+      <div class="mdc-snackbar__actions">
+        <button type="button" class="mdc-button mdc-snackbar__action"></button>
+      </div>
     </div>
   </div>
 </div>

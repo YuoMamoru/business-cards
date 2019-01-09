@@ -26,7 +26,13 @@ module MdcFormTagHelper
     elem_classes << "mdc-button--unelevated" if options.delete(:unelevated)
     merge_class_name(options, *elem_classes)
     options[:"data-mdc-auto-init"] = "MDCRipple" if options.delete(:auto_init)
-    button_tag(content_or_options, options, &block)
+    button_tag(options) do
+      if block_given?
+        content_tag(:span, class: "mdc-button__label", &block)
+      else
+        content_tag(:span, content_or_options || "Button", class: "mdc-button__label")
+      end
+    end
   end
 
   # Create a Material Design icon button.
@@ -176,7 +182,7 @@ module MdcFormTagHelper
     label = options.delete(:label)
     sw = content_tag(:div, container_options) do
       safe_join([
-        content_tag(:div, "", class: "mdc-switch__track"),
+        content_tag(:div, nil, class: "mdc-switch__track"),
         content_tag(:div, class: "mdc-switch__thumb-underlay") do
           content_tag(:div, class: "mdc-switch__thumb") do
             check_box_tag(name, value, checked, options.merge(class: "mdc-switch__native-control", role: "switch", "aria-checked": checked))
