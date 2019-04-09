@@ -21,6 +21,6 @@
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^0.8.1",
     "stylelint-scss": "^3.5.4",
-    "stylelint-selector-bem-pattern": "^2.0.0"
+    "stylelint-selector-bem-pattern": "^2.1.0"
   }
 }
