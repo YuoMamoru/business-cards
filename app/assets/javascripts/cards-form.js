@@ -15,13 +15,18 @@ document.addEventListener('turbolinks:load', (evt) => {
     mailElm: document.querySelector('.field-mail'),
     allListElm: document.getElementById('all-list'),
     postCodeListElm: document.getElementById('post-code-list'),
+    addressListElm: document.getElementById('address-list'),
     phoneListElm: document.getElementById('phone-list'),
     mailListElm: document.getElementById('mail-list'),
+    confirmDialogElm: document.getElementById('confirm'),
     _optBase: document.createElement('option'),
 
     init() {
       this.frontImageElm.addEventListener('change', this.onChangeImage.bind(this), false);
       this.frontImageElm.addEventListener('ajax:success', this.onCompleteOcr.bind(this), false);
+      new Restus.PostcodeLoader( // eslint-disable-line no-new
+        this.postcodeElm, this.addressElm, this.confirmDialogElm, '.obtained-address',
+      );
     },
 
     onChangeImage(e) {
@@ -63,6 +68,7 @@ document.addEventListener('turbolinks:load', (evt) => {
     setDataList(lists) {
       this._setProposedList(this.allListElm, lists.lines);
       this._setProposedList(this.postCodeListElm, lists.postCodes);
+      this._setProposedList(this.addressListElm, lists.lines);
       this._setProposedList(this.phoneListElm, lists.phones);
       this._setProposedList(this.mailListElm, lists.mails);
     },

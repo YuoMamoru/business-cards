@@ -94,6 +94,8 @@ en:
       cancel: Cancel
       edit: Edit
       submit: Save
+      "yes": "Yes"
+      "no": "No"
     image:
       select: Select image
     select:
@@ -128,6 +130,11 @@ en:
       you_can_use_this_as_python_or_r_platform: You can use this as Python or R platform.
       other_links: Other Links
       corporate_site: Corporate site
+  api:
+    postcode:
+      do_you_want_to_overwrite_address: Do you want to overwrite address?
+      address_information_obtained_html: The address obtained from the postcode is &ldquo;<span class="%{obtaind_class}"></span>&rdquo;. You can overwrite the address field with this value.
+      failed_to_call_api: Failed to call API.
   cards:
     create:
       successfully_created: Card was successfully created.

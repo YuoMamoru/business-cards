@@ -38,7 +38,7 @@
   </div>
   <div class="res-field">
     <%= form.text_field :postcode, maxlength: 8, pattern: "\\d{3}-\\d{4}", class: "field-postcode", list: "post-code-list", autocomplete: "off" %>
-    <%= form.text_field :address, maxlength: 127, list: "all-list", class: "field-address", autocomplete: "off" %>
+    <%= form.text_field :address, maxlength: 127, list: "address-list", class: "field-address", autocomplete: "off" %>
     <%= form.text_field :building, maxlength: 127, list: "all-list", autocomplete: "off" %>
   </div>
   <div class="res-field">
@@ -58,6 +58,24 @@
   </div>
   <datalist id="all-list"></datalist>
   <datalist id="post-code-list"></datalist>
+  <datalist id="address-list"></datalist>
   <datalist id="phone-list"></datalist>
   <datalist id="mail-list"></datalist>
+  <div class="mdc-dialog" role="alertdialog" aria-model="true" aria-labelledy="confirm-title" aria-desribedby="confrim-content" id="confirm" data-mdc-auto-init="MDCDialog">
+    <div class="mdc-dialog__container">
+      <div class="mdc-dialog__surface">
+        <h3 class="mdc-dialog__title" id="confirm-title"><%= t("api.postcode.do_you_want_to_overwrite_address") %></h3>
+        <div class="mdc-dialog__content" id="confirm-content"><%= t("api.postcode.address_information_obtained_html", obtaind_class: "obtained-address") %></div>
+        <footer class="mdc-dialog__actions">
+          <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+            <span class="mdc-button__label"><%= t("helpers.button.no") %></span>
+          </button>
+          <button type="button" class="mdc-button mdc-dialog__button mdc-dialog__button--default" data-mdc-dialog-action="accept">
+            <span class="mdc-button__label"><%= t("helpers.button.yes") %></span>
+          </button>
+        </footer>
+      </div>
+    </div>
+    <div class="mdc-dialog__scrim"></div>
+  </div>
 <% end %>

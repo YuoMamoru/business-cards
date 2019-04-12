@@ -27,7 +27,7 @@
   /** Class representing list type content. */
   class ListContent extends Content {
     /**
-     * Create a ListContent.
+     * Create a ListContent instance.
      * @param {object} keyMap - keys of Dom.
      * @param {object} properties - properties added to ListContent.
      */
@@ -118,9 +118,104 @@
     }
   }
 
+  /** Class for entering address from postcode */
+  class PostcodeLoader {
+    /**
+     * Create a PostcodeLoader instance.
+     * @param {HTMLInputElement} postcodeElm - Root element of MDC Text Field for postcode field.
+     * @param {HTMLInputElement} addressElm - Root element of MDC Text Field for address field.
+     * @param {HTMLElement} dialogElm - Root element of MDC Dialog instance for confirm dialog.
+     * @param {String} addressLabelSelector - CSS selector to get element to save address
+     *    temporarily.
+     */
+    constructor(postcodeElm, addressElm, dialogElm, addressLabelSelector) {
+      this.codeElm = postcodeElm.MDCTextField.input_; // eslint-disable-line no-underscore-dangle
+      this.addressElm = addressElm.MDCTextField.input_; // eslint-disable-line no-underscore-dangle
+      this.dialog = dialogElm.MDCDialog;
+      this.addressLabel = dialogElm.querySelector(addressLabelSelector);
+      this._optBase = document.createElement('option');
+      this.codeElm.addEventListener('change', this.onChangeCode.bind(this), false);
+      this.codeElm.addEventListener('ajax:success', this.onSuccessGettingAddress.bind(this), false);
+      this.dialog.listen('MDCDialog:closed', this.onClosedDialog.bind(this));
+    }
+
+    /**
+     * Event listener called when postcode has changed.
+     * @param {UIEvent} e - Event object.
+     */
+    onChangeCode(e) {
+      if (!this.getCode() || !e.target.checkValidity()) {
+        return;
+      }
+      const { codeElm } = this;
+      Rails.ajax({
+        type: 'GET',
+        dataType: 'JSON',
+        url: `/api/postcode?postcode=${encodeURIComponent(this.getCode())}`,
+        beforeSend(xhr, options) {
+          return Rails.fire(codeElm, 'ajax:beforeSend', { xhr, options });
+        },
+        success(responseBody, statusText, xhr) {
+          if (responseBody.address) {
+            Rails.fire(codeElm, 'ajax:success', { address: responseBody.address, xhr });
+          }
+        },
+      });
+    }
+
+    /**
+     * Event listener called when address is got from postcode.
+     * @param {CustomEvent} e - Event object.
+     */
+    onSuccessGettingAddress(e) {
+      if (!this.addressElm.value) {
+        this.addressElm.value = e.detail.address;
+      } else if (this.addressElm.value !== e.detail.address) {
+        this.addressLabel.innerHTML = e.detail.address;
+        this.dialog.open();
+      }
+      this._addAddressList(e.detail.address);
+    }
+
+    /**
+     * Event listener called when dialog is closed.
+     * @param {CustomEvent} e - Event object.
+     */
+    onClosedDialog(e) {
+      if (e.detail.action === 'accept') {
+        this.addressElm.value = this.addressLabel.innerHTML;
+        this.addressLabel.innerHTML = '';
+      }
+    }
+
+    /**
+     * Return postcode.
+     * @return {String} Postcode entered currently.
+     */
+    getCode() {
+      return this.codeElm.value.trim();
+    }
+
+    _addAddressList(address) {
+      const listElm = this.addressElm.list;
+      if (!listElm) {
+        return;
+      }
+      for (const optElm of listElm.options) {
+        if (optElm.value === address) {
+          return;
+        }
+      }
+      const opt = this._optBase.cloneNode(true);
+      opt.setAttribute('value', address);
+      listElm.insertBefore(opt, listElm.firstChild);
+    }
+  }
+
   self.Restus = { // eslint-disable-line no-param-reassign
     Content,
     ListContent,
+    PostcodeLoader,
     toCamelCase(str) {
       return str.replace(/[-_](.)/g, (matchMedia, group) => group.toUpperCase());
     },

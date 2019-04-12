@@ -89,6 +89,8 @@ ja:
       cancel: キャンセル
       edit: 編集
       submit: 保存
+      "yes": はい
+      "no": いいえ
     image:
       select: 画像の選択
     select:
@@ -123,6 +125,11 @@ ja:
       you_can_use_this_as_python_or_r_platform: Python や R のプラットフォームとして利用できます。
       other_links: その他のリンク
       corporate_site: 会社のサイト
+  api:
+    postcode:
+      do_you_want_to_overwrite_address: 住所を上書きしますか？
+      address_information_obtained_html: 郵便番号から取得した住所は「<span class="%{obtaind_class}"></span>」です。住所欄をこの値で上書きできます。
+      failed_to_call_api: API 呼び出しに失敗しました。
   cards:
     create:
       successfully_created: 名刺を登録しました。
