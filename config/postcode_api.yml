@@ -1,0 +1,11 @@
+default: &default
+  uri: http://zipcloud.ibsnet.co.jp/api/search
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
