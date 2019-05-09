@@ -16,7 +16,7 @@ before_install:
 
 install:
   - bundle install
-  - npm install
+  - yarn install
 
 before_script:
   - cp config/database.yml.sample config/database.yml
