@@ -4,7 +4,7 @@
   "description": "Restus core system",
   "license": "MIT",
   "scripts": {
-    "lint": "npm-run-all --parallel lint:*",
+    "lint": "npm-run-all --parallel --continue-on-error lint:*",
     "lint:css": "stylelint ./**/*.scss",
     "lint:js": "eslint .",
     "lint:ruby": "bin/bundle exec rubocop"

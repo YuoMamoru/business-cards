@@ -28,7 +28,7 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - npm run lint
+  - yarn run lint
   - bin/rails test
   - bin/rspec --tag ~google_api
   - bin/bundle exec brakeman -z -A --except CheckUnscopedFind -w1
