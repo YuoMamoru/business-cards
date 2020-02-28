@@ -10,7 +10,7 @@ gem 'sqlite3', '~> 1.3.6'
 # Use MySQL as the database for Active Record
 gem 'mysql2'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
