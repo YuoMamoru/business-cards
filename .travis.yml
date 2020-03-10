@@ -5,7 +5,7 @@ env:
 language: ruby
 
 rvm: 
- - 2.5.3
+  - 2.5.3
 
 bundler_args: "--without development --deployment"
 
@@ -28,7 +28,7 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - yarn run lint
+  - yarn lint
   - bin/rails test
   - bin/rspec --tag ~google_api
   - bin/bundle exec brakeman -z -A -w1
