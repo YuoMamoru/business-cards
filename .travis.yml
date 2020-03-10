@@ -2,17 +2,17 @@ env:
   global:
     - CC_TEST_REPORTER_ID=caafaf988393467d4e549b54331511085b9817212ee864e4f3db01c8d9dfa648
 
-language: ruby
+language: node_js
 
 rvm: 
   - 2.5.3
 
+node_js:
+  - 12
+
 bundler_args: "--without development --deployment"
 
 cache: bundler
-
-before_install:
-  - gem update --system --no-document
 
 install:
   - bundle install
